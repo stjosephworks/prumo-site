@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+coverage
+*.tsbuildinfo
+next-env.d.ts
+.env*
+
+# Downloaded by scripts/fetch-docs.mjs from the commits content/documents.json pins
+content/fetched

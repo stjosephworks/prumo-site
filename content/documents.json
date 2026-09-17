@@ -1,0 +1,124 @@
+{
+  "sources": {
+    "prumo": {
+      "repo": "stjosephworks/prumo",
+      "commit": "7bbd0bfe377b9d9dacfb8233f921b4776e3996b7"
+    },
+    "prumo-desktop": {
+      "repo": "stjosephworks/prumo-desktop",
+      "commit": "c381474b1bdbffa0f0ae2eb4420d03d31e4bb6a0"
+    }
+  },
+  "documents": [
+    {
+      "slug": "overview",
+      "source": "prumo",
+      "path": "README.md",
+      "group": "prumo",
+      "title": "Overview",
+      "blurb": {
+        "en": "What Prumo is, what it generates, and what lands in a project.",
+        "pt": "O que o Prumo é, o que ele gera e o que fica no projeto."
+      }
+    },
+    {
+      "slug": "stack",
+      "source": "prumo",
+      "path": "docs/stack.md",
+      "group": "prumo",
+      "title": "The locked stack",
+      "blurb": {
+        "en": "Every package, every version floor, and the sixteen entries deliberately dropped.",
+        "pt": "Cada pacote, cada piso de versão e as dezesseis entradas descartadas de propósito."
+      }
+    },
+    {
+      "slug": "structure",
+      "source": "prumo",
+      "path": "docs/structure.md",
+      "group": "prumo",
+      "title": "The .prumo/ layout",
+      "blurb": {
+        "en": "The nine areas, and the rule deciding which of them a project receives.",
+        "pt": "As nove áreas e a regra que decide quais delas um projeto recebe."
+      }
+    },
+    {
+      "slug": "decisions",
+      "source": "prumo",
+      "path": "docs/DECISIONS.md",
+      "group": "prumo",
+      "title": "Decisions",
+      "blurb": {
+        "en": "Every choice taken, the options weighed, why one won and what it costs.",
+        "pt": "Cada escolha tomada, as opções pesadas, por que uma venceu e o que ela custa."
+      }
+    },
+    {
+      "slug": "open-questions",
+      "source": "prumo",
+      "path": "docs/OPEN-QUESTIONS.md",
+      "group": "prumo",
+      "title": "Open questions",
+      "blurb": {
+        "en": "What has been raised and is still unresolved, each naming what it blocks.",
+        "pt": "O que foi levantado e segue sem resposta, cada um dizendo o que trava."
+      }
+    },
+    {
+      "slug": "maintaining-templates",
+      "source": "prumo",
+      "path": "docs/maintaining-templates.md",
+      "group": "prumo",
+      "title": "Maintaining templates",
+      "blurb": {
+        "en": "How a template changes, how the change is proved, and what a regeneration undoes.",
+        "pt": "Como um template muda, como a mudança é provada e o que uma regeneração desfaz."
+      }
+    },
+    {
+      "slug": "document-template",
+      "source": "prumo",
+      "path": "docs/document-template.md",
+      "group": "prumo",
+      "title": "The document template",
+      "blurb": {
+        "en": "The shape every convention document fills: five sections, voice, how much code.",
+        "pt": "A forma que todo documento de convenção preenche: cinco seções, voz, quanto código."
+      }
+    },
+    {
+      "slug": "desktop",
+      "source": "prumo-desktop",
+      "path": "README.md",
+      "group": "desktop",
+      "title": "Desktop overview",
+      "blurb": {
+        "en": "What the Desktop is, what already runs, and the order the rest is built in.",
+        "pt": "O que o Desktop é, o que já roda e a ordem em que o resto é construído."
+      }
+    },
+    {
+      "slug": "desktop-decisions",
+      "source": "prumo-desktop",
+      "path": "docs/DECISIONS.md",
+      "group": "desktop",
+      "title": "Desktop decisions",
+      "blurb": {
+        "en": "The approved decisions behind the Desktop, with their reasoning and their price.",
+        "pt": "As decisões aprovadas por trás do Desktop, com o raciocínio e o preço de cada uma."
+      }
+    },
+    {
+      "slug": "desktop-open-questions",
+      "source": "prumo-desktop",
+      "path": "docs/OPEN-QUESTIONS.md",
+      "group": "desktop",
+      "title": "Desktop open questions",
+      "blurb": {
+        "en": "What the Desktop has not settled yet.",
+        "pt": "O que o Desktop ainda não resolveu."
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main, alpha, dev]
+  pull_request:
+    # Every branch the flow protects, so that a required check is never one that had no reason to run.
+    branches: [main, alpha, dev]
+  schedule:
+    # Versions are pinned exactly with no range: a rotted transitive turns this red on its own.
+    - cron: '0 6 * * 1'
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      # A site that type-checks but does not build is still broken for everyone who visits it.
+      - run: pnpm build

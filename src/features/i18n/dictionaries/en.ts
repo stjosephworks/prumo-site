@@ -27,9 +27,9 @@ export const en = {
   },
   search: {
     open: 'Search the documents',
-    placeholder: 'Search headings and decisions',
+    placeholder: 'Search every heading',
     empty: 'Nothing matches that yet.',
-    hint: 'Searches every heading across all ten documents.',
+    hint: 'Searches every heading in the documentation.',
     close: 'Close',
     resultsOne: '1 result',
     resultsMany: '{count} results',
@@ -37,11 +37,11 @@ export const en = {
   home: {
     title: 'Prumo',
     description:
-      'Prumo starts a TypeScript project with the framework, the database rules and the test boundaries already chosen, each decision recorded with why it won and what it costs.',
+      'Prumo starts a TypeScript project with the framework, the database rules and the test boundaries already chosen, and writes every one of them into the project.',
     headline: 'The decisions are already made.',
     headlineSecond: 'And written down.',
     standfirst:
-      'Prumo starts a TypeScript project with the framework, the module layout, the database rules, the auth wiring and the test boundaries already chosen. Each one was decided once, recorded with its reasoning and its price, and turned into something that runs.',
+      'Prumo starts a TypeScript project with the framework, the module layout, the database rules, the auth wiring and the test boundaries already chosen. Each one was decided once, written into the project that receives it, and turned into something that runs.',
     commandLabel: 'Run this',
     commandCaption: 'Node 22.17 or later, and pnpm.',
     readDocuments: 'Read the documents',
@@ -89,9 +89,9 @@ export const en = {
       body: 'Every question the CLI asks also has a flag, which is how it runs in CI without a terminal. Outside an interactive terminal a missing answer is an error rather than a default.',
     },
     record: {
-      heading: 'Every choice states what it costs',
-      body: 'The decision log is not a changelog. Each entry names the options that were weighed, why one won, and what the winner costs — including the choices that were rejected and the gaps found while deciding.',
-      link: 'Open the decision log',
+      heading: 'The stack is locked, and says so',
+      body: 'One document names every package, every version floor and the sixteen entries that were deliberately dropped. It is written to be treated as given: a generated project inherits it whole, and nothing is left to be settled again per project.',
+      link: 'Open the locked stack',
     },
     desktop: {
       heading: 'Prumo Desktop',
@@ -258,7 +258,7 @@ export const en = {
     },
     follow: {
       heading: 'Follow it',
-      body: 'The decisions behind the Desktop are written down as they are taken, in the same shape as Prumo’s own.',
+      body: 'The Desktop is built in the open, one piece at a time. The repository carries what already runs and what is being worked on.',
       repository: 'Open the repository',
     },
   },

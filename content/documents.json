@@ -44,28 +44,6 @@
       }
     },
     {
-      "slug": "decisions",
-      "source": "prumo",
-      "path": "docs/DECISIONS.md",
-      "group": "prumo",
-      "title": "Decisions",
-      "blurb": {
-        "en": "Every choice taken, the options weighed, why one won and what it costs.",
-        "pt": "Cada escolha tomada, as opções pesadas, por que uma venceu e o que ela custa."
-      }
-    },
-    {
-      "slug": "open-questions",
-      "source": "prumo",
-      "path": "docs/OPEN-QUESTIONS.md",
-      "group": "prumo",
-      "title": "Open questions",
-      "blurb": {
-        "en": "What has been raised and is still unresolved, each naming what it blocks.",
-        "pt": "O que foi levantado e segue sem resposta, cada um dizendo o que trava."
-      }
-    },
-    {
       "slug": "maintaining-templates",
       "source": "prumo",
       "path": "docs/maintaining-templates.md",
@@ -96,28 +74,6 @@
       "blurb": {
         "en": "What the Desktop is, what already runs, and the order the rest is built in.",
         "pt": "O que o Desktop é, o que já roda e a ordem em que o resto é construído."
-      }
-    },
-    {
-      "slug": "desktop-decisions",
-      "source": "prumo-desktop",
-      "path": "docs/DECISIONS.md",
-      "group": "desktop",
-      "title": "Desktop decisions",
-      "blurb": {
-        "en": "The approved decisions behind the Desktop, with their reasoning and their price.",
-        "pt": "As decisões aprovadas por trás do Desktop, com o raciocínio e o preço de cada uma."
-      }
-    },
-    {
-      "slug": "desktop-open-questions",
-      "source": "prumo-desktop",
-      "path": "docs/OPEN-QUESTIONS.md",
-      "group": "desktop",
-      "title": "Desktop open questions",
-      "blurb": {
-        "en": "What the Desktop has not settled yet.",
-        "pt": "O que o Desktop ainda não resolveu."
       }
     }
   ]

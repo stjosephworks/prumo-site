@@ -112,7 +112,7 @@ export default async function HomePage() {
         <Section heading={t.home.record.heading}>
           <Prose className="text-ink/85">{t.home.record.body}</Prose>
           <Link
-            href={path(locale, 'docs', 'decisions')}
+            href={path(locale, 'docs', 'stack')}
             className="mt-6 inline-block border-b border-brass pb-0.5 text-navy"
           >
             {t.home.record.link}

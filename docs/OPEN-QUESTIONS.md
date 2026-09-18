@@ -29,18 +29,6 @@ opening a pull request, or a check that fails when the pin is more than a set nu
 
 ---
 
-## The published site has no domain
-
-**Raised:** 2026-09-17
-**Question:** `src/lib/site.ts` falls back to a `.vercel.app` URL, which is what `metadataBase`, the
-canonical links and the sitemap are built from. A real domain has not been chosen.
-**Why it matters:** canonical URLs and the sitemap are wrong until it is set, and search engines will have
-indexed the wrong host by then.
-**Blocks:** nothing in development. `NEXT_PUBLIC_SITE_URL` is read first, so setting it in Vercel is the
-whole change.
-
----
-
 ## Search matches substrings and nothing else
 
 **Raised:** 2026-09-17

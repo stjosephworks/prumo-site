@@ -332,3 +332,38 @@ is happening, and filing it wrongly is silent. Anyone looking for the whole stor
 logs to read.
 
 **Affects:** `docs/DECISIONS.md` here, and `prumo/docs/DECISIONS.md`, which no longer carries them
+
+---
+
+## 2026-09-17: The site is published at `prumo.stjosephworks.org`
+
+**Decision:** the website's address is `https://prumo.stjosephworks.org`, a subdomain of the organization's
+domain, `stjosephworks.org`, where the St. Joseph Works site is published. `src/lib/site.ts` falls back to
+that address instead of the `.vercel.app` host Vercel assigns, so `metadataBase`, the canonical links and the
+sitemap are right wherever the site is built. `NEXT_PUBLIC_SITE_URL` is still read first, so a preview
+deployment can name itself.
+
+**Options considered:**
+- A) `prumo.stjosephworks.org`, a subdomain of the organization's domain.
+- B) A domain bought for the product alone, `prumo.dev` or similar.
+- C) Staying on the `.vercel.app` host.
+
+**Reasoning:** A, decided by the architect. Prumo is a tool St. Joseph Works publishes, and the organization's
+site already presents it as one of its tools with a card leading here; a subdomain says that relationship in
+the address itself, costs nothing beyond a DNS record, and needs no second registration to renew. C was never
+a destination: a generated host is a deployment detail, and indexing it means the move to a real domain is
+paid twice.
+
+**B is the stronger brand and still loses:** a product domain is shorter, survives a change of publisher and
+reads better in a terminal, which is where this tool is typed. It is also a purchase, a renewal and a second
+thing to lose, for a 0.0.x CLI whose first users arrive through the organization. The day Prumo outgrows the
+organization, B is available and the redirect is the whole migration.
+
+**What A costs:** the address inherits whatever happens to `stjosephworks.org`, so the tool cannot leave the
+organization without a rename. The fallback is now a claim about production that development cannot check: if
+`NEXT_PUBLIC_SITE_URL` is set to something else in Vercel, or the DNS record for the subdomain is missing, the
+build still succeeds and the canonical links are quietly wrong. And the `.vercel.app` host stays reachable, so
+two addresses serve the same pages until it is disabled or redirected.
+
+**Affects:** `src/lib/site.ts`, `README.md`, and `docs/OPEN-QUESTIONS.md`, where *The published site has no
+domain* is resolved and removed

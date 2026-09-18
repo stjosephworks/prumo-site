@@ -23,9 +23,9 @@ export const pt: Dictionary = {
   },
   search: {
     open: 'Buscar nos documentos',
-    placeholder: 'Buscar títulos e decisões',
+    placeholder: 'Buscar em todos os títulos',
     empty: 'Nada corresponde a isso ainda.',
-    hint: 'Busca em todos os títulos dos dez documentos.',
+    hint: 'Busca em todos os títulos da documentação.',
     close: 'Fechar',
     resultsOne: '1 resultado',
     resultsMany: '{count} resultados',
@@ -33,11 +33,11 @@ export const pt: Dictionary = {
   home: {
     title: 'Prumo',
     description:
-      'O Prumo começa um projeto TypeScript com o framework, as regras do banco e os limites de teste já escolhidos, cada decisão registrada com o motivo de ter vencido e o que ela custa.',
+      'O Prumo começa um projeto TypeScript com o framework, as regras do banco e os limites de teste já escolhidos, e escreve cada um deles dentro do projeto.',
     headline: 'As decisões já foram tomadas.',
     headlineSecond: 'E estão escritas.',
     standfirst:
-      'O Prumo começa um projeto TypeScript com o framework, o desenho dos módulos, as regras do banco, a ligação da autenticação e os limites de teste já escolhidos. Cada um foi decidido uma vez, registrado com o raciocínio e o preço, e transformado em algo que roda.',
+      'O Prumo começa um projeto TypeScript com o framework, o desenho dos módulos, as regras do banco, a ligação da autenticação e os limites de teste já escolhidos. Cada um foi decidido uma vez, escrito dentro do projeto que o recebe, e transformado em algo que roda.',
     commandLabel: 'Rode isto',
     commandCaption: 'Node 22.17 ou mais novo, e pnpm.',
     readDocuments: 'Ler os documentos',
@@ -86,9 +86,9 @@ export const pt: Dictionary = {
       body: 'Toda pergunta que o CLI faz também tem uma flag, que é como ele roda na CI sem terminal. Fora de um terminal interativo, uma resposta que falta é erro, não valor padrão.',
     },
     record: {
-      heading: 'Toda escolha diz o que custa',
-      body: 'O registro de decisões não é um changelog. Cada entrada nomeia as opções pesadas, por que uma venceu e o que a vencedora custa — incluindo as escolhas recusadas e as lacunas descobertas durante a decisão.',
-      link: 'Abrir o registro de decisões',
+      heading: 'A stack está travada, e diz isso',
+      body: 'Um documento nomeia cada pacote, cada piso de versão e as dezesseis entradas descartadas de propósito. Ele foi escrito para ser tratado como dado: um projeto gerado herda tudo aquilo, e nada volta a ser resolvido projeto a projeto.',
+      link: 'Abrir a stack travada',
     },
     desktop: {
       heading: 'Prumo Desktop',
@@ -252,7 +252,7 @@ export const pt: Dictionary = {
     },
     follow: {
       heading: 'Acompanhe',
-      body: 'As decisões por trás do Desktop são escritas conforme são tomadas, na mesma forma das do próprio Prumo.',
+      body: 'O Desktop é construído à vista, uma peça por vez. O repositório carrega o que já roda e o que está em andamento.',
       repository: 'Abrir o repositório',
     },
   },

@@ -1,13 +1,17 @@
 import { describe, expect, it } from 'vitest'
-import { readDocument } from './documents'
+import { documents, readDocument } from './documents'
 import { renderMarkdown } from './markdown'
 import { buildSearchIndex } from './search-index'
 
 describe('the search index', () => {
-  it('finds headings across the documents', async () => {
+  it('finds headings in every document', async () => {
     const index = await buildSearchIndex()
 
-    expect(index.length).toBeGreaterThan(100)
+    for (const document of documents) {
+      const records = index.filter((record) => record.slug === document.slug)
+
+      expect(records.length, document.slug).toBeGreaterThan(0)
+    }
   })
 
   it('anchors every record at a heading the rendered page actually has', async () => {

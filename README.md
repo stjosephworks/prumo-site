@@ -15,7 +15,7 @@ Every document has exactly one home.
 | Content | Lives in |
 |---|---|
 | The getting-started path, the conventions explainer, the command reference, the Desktop page | This repository, in `src/app/[lang]/` |
-| `README.md`, `docs/stack.md`, `docs/structure.md`, `docs/DECISIONS.md`, `docs/OPEN-QUESTIONS.md` and the rest | `prumo` and `prumo-desktop`, fetched at build |
+| `README.md`, `docs/stack.md`, `docs/structure.md` and the rest | `prumo` and `prumo-desktop`, fetched at build |
 
 Nothing in the second row is retyped here. `content/documents.json` lists each one with the repository, the
 path, the commit it is pinned to and the route it becomes; `scripts/fetch-docs.mjs` downloads exactly those
@@ -57,12 +57,11 @@ The site runs on `http://localhost:3200`. `/` redirects to `/en`.
 | `pnpm typecheck` | Next's route types, then `tsc --noEmit` |
 | `pnpm build` · `pnpm start` | Production build, then serves it |
 
-## Where the decisions are
+## History
 
-In [`docs/DECISIONS.md`](docs/DECISIONS.md), with what is still unresolved in
-[`docs/OPEN-QUESTIONS.md`](docs/OPEN-QUESTIONS.md). Decisions about Prumo itself belong to
-[`prumo`](https://github.com/stjosephworks/prumo/blob/main/docs/DECISIONS.md): this repository depends on
-that one, and that one does not depend on this.
+`dev-logs/` holds how this site was decided, kept for context and referenced by nothing: not by this README,
+not by the manifest, not by a page. Read it to understand why something is the way it is, never to learn
+what is in force.
 
 ## License
 

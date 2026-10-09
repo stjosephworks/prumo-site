@@ -13,6 +13,7 @@ import { renderMarkdown } from '@/features/docs/markdown'
 import { TableOfContents } from '@/features/docs/table-of-contents'
 import { getDictionary } from '@/features/i18n/dictionary'
 import type { Locale } from '@/features/i18n/locales'
+import { alternates } from '@/lib/routes'
 
 export function generateStaticParams() {
   return documents.map((document) => ({ slug: document.slug }))
@@ -28,6 +29,7 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/docs/[slug
   return {
     title: document.title,
     description: document.blurb[locale],
+    alternates: alternates(locale, 'docs', slug),
   } satisfies Metadata
 }
 

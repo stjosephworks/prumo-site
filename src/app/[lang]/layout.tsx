@@ -43,10 +43,6 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(site.url),
     title: { default: t.home.title, template: `%s · ${site.name}` },
     description: t.home.description,
-    alternates: {
-      canonical: `/${locale}`,
-      languages: Object.fromEntries(locales.map((one) => [one, `/${one}`])),
-    },
     openGraph: {
       title: t.home.title,
       description: t.home.description,

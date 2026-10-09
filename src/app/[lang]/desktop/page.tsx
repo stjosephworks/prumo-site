@@ -3,13 +3,18 @@ import { lang } from 'next/root-params'
 import { getDictionary } from '@/features/i18n/dictionary'
 import type { Locale } from '@/features/i18n/locales'
 import { Prose, Section } from '@/features/site/section'
-import { external } from '@/lib/routes'
+import { alternates, external } from '@/lib/routes'
 import { cn } from '@/lib/utils'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = getDictionary((await lang()) as Locale)
+  const locale = (await lang()) as Locale
+  const t = getDictionary(locale)
 
-  return { title: t.desktop.title, description: t.desktop.description }
+  return {
+    title: t.desktop.title,
+    description: t.desktop.description,
+    alternates: alternates(locale, 'desktop'),
+  }
 }
 
 export default async function DesktopPage() {

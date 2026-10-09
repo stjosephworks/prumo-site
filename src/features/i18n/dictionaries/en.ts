@@ -76,7 +76,7 @@ export const en = {
         {
           type: 'mobile',
           contents:
-            'Expo with Expo Router, NativeWind, MMKV, and the tokens kept in expo-secure-store',
+            'Expo with Expo Router, NativeWind, MMKV, and the tokens kept in expo-secure-store, run in a development build',
         },
         {
           type: 'site',
@@ -95,7 +95,7 @@ export const en = {
     },
     desktop: {
       heading: 'Prumo Desktop',
-      body: 'A desktop application that creates Prumo projects, lists them, reads their conventions and runs their apps. The foundation runs; the features are being built one at a time. An unsigned preview for macOS can be downloaded.',
+      body: 'A desktop application that creates Prumo projects, lists them, reads their conventions and runs their apps. Version 0.0.1, an unsigned preview for macOS, can be downloaded.',
       link: 'See where it stands',
     },
   },
@@ -238,7 +238,7 @@ export const en = {
   desktop: {
     title: 'Prumo Desktop',
     description:
-      'A desktop application for Prumo. The foundation runs and the features are being built; an unsigned preview for macOS can be downloaded from GitHub Releases.',
+      'A desktop application for Prumo. It creates and lists projects, runs their apps and their database, and reads their conventions; an unsigned preview for macOS can be downloaded from GitHub Releases.',
     heading: 'Prumo Desktop',
     standfirst:
       'A desktop application that creates Prumo projects, lists them, reads their .prumo/ conventions, and runs their apps, each in its own terminal panel.',
@@ -247,8 +247,8 @@ export const en = {
       body: 'Version 0.0.1 is a preview for macOS. Each release carries two disk images: pick the one for your Mac, open it, and drag Prumo Desktop into Applications.',
       button: 'Download from GitHub Releases',
       builds: [
-        { name: 'Apple silicon (M1 and later)', file: 'Prumo Desktop-<version>-arm64.dmg' },
-        { name: 'Intel', file: 'Prumo Desktop-<version>-x64.dmg' },
+        { name: 'Apple silicon (M1 and later)', file: 'Prumo.Desktop-<version>-arm64.dmg' },
+        { name: 'Intel', file: 'Prumo.Desktop-<version>-x64.dmg' },
       ],
       warning: {
         label: 'Unsigned pre-release',
@@ -274,7 +274,7 @@ export const en = {
     },
     status: {
       heading: 'Where it stands',
-      body: 'The foundation runs; the features are not built yet. Version 0.0.1 is an unsigned preview for macOS only, though every technology choice must also work on Windows and Linux.',
+      body: 'Version 0.0.1 runs on macOS as an unsigned preview. It creates and lists projects, runs their apps and their database, and reads their .prumo/. Every technology choice must also work on Windows and Linux, which come after the signed build.',
       done: 'Done',
       next: 'Being built',
       later: 'Ahead',
@@ -291,18 +291,23 @@ export const en = {
         },
         {
           state: 'done',
+          heading: 'The features of 0.0.1',
+          body: 'The project list, creating a project with every question the CLI asks, running apps, the database, and reading .prumo/.',
+        },
+        {
+          state: 'done',
           heading: 'An unsigned preview',
           body: 'Version 0.0.1 for macOS, on GitHub Releases: ad-hoc signed, not notarized, and never updating itself.',
         },
         {
           state: 'next',
-          heading: 'The features, one at a time',
-          body: 'The project list, creating a project, running apps, the database, and reading .prumo/.',
+          heading: 'A signed and notarised build',
+          body: 'It replaces the preview: no Open Anyway step, and updates that arrive by themselves. Moving to it takes one manual reinstall.',
         },
         {
           state: 'later',
-          heading: 'A signed and notarised build',
-          body: 'It replaces the preview: no Open Anyway step, and updates that arrive by themselves. Moving to it takes one manual reinstall.',
+          heading: 'Windows and Linux',
+          body: 'Ported as a series of their own, once the macOS build is signed.',
         },
       ],
     },

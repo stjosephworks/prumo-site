@@ -72,7 +72,7 @@ export const pt: Dictionary = {
         {
           type: 'mobile',
           contents:
-            'Expo com Expo Router, NativeWind, MMKV, e os tokens guardados no expo-secure-store',
+            'Expo com Expo Router, NativeWind, MMKV, e os tokens guardados no expo-secure-store, rodando numa development build',
         },
         {
           type: 'site',
@@ -92,7 +92,7 @@ export const pt: Dictionary = {
     },
     desktop: {
       heading: 'Prumo Desktop',
-      body: 'Um aplicativo de desktop que cria projetos Prumo, lista-os, lê suas convenções e roda seus apps. A fundação roda; as funcionalidades estão sendo construídas uma por vez. Uma prévia não assinada para macOS já pode ser baixada.',
+      body: 'Um aplicativo de desktop que cria projetos Prumo, lista-os, lê suas convenções e roda seus apps. A versão 0.0.1, uma prévia não assinada para macOS, já pode ser baixada.',
       link: 'Ver em que pé está',
     },
   },
@@ -232,7 +232,7 @@ export const pt: Dictionary = {
   desktop: {
     title: 'Prumo Desktop',
     description:
-      'Um aplicativo de desktop para o Prumo. A fundação roda e as funcionalidades estão sendo construídas; uma prévia não assinada para macOS pode ser baixada no GitHub Releases.',
+      'Um aplicativo de desktop para o Prumo. Ele cria e lista projetos, roda seus apps e seu banco, e lê suas convenções; uma prévia não assinada para macOS pode ser baixada no GitHub Releases.',
     heading: 'Prumo Desktop',
     standfirst:
       'Um aplicativo de desktop que cria projetos Prumo, lista-os, lê as convenções em .prumo/ e roda os apps deles, cada um no seu próprio painel de terminal.',
@@ -241,8 +241,8 @@ export const pt: Dictionary = {
       body: 'A versão 0.0.1 é uma prévia para macOS. Cada release traz duas imagens de disco: escolha a do seu Mac, abra-a e arraste o Prumo Desktop para Aplicativos.',
       button: 'Baixar no GitHub Releases',
       builds: [
-        { name: 'Apple silicon (M1 ou mais novo)', file: 'Prumo Desktop-<version>-arm64.dmg' },
-        { name: 'Intel', file: 'Prumo Desktop-<version>-x64.dmg' },
+        { name: 'Apple silicon (M1 ou mais novo)', file: 'Prumo.Desktop-<version>-arm64.dmg' },
+        { name: 'Intel', file: 'Prumo.Desktop-<version>-x64.dmg' },
       ],
       warning: {
         label: 'Pré-lançamento não assinado',
@@ -268,7 +268,7 @@ export const pt: Dictionary = {
     },
     status: {
       heading: 'Em que pé está',
-      body: 'A fundação roda; as funcionalidades ainda não estão construídas. A versão 0.0.1 é uma prévia não assinada, só para macOS, embora toda escolha de tecnologia precise funcionar também no Windows e no Linux.',
+      body: 'A versão 0.0.1 roda no macOS como uma prévia não assinada. Ela cria e lista projetos, roda seus apps e seu banco, e lê o .prumo/. Toda escolha de tecnologia precisa funcionar também no Windows e no Linux, que vêm depois do build assinado.',
       done: 'Pronto',
       next: 'Em construção',
       later: 'Adiante',
@@ -285,18 +285,23 @@ export const pt: Dictionary = {
         },
         {
           state: 'done',
+          heading: 'As funcionalidades da 0.0.1',
+          body: 'A lista de projetos, criar um projeto com todas as perguntas do CLI, rodar apps, o banco, e ler o .prumo/.',
+        },
+        {
+          state: 'done',
           heading: 'Uma prévia não assinada',
           body: 'A versão 0.0.1 para macOS, no GitHub Releases: assinada ad hoc, não notarizada, e que nunca se atualiza sozinha.',
         },
         {
           state: 'next',
-          heading: 'As funcionalidades, uma por vez',
-          body: 'A lista de projetos, criar um projeto, rodar apps, o banco, e ler o .prumo/.',
+          heading: 'Um build assinado e notarizado',
+          body: 'Ele substitui a prévia: sem o passo de Abrir Mesmo Assim, e com atualizações que chegam sozinhas. Passar para ele exige uma reinstalação manual.',
         },
         {
           state: 'later',
-          heading: 'Um build assinado e notarizado',
-          body: 'Ele substitui a prévia: sem o passo de Abrir Mesmo Assim, e com atualizações que chegam sozinhas. Passar para ele exige uma reinstalação manual.',
+          heading: 'Windows e Linux',
+          body: 'Portados numa série própria, depois que o build para macOS estiver assinado.',
         },
       ],
     },

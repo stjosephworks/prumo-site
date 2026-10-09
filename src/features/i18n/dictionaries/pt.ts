@@ -39,7 +39,7 @@ export const pt: Dictionary = {
     standfirst:
       'O Prumo começa um projeto TypeScript com o framework, o desenho dos módulos, as regras do banco, a ligação da autenticação e os limites de teste já escolhidos. Cada um foi decidido uma vez, escrito dentro do projeto que o recebe, e transformado em algo que roda.',
     commandLabel: 'Rode isto',
-    commandCaption: 'Node 22.17 ou mais novo, e pnpm.',
+    commandCaption: 'Node 22.18 ou mais novo, e pnpm 10.26 ou mais novo.',
     readDocuments: 'Ler os documentos',
     arrives: {
       heading: 'Um projeto novo chega com duas coisas',
@@ -62,7 +62,7 @@ export const pt: Dictionary = {
         {
           type: 'api',
           contents:
-            'NestJS, MikroORM sobre PostgreSQL, Better Auth em schema próprio, Swagger, Vitest com Testcontainers',
+            'Fastify com uma estrutura domain/infra, tsyringe, Zod, MikroORM sobre PostgreSQL, autenticação JWT própria, Swagger UI, Vitest com Testcontainers',
         },
         {
           type: 'web',
@@ -72,7 +72,7 @@ export const pt: Dictionary = {
         {
           type: 'mobile',
           contents:
-            'Expo com Expo Router, NativeWind, MMKV, e a sessão guardada no expo-secure-store',
+            'Expo com Expo Router, NativeWind, MMKV, e os tokens guardados no expo-secure-store',
         },
         {
           type: 'site',
@@ -87,7 +87,7 @@ export const pt: Dictionary = {
     },
     record: {
       heading: 'A stack está travada, e diz isso',
-      body: 'Um documento nomeia cada pacote, cada piso de versão e as dezesseis entradas descartadas de propósito. Ele foi escrito para ser tratado como dado: um projeto gerado herda tudo aquilo, e nada volta a ser resolvido projeto a projeto.',
+      body: 'Um documento nomeia cada pacote, cada piso de versão e as dezenove entradas descartadas de propósito. Ele foi escrito para ser tratado como dado: um projeto gerado herda tudo aquilo, e nada volta a ser resolvido projeto a projeto.',
       link: 'Abrir a stack travada',
     },
     desktop: {
@@ -106,7 +106,7 @@ export const pt: Dictionary = {
     steps: [
       {
         heading: 'Confira a máquina',
-        body: 'O Prumo precisa de Node 22.17 ou mais novo e de pnpm. Qualquer coisa com API precisa também de Docker, porque é lá que roda o banco de desenvolvimento. Este comando confere tudo e diz o que falta.',
+        body: 'O Prumo precisa de Node 22.18 ou mais novo e de pnpm 10.26 ou mais novo, no macOS ou no Linux; o Windows ainda não é suportado. Qualquer coisa com API precisa também de Docker, porque é lá que roda o banco de desenvolvimento. Este comando confere tudo e diz o que falta.',
         command: 'npx @stjoseph/prumo doctor',
       },
       {
@@ -116,13 +116,14 @@ export const pt: Dictionary = {
       },
       {
         heading: 'Responda sem terminal',
-        body: 'Toda pergunta tem uma flag. Mais de um tipo faz um workspace; um tipo só precisa de --alone ou --monorepo para dizer como fica disposto.',
-        command: 'npx @stjoseph/prumo new my-app --types api,web --single-tenant',
+        body: 'Toda pergunta tem uma flag, e sem terminal toda pergunta que as respostas levantam precisa da sua: uma flag que falta é erro. Mais de um tipo faz um workspace; um tipo só precisa de --alone ou --monorepo para dizer como fica disposto.',
+        command:
+          'npx @stjoseph/prumo new my-app --types api,web --single-tenant --no-mcp --email --no-social',
       },
       {
         heading: 'Crie o banco',
         body: 'Dentro de um projeto com API, isto cria o banco de desenvolvimento no Docker e escreve a URL dele no .env. Uma vez que o banco existe, prumo clean remove a preparação de que o projeto precisou uma vez só.',
-        command: 'prumo db',
+        command: 'npx @stjoseph/prumo db',
       },
     ],
     flags: {
@@ -136,7 +137,22 @@ export const pt: Dictionary = {
         { flag: '--alone   --monorepo', answers: 'Como um tipo sozinho fica disposto' },
         {
           flag: '--multi-tenant   --single-tenant',
-          answers: 'Se a aplicação serve vários inquilinos',
+          answers:
+            'Se a aplicação serve vários inquilinos. Multi-tenant traz as convenções de multi-tenancy; o código gerado em si ainda não é ciente de inquilino',
+        },
+        {
+          flag: '--mcp   --no-mcp',
+          answers:
+            'Com uma api e uma web: se assistentes de IA chegam à API por MCP, autenticados como o usuário',
+        },
+        {
+          flag: '--email   --no-email',
+          answers:
+            'Com uma api: verificação de email e redefinição de senha, por um código de 6 dígitos enviado pela porta Mailer, que escreve no log até você dar a ela um provedor',
+        },
+        {
+          flag: '--social google,apple   --no-social',
+          answers: 'Com uma api e uma web ou mobile: login com Google, Apple, ou os dois',
         },
         { flag: '--skip-install', answers: 'Para depois de escrever os arquivos' },
       ],
@@ -147,7 +163,7 @@ export const pt: Dictionary = {
       rows: [
         {
           file: '.prumo/',
-          what: 'As convenções, em nove áreas. Só as áreas que as respostas pedem são copiadas',
+          what: 'As convenções, em doze áreas. Só as áreas que as respostas pedem são copiadas',
         },
         {
           file: '.prumo/INDEX.md',
@@ -164,12 +180,12 @@ export const pt: Dictionary = {
   concepts: {
     title: 'Convenções',
     description:
-      'O que é a pasta .prumo/, quais das nove áreas um projeto recebe, e de quem ela é depois disso.',
+      'O que é a pasta .prumo/, quais das doze áreas um projeto recebe, e de quem ela é depois disso.',
     heading: 'As convenções vivem no projeto',
     standfirst:
       'Um projeto gerado carrega uma pasta .prumo/. É por isso que o Prumo não é um scaffolder: o código chega com as regras que segue, escritas, no repositório onde o trabalho acontece.',
     areas: {
-      heading: 'Nove áreas, e só as que se aplicam',
+      heading: 'Doze áreas, e só as que se aplicam',
       body: 'Só core vai sem condição, porque tudo nela é verdade em todo tipo. O resto segue as respostas, já que conselho sobre uma plataforma que o projeto não tem é pior que conselho nenhum.',
       always: 'Sempre',
       conditional: 'Só quando as respostas pedem',
@@ -192,14 +208,17 @@ export const pt: Dictionary = {
       'O pacote publicado é @stjoseph/prumo e o comando que ele instala é prumo. Tanto npx quanto pnpm dlx rodam sem instalar nada.',
     columns: { command: 'Comando', what: 'O que faz' },
     rows: [
-      { command: 'prumo new [name]', what: 'Gera um projeto' },
+      {
+        command: 'prumo new [name | .]',
+        what: 'Gera um projeto. Com ., no diretório atual, que precisa estar vazio',
+      },
       {
         command: 'prumo db',
         what: 'Dentro de um projeto com API: cria o banco de desenvolvimento no Docker e escreve a URL dele no .env',
       },
       {
         command: 'prumo clean',
-        what: 'Remove o que o projeto precisou uma vez só, hoje a preparação do banco, depois que o banco existe',
+        what: 'Remove o que o projeto precisou uma vez só, hoje a preparação do banco, depois que o banco existe. Só a versão do Prumo que gerou o projeto o limpa',
       },
       { command: 'prumo doctor', what: 'Confere Node, pnpm, git e Docker nesta máquina' },
       { command: 'prumo version', what: 'Imprime a versão do CLI. Também --version e -v' },

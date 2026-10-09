@@ -16,6 +16,9 @@ const areas = [
   { name: 'site', always: false },
   { name: 'monorepo', always: false },
   { name: 'multi-tenancy', always: false },
+  { name: 'mcp', always: false },
+  { name: 'email', always: false },
+  { name: 'social', always: false },
 ]
 
 export async function generateMetadata(): Promise<Metadata> {

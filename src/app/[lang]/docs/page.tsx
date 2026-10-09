@@ -5,12 +5,17 @@ import { documentsInGroup } from '@/features/docs/documents'
 import { getDictionary } from '@/features/i18n/dictionary'
 import type { Locale } from '@/features/i18n/locales'
 import { Prose } from '@/features/site/section'
-import { path } from '@/lib/routes'
+import { alternates, path } from '@/lib/routes'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = getDictionary((await lang()) as Locale)
+  const locale = (await lang()) as Locale
+  const t = getDictionary(locale)
 
-  return { title: t.documents.title, description: t.documents.description }
+  return {
+    title: t.documents.title,
+    description: t.documents.description,
+    alternates: alternates(locale, 'docs'),
+  }
 }
 
 export default async function DocumentsPage() {

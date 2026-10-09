@@ -4,7 +4,7 @@ import { lang } from 'next/root-params'
 import { getDictionary } from '@/features/i18n/dictionary'
 import type { Locale } from '@/features/i18n/locales'
 import { Prose, Section } from '@/features/site/section'
-import { path } from '@/lib/routes'
+import { alternates, path } from '@/lib/routes'
 
 const areas = [
   { name: 'core', always: true },
@@ -22,9 +22,14 @@ const areas = [
 ]
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = getDictionary((await lang()) as Locale)
+  const locale = (await lang()) as Locale
+  const t = getDictionary(locale)
 
-  return { title: t.concepts.title, description: t.concepts.description }
+  return {
+    title: t.concepts.title,
+    description: t.concepts.description,
+    alternates: alternates(locale, 'concepts'),
+  }
 }
 
 export default async function ConceptsPage() {

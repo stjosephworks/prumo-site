@@ -95,7 +95,7 @@ export const en = {
     },
     desktop: {
       heading: 'Prumo Desktop',
-      body: 'A desktop application that creates Prumo projects, lists them, reads their conventions and runs their apps. The foundation runs; the features are being built one at a time.',
+      body: 'A desktop application that creates Prumo projects, lists them, reads their conventions and runs their apps. The foundation runs; the features are being built one at a time. An unsigned preview for macOS can be downloaded.',
       link: 'See where it stands',
     },
   },
@@ -238,17 +238,43 @@ export const en = {
   desktop: {
     title: 'Prumo Desktop',
     description:
-      'A desktop application for Prumo. The foundation runs and the features are being built; there is no public build to download yet.',
+      'A desktop application for Prumo. The foundation runs and the features are being built; an unsigned preview for macOS can be downloaded from GitHub Releases.',
     heading: 'Prumo Desktop',
     standfirst:
       'A desktop application that creates Prumo projects, lists them, reads their .prumo/ conventions, and runs their apps, each in its own terminal panel.',
+    download: {
+      heading: 'Download',
+      body: 'Version 0.0.1 is a preview for macOS. Each release carries two disk images: pick the one for your Mac, open it, and drag Prumo Desktop into Applications.',
+      button: 'Download from GitHub Releases',
+      builds: [
+        { name: 'Apple silicon (M1 and later)', file: 'Prumo Desktop-<version>-arm64.dmg' },
+        { name: 'Intel', file: 'Prumo Desktop-<version>-x64.dmg' },
+      ],
+      warning: {
+        label: 'Unsigned pre-release',
+        lead: 'A preview build, not signed or notarized by Apple. macOS asks you to confirm it the first time it opens.',
+        stepsHeading: 'Opening it the first time (macOS 15 and later)',
+        steps: [
+          'Open Prumo Desktop from Applications. macOS says it cannot check the app for malicious software. Click Done, not Move to Trash.',
+          'Choose Apple menu > System Settings, then click Privacy & Security in the sidebar. You may need to scroll down.',
+          'Under Security, click Open Anyway. The button is there for about an hour after you tried to open the app.',
+          'Enter your login password, then click OK. When the warning appears again, click Open.',
+        ],
+        guideBefore: 'From then on it opens like any other app. Apple describes these steps in',
+        guideLink: 'Open a Mac app from an unknown developer',
+        guideUrl:
+          'https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unknown-developer-mh40616/mac',
+        updates:
+          'This build never updates itself. The first signed release also has to be installed by hand, once: download it, quit Prumo Desktop and replace the app in Applications. Your projects and settings stay where they are.',
+      },
+    },
     consumer: {
       heading: 'A consumer of Prumo, never a second implementation',
       body: 'The Desktop ships a pinned copy of the CLI and runs it. Everything it knows about a project comes from what that CLI deliberately exposes, its commands with --json, and from the files a generated project carries.',
     },
     status: {
       heading: 'Where it stands',
-      body: 'There is no download yet, and this page will not pretend otherwise. The foundation runs; the features are not built. Version 0.0.1 targets macOS only, though every technology choice must also work on Windows and Linux.',
+      body: 'The foundation runs; the features are not built yet. Version 0.0.1 is an unsigned preview for macOS only, though every technology choice must also work on Windows and Linux.',
       done: 'Done',
       next: 'Being built',
       later: 'Ahead',
@@ -264,6 +290,11 @@ export const en = {
           body: 'The environment layer, the process layer, the IPC contract and a first screen. Starting, stopping a whole process tree, terminal buffers, and stopping everything on quit.',
         },
         {
+          state: 'done',
+          heading: 'An unsigned preview',
+          body: 'Version 0.0.1 for macOS, on GitHub Releases: ad-hoc signed, not notarized, and never updating itself.',
+        },
+        {
           state: 'next',
           heading: 'The features, one at a time',
           body: 'The project list, creating a project, running apps, the database, and reading .prumo/.',
@@ -271,7 +302,7 @@ export const en = {
         {
           state: 'later',
           heading: 'A signed and notarised build',
-          body: 'The first one lands well before the public release. That is when a download appears here.',
+          body: 'It replaces the preview: no Open Anyway step, and updates that arrive by themselves. Moving to it takes one manual reinstall.',
         },
       ],
     },

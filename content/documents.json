@@ -2,11 +2,11 @@
   "sources": {
     "prumo": {
       "repo": "stjosephworks/prumo",
-      "commit": "7bbd0bfe377b9d9dacfb8233f921b4776e3996b7"
+      "commit": "9b4b0309d3d67e9912a2317d975a5adabc6e2f5b"
     },
     "prumo-desktop": {
       "repo": "stjosephworks/prumo-desktop",
-      "commit": "c381474b1bdbffa0f0ae2eb4420d03d31e4bb6a0"
+      "commit": "031247baebe82ecce4207ccca88ebd88333c5fcf"
     }
   },
   "documents": [
@@ -28,8 +28,8 @@
       "group": "prumo",
       "title": "The locked stack",
       "blurb": {
-        "en": "Every package, every version floor, and the sixteen entries deliberately dropped.",
-        "pt": "Cada pacote, cada piso de versão e as dezesseis entradas descartadas de propósito."
+        "en": "Every package, every version floor, and the nineteen entries deliberately dropped.",
+        "pt": "Cada pacote, cada piso de versão e as dezenove entradas descartadas de propósito."
       }
     },
     {
@@ -39,8 +39,8 @@
       "group": "prumo",
       "title": "The .prumo/ layout",
       "blurb": {
-        "en": "The nine areas, and the rule deciding which of them a project receives.",
-        "pt": "As nove áreas e a regra que decide quais delas um projeto recebe."
+        "en": "The twelve areas, and the rule deciding which of them a project receives.",
+        "pt": "As doze áreas e a regra que decide quais delas um projeto recebe."
       }
     },
     {

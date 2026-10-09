@@ -5,11 +5,17 @@ import type { Locale } from '@/features/i18n/locales'
 import { CommandBlock } from '@/features/site/command-block'
 import { RuledTable } from '@/features/site/ruled-table'
 import { Prose, Section } from '@/features/site/section'
+import { alternates } from '@/lib/routes'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = getDictionary((await lang()) as Locale)
+  const locale = (await lang()) as Locale
+  const t = getDictionary(locale)
 
-  return { title: t.start.title, description: t.start.description }
+  return {
+    title: t.start.title,
+    description: t.start.description,
+    alternates: alternates(locale, 'start'),
+  }
 }
 
 export default async function StartPage() {

@@ -7,15 +7,17 @@ import { PlumbMark } from '@/features/site/brand'
 import { CommandBlock } from '@/features/site/command-block'
 import { RuledTable } from '@/features/site/ruled-table'
 import { Prose, Section } from '@/features/site/section'
-import { external, path } from '@/lib/routes'
+import { alternates, external, path } from '@/lib/routes'
 import { site } from '@/lib/site'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = getDictionary((await lang()) as Locale)
+  const locale = (await lang()) as Locale
+  const t = getDictionary(locale)
 
   return {
     title: t.home.title,
     description: t.home.description,
+    alternates: alternates(locale),
   }
 }
 

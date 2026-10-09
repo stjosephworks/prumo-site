@@ -92,7 +92,7 @@ export const pt: Dictionary = {
     },
     desktop: {
       heading: 'Prumo Desktop',
-      body: 'Um aplicativo de desktop que cria projetos Prumo, lista-os, lê suas convenções e roda seus apps. A fundação roda; as funcionalidades estão sendo construídas uma por vez.',
+      body: 'Um aplicativo de desktop que cria projetos Prumo, lista-os, lê suas convenções e roda seus apps. A fundação roda; as funcionalidades estão sendo construídas uma por vez. Uma prévia não assinada para macOS já pode ser baixada.',
       link: 'Ver em que pé está',
     },
   },
@@ -232,17 +232,43 @@ export const pt: Dictionary = {
   desktop: {
     title: 'Prumo Desktop',
     description:
-      'Um aplicativo de desktop para o Prumo. A fundação roda e as funcionalidades estão sendo construídas; ainda não há build público para baixar.',
+      'Um aplicativo de desktop para o Prumo. A fundação roda e as funcionalidades estão sendo construídas; uma prévia não assinada para macOS pode ser baixada no GitHub Releases.',
     heading: 'Prumo Desktop',
     standfirst:
       'Um aplicativo de desktop que cria projetos Prumo, lista-os, lê as convenções em .prumo/ e roda os apps deles, cada um no seu próprio painel de terminal.',
+    download: {
+      heading: 'Download',
+      body: 'A versão 0.0.1 é uma prévia para macOS. Cada release traz duas imagens de disco: escolha a do seu Mac, abra-a e arraste o Prumo Desktop para Aplicativos.',
+      button: 'Baixar no GitHub Releases',
+      builds: [
+        { name: 'Apple silicon (M1 ou mais novo)', file: 'Prumo Desktop-<version>-arm64.dmg' },
+        { name: 'Intel', file: 'Prumo Desktop-<version>-x64.dmg' },
+      ],
+      warning: {
+        label: 'Pré-lançamento não assinado',
+        lead: 'Uma versão de prévia, não assinada nem notarizada pela Apple. O macOS pede que você a confirme na primeira vez que ela abre.',
+        stepsHeading: 'Abrindo pela primeira vez (macOS 15 ou mais novo)',
+        steps: [
+          'Abra o Prumo Desktop em Aplicativos. O macOS diz que não consegue verificar se o app contém software malicioso. Clique em Concluído, não no botão que move o app para o Lixo.',
+          'Escolha menu Apple > Ajustes do Sistema e clique em Privacidade e Segurança na barra lateral. Talvez seja preciso rolar para baixo.',
+          'Em Segurança, clique em Abrir Mesmo Assim. Esse botão fica disponível por cerca de uma hora depois de tentar abrir o app.',
+          'Digite a senha de início de sessão e clique em OK. Quando o aviso aparecer de novo, clique em Abrir.',
+        ],
+        guideBefore:
+          'Daí em diante, ele abre como qualquer outro app. A Apple descreve esses passos em',
+        guideLink: 'Abra um app do Mac de um desenvolvedor desconhecido',
+        guideUrl: 'https://support.apple.com/pt-br/guide/mac-help/mh40616/mac',
+        updates:
+          'Esta versão nunca se atualiza sozinha. O primeiro release assinado também precisa ser instalado à mão, uma vez: baixe-o, feche o Prumo Desktop e substitua o app em Aplicativos. Seus projetos e ajustes continuam onde estão.',
+      },
+    },
     consumer: {
       heading: 'Um consumidor do Prumo, nunca uma segunda implementação',
       body: 'O Desktop embarca uma cópia fixada do CLI e a executa. Tudo o que ele sabe sobre um projeto vem do que esse CLI expõe de propósito, seus comandos com --json, e dos arquivos que um projeto gerado carrega.',
     },
     status: {
       heading: 'Em que pé está',
-      body: 'Ainda não há download, e esta página não vai fingir o contrário. A fundação roda; as funcionalidades não estão construídas. A versão 0.0.1 mira só o macOS, embora toda escolha de tecnologia precise funcionar também no Windows e no Linux.',
+      body: 'A fundação roda; as funcionalidades ainda não estão construídas. A versão 0.0.1 é uma prévia não assinada, só para macOS, embora toda escolha de tecnologia precise funcionar também no Windows e no Linux.',
       done: 'Pronto',
       next: 'Em construção',
       later: 'Adiante',
@@ -258,6 +284,11 @@ export const pt: Dictionary = {
           body: 'A camada de ambiente, a camada de processos, o contrato de IPC e uma primeira tela. Iniciar, parar uma árvore inteira de processos, buffers de terminal, e parar tudo ao sair.',
         },
         {
+          state: 'done',
+          heading: 'Uma prévia não assinada',
+          body: 'A versão 0.0.1 para macOS, no GitHub Releases: assinada ad hoc, não notarizada, e que nunca se atualiza sozinha.',
+        },
+        {
           state: 'next',
           heading: 'As funcionalidades, uma por vez',
           body: 'A lista de projetos, criar um projeto, rodar apps, o banco, e ler o .prumo/.',
@@ -265,7 +296,7 @@ export const pt: Dictionary = {
         {
           state: 'later',
           heading: 'Um build assinado e notarizado',
-          body: 'O primeiro chega bem antes do lançamento público. É quando um download aparece aqui.',
+          body: 'Ele substitui a prévia: sem o passo de Abrir Mesmo Assim, e com atualizações que chegam sozinhas. Passar para ele exige uma reinstalação manual.',
         },
       ],
     },

@@ -92,7 +92,7 @@ export const pt: Dictionary = {
     },
     desktop: {
       heading: 'Prumo Desktop',
-      body: 'Um aplicativo de desktop que cria projetos Prumo, lista-os, lê suas convenções e roda seus apps. A versão 0.0.1, uma prévia não assinada para macOS, já pode ser baixada.',
+      body: 'Um aplicativo de desktop que cria projetos Prumo, lista-os, lê suas convenções e roda seus apps. A versão 0.0.2, uma prévia não assinada para macOS, já pode ser baixada.',
       link: 'Ver em que pé está',
     },
   },
@@ -238,7 +238,7 @@ export const pt: Dictionary = {
       'Um aplicativo de desktop que cria projetos Prumo, lista-os, lê as convenções em .prumo/ e roda os apps deles, cada um no seu próprio painel de terminal.',
     download: {
       heading: 'Download',
-      body: 'A versão 0.0.1 é uma prévia para macOS. Cada release traz duas imagens de disco: escolha a do seu Mac, abra-a e arraste o Prumo Desktop para Aplicativos.',
+      body: 'A versão 0.0.2 é uma prévia para macOS. Cada release traz duas imagens de disco: escolha a do seu Mac, abra-a e arraste o Prumo Desktop para Aplicativos.',
       button: 'Baixar no GitHub Releases',
       builds: [
         { name: 'Apple silicon (M1 ou mais novo)', file: 'Prumo.Desktop-<version>-arm64.dmg' },
@@ -268,7 +268,7 @@ export const pt: Dictionary = {
     },
     status: {
       heading: 'Em que pé está',
-      body: 'A versão 0.0.1 roda no macOS como uma prévia não assinada. Ela cria e lista projetos, roda seus apps e seu banco, e lê o .prumo/. Toda escolha de tecnologia precisa funcionar também no Windows e no Linux, que vêm depois do build assinado.',
+      body: 'A versão 0.0.2 roda no macOS como uma prévia não assinada. Ela cria e lista projetos, roda seus apps e seu banco, e lê o .prumo/. Toda escolha de tecnologia precisa funcionar também no Windows e no Linux, que vêm depois do build assinado.',
       done: 'Pronto',
       next: 'Em construção',
       later: 'Adiante',
@@ -291,7 +291,7 @@ export const pt: Dictionary = {
         {
           state: 'done',
           heading: 'Uma prévia não assinada',
-          body: 'A versão 0.0.1 para macOS, no GitHub Releases: assinada ad hoc, não notarizada, e que nunca se atualiza sozinha.',
+          body: 'As prévias 0.0.x para macOS, no GitHub Releases: assinadas ad hoc, não notarizadas, e que nunca se atualizam sozinhas.',
         },
         {
           state: 'next',

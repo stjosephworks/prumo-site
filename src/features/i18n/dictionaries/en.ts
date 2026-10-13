@@ -95,7 +95,7 @@ export const en = {
     },
     desktop: {
       heading: 'Prumo Desktop',
-      body: 'A desktop application that creates Prumo projects, lists them, reads their conventions and runs their apps. Version 0.0.1, an unsigned preview for macOS, can be downloaded.',
+      body: 'A desktop application that creates Prumo projects, lists them, reads their conventions and runs their apps. Version 0.0.2, an unsigned preview for macOS, can be downloaded.',
       link: 'See where it stands',
     },
   },
@@ -244,7 +244,7 @@ export const en = {
       'A desktop application that creates Prumo projects, lists them, reads their .prumo/ conventions, and runs their apps, each in its own terminal panel.',
     download: {
       heading: 'Download',
-      body: 'Version 0.0.1 is a preview for macOS. Each release carries two disk images: pick the one for your Mac, open it, and drag Prumo Desktop into Applications.',
+      body: 'Version 0.0.2 is a preview for macOS. Each release carries two disk images: pick the one for your Mac, open it, and drag Prumo Desktop into Applications.',
       button: 'Download from GitHub Releases',
       builds: [
         { name: 'Apple silicon (M1 and later)', file: 'Prumo.Desktop-<version>-arm64.dmg' },
@@ -274,7 +274,7 @@ export const en = {
     },
     status: {
       heading: 'Where it stands',
-      body: 'Version 0.0.1 runs on macOS as an unsigned preview. It creates and lists projects, runs their apps and their database, and reads their .prumo/. Every technology choice must also work on Windows and Linux, which come after the signed build.',
+      body: 'Version 0.0.2 runs on macOS as an unsigned preview. It creates and lists projects, runs their apps and their database, and reads their .prumo/. Every technology choice must also work on Windows and Linux, which come after the signed build.',
       done: 'Done',
       next: 'Being built',
       later: 'Ahead',
@@ -297,7 +297,7 @@ export const en = {
         {
           state: 'done',
           heading: 'An unsigned preview',
-          body: 'Version 0.0.1 for macOS, on GitHub Releases: ad-hoc signed, not notarized, and never updating itself.',
+          body: 'The 0.0.x previews for macOS, on GitHub Releases: ad-hoc signed, not notarized, and never updating themselves.',
         },
         {
           state: 'next',

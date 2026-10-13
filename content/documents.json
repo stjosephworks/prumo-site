@@ -72,8 +72,8 @@
       "group": "desktop",
       "title": "Desktop overview",
       "blurb": {
-        "en": "What the Desktop is, what already runs, and the order the rest is built in.",
-        "pt": "O que o Desktop é, o que já roda e a ordem em que o resto é construído."
+        "en": "What the Desktop is, where it stands, and how its releases are built.",
+        "pt": "O que o Desktop é, em que pé está e como seus releases são gerados."
       }
     }
   ]

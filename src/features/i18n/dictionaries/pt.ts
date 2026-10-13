@@ -150,7 +150,7 @@ export const pt: Dictionary = {
       },
       {
         heading: 'Responda sem terminal',
-        body: 'Toda pergunta tem uma flag, e sem terminal toda pergunta que as respostas levantam precisa da sua: uma flag que falta é erro. A única exceção é a disposição: mais de um tipo faz um workspace, e um único tipo fica sozinho, a menos que --monorepo peça um workspace.',
+        body: 'Toda pergunta tem uma flag, e sem terminal toda pergunta que as respostas levantam precisa da sua: uma flag que falta é erro. Mais de um tipo faz um workspace; um único tipo precisa de --alone ou --monorepo para dizer como fica disposto.',
         command: commands.unattended,
       },
       {

@@ -155,7 +155,7 @@ export const en = {
       },
       {
         heading: 'Answer without a terminal',
-        body: 'Every question has a flag, and without a terminal every question the answers raise needs one: a missing flag is an error. The one exception is the layout: more than one type makes a workspace, and a single type is laid out alone unless --monorepo asks for a workspace.',
+        body: 'Every question has a flag, and without a terminal every question the answers raise needs one: a missing flag is an error. More than one type makes a workspace; a single type needs --alone or --monorepo to say how it is laid out.',
         command: commands.unattended,
       },
       {

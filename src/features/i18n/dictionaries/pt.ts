@@ -359,6 +359,8 @@ export const pt: Dictionary = {
     pinnedAt: 'Fixado em',
   },
   footer: {
+    by: 'Por',
+    stjosephWorks: 'St. Joseph Works',
     describing: 'Descrevendo o Prumo',
     license: 'Licença MIT',
     builtWith: 'Este site foi gerado pelo Prumo, como um projeto do tipo site.',

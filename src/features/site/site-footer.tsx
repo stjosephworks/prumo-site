@@ -5,7 +5,7 @@ import type { Locale } from '@/features/i18n/locales'
 import { external, path } from '@/lib/routes'
 import { site } from '@/lib/site'
 import manifest from '../../../content/documents.json'
-import { PlumbMark } from './brand'
+import { Wordmark } from './brand'
 
 export function SiteFooter({ locale }: { locale: Locale }) {
   const t = getDictionary(locale)
@@ -13,8 +13,16 @@ export function SiteFooter({ locale }: { locale: Locale }) {
 
   return (
     <footer className="mt-24 border-t border-rule">
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-12 sm:px-8 md:grid-cols-[auto_1fr_1fr_1fr]">
-        <PlumbMark className="h-16 w-auto" lineLength={150} />
+      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-12 sm:px-8 md:grid-cols-[minmax(11rem,auto)_1fr_1fr_1fr]">
+        <p className="font-serif text-sm text-muted-foreground">
+          {t.footer.by}{' '}
+          <a
+            href={external.stjosephWorks}
+            className="mt-1 block w-fit decoration-brass underline-offset-4 hover:underline"
+          >
+            <Wordmark name={t.footer.stjosephWorks} />
+          </a>
+        </p>
 
         <div>
           <h2 className="font-serif text-sm font-semibold">{t.footer.sections.product}</h2>

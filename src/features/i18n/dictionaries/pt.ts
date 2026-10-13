@@ -38,9 +38,25 @@ export const pt: Dictionary = {
     headlineSecond: 'E estão escritas.',
     standfirst:
       'O Prumo começa um projeto TypeScript com o framework, o desenho dos módulos, as regras do banco, a ligação da autenticação e os limites de teste já escolhidos. Cada um foi decidido uma vez, escrito dentro do projeto que o recebe, e transformado em algo que roda.',
-    commandLabel: 'Rode isto',
     commandCaption: 'Node 22.18 ou mais novo, e pnpm 10.26 ou mais novo.',
     readDocuments: 'Ler os documentos',
+    paths: {
+      or: 'ou',
+      cli: {
+        heading: 'Pelo terminal',
+        body: 'Um comando pergunta o que construir e escreve o projeto.',
+      },
+      desktop: {
+        heading: 'Com o Prumo Desktop',
+        body: 'O mesmo CLI num aplicativo que cria, lista e roda os seus projetos.',
+        button: 'Baixar para macOS',
+        previewNote:
+          'Prévia não assinada para macOS, Apple silicon e Intel. O macOS pede que você a confirme na primeira vez que ela abre.',
+        previewLink: 'Como abrir',
+        signedNote: 'Para macOS, Apple silicon e Intel.',
+        signedLink: 'Sobre o Prumo Desktop',
+      },
+    },
     arrives: {
       heading: 'Um projeto novo chega com duas coisas',
       code: {

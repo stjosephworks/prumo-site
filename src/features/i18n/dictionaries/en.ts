@@ -42,9 +42,25 @@ export const en = {
     headlineSecond: 'And written down.',
     standfirst:
       'Prumo starts a TypeScript project with the framework, the module layout, the database rules, the auth wiring and the test boundaries already chosen. Each one was decided once, written into the project that receives it, and turned into something that runs.',
-    commandLabel: 'Run this',
     commandCaption: 'Node 22.18 or later, and pnpm 10.26 or later.',
     readDocuments: 'Read the documents',
+    paths: {
+      or: 'or',
+      cli: {
+        heading: 'From the terminal',
+        body: 'One command asks what to build and writes the project.',
+      },
+      desktop: {
+        heading: 'With Prumo Desktop',
+        body: 'The same CLI in an app that creates, lists and runs your projects.',
+        button: 'Download for macOS',
+        previewNote:
+          'Unsigned preview for macOS, Apple silicon and Intel. macOS asks you to confirm it the first time it opens.',
+        previewLink: 'How to open it',
+        signedNote: 'For macOS, Apple silicon and Intel.',
+        signedLink: 'About Prumo Desktop',
+      },
+    },
     arrives: {
       heading: 'A new project arrives with two things',
       code: {

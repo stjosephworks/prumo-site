@@ -5,9 +5,10 @@ import { getDictionary } from '@/features/i18n/dictionary'
 import type { Locale } from '@/features/i18n/locales'
 import { PlumbMark } from '@/features/site/brand'
 import { CommandBlock } from '@/features/site/command-block'
+import { DesktopDownload } from '@/features/site/desktop-download'
 import { RuledTable } from '@/features/site/ruled-table'
 import { Prose, Section } from '@/features/site/section'
-import { alternates, external, path } from '@/lib/routes'
+import { alternates, desktopRelease, external, path } from '@/lib/routes'
 import { site } from '@/lib/site'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -38,34 +39,65 @@ export default async function HomePage() {
           lineLength={34}
         />
 
-        <section className="py-16 sm:py-24">
-          <h1 className="max-w-[18ch] font-serif text-[2.6rem] font-semibold leading-[1.08] tracking-[-0.03em] text-navy sm:text-6xl">
+        <section className="pb-16 pt-14 sm:pb-24 sm:pt-20" aria-labelledby="home-headline">
+          <h1
+            id="home-headline"
+            className="max-w-[17ch] font-serif text-[2.6rem] font-semibold leading-[1.04] tracking-[-0.035em] text-navy sm:text-[4.1rem]"
+          >
             {t.home.headline}
             <br />
             <span className="text-ink">{t.home.headlineSecond}</span>
           </h1>
 
-          <Prose className="mt-8 text-lg text-ink/85">{t.home.standfirst}</Prose>
+          <Prose className="mt-8 max-w-[58ch] text-lg text-ink/85 sm:text-[1.2rem]">
+            {t.home.standfirst}
+          </Prose>
 
-          <div className="mt-10 max-w-xl">
-            <CommandBlock
-              command={`npx ${site.cliPackage} new my-app`}
-              runners
-              labels={{
-                copy: t.common.copy,
-                copied: t.common.copied,
-                npm: t.common.npm,
-                pnpm: t.common.pnpm,
-              }}
-            />
-            <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
-              <span>{t.home.commandCaption}</span>
-              <Link
-                href={path(locale, 'docs')}
-                className="text-navy underline-offset-4 hover:underline"
+          <div className="mt-12 grid border border-rule md:grid-cols-2">
+            <div className="p-5 sm:p-7">
+              <h2 className="font-serif text-lg font-semibold text-navy">
+                {t.home.paths.cli.heading}
+              </h2>
+              <p className="mt-1 text-sm text-muted-foreground">{t.home.paths.cli.body}</p>
+              <CommandBlock
+                className="mt-5"
+                command={`npx ${site.cliPackage} new my-app`}
+                runners
+                labels={{
+                  copy: t.common.copy,
+                  copied: t.common.copied,
+                  npm: t.common.npm,
+                  pnpm: t.common.pnpm,
+                }}
+              />
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                {t.home.commandCaption}{' '}
+                <Link
+                  href={path(locale, 'docs')}
+                  className="whitespace-nowrap text-navy underline decoration-brass underline-offset-4 hover:decoration-navy"
+                >
+                  {t.home.readDocuments}
+                </Link>
+              </p>
+            </div>
+
+            <div className="relative border-t border-rule bg-card p-5 sm:p-7 md:border-l md:border-t-0">
+              <span
+                aria-hidden="true"
+                className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 border border-rule bg-paper px-2 font-serif text-sm italic text-muted-foreground md:left-0 md:top-1/2"
               >
-                {t.home.readDocuments}
-              </Link>
+                {t.home.paths.or}
+              </span>
+              <h2 className="font-serif text-lg font-semibold text-navy">
+                {t.home.paths.desktop.heading}
+              </h2>
+              <p className="mt-1 text-sm text-muted-foreground">{t.home.paths.desktop.body}</p>
+              <DesktopDownload
+                className="mt-5"
+                channel={desktopRelease.channel}
+                locale={locale}
+                labels={t.home.paths.desktop}
+              />
             </div>
           </div>
         </section>

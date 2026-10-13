@@ -171,7 +171,7 @@ export const pt: Dictionary = {
         {
           flag: '--multi-tenant   --single-tenant',
           answers:
-            'Se a aplicação serve vários inquilinos. Multi-tenant traz as convenções de multi-tenancy; o código gerado em si ainda não é ciente de inquilino',
+            'Com uma api, web ou mobile: se a aplicação serve vários inquilinos. Multi-tenant traz as convenções de multi-tenancy; o código gerado em si ainda não é ciente de inquilino',
         },
         {
           flag: '--mcp   --no-mcp',

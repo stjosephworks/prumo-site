@@ -176,7 +176,7 @@ export const en = {
         {
           flag: '--multi-tenant   --single-tenant',
           answers:
-            'Whether the application serves several tenants. Multi-tenant ships the multi-tenancy conventions; the generated code itself is not tenant-aware yet',
+            'With an api, web or mobile: whether the application serves several tenants. Multi-tenant ships the multi-tenancy conventions; the generated code itself is not tenant-aware yet',
         },
         {
           flag: '--mcp   --no-mcp',

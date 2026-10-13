@@ -14,6 +14,7 @@ export function alternates(locale: Locale, ...segments: string[]) {
 }
 
 export const external = {
+  stjosephWorks: 'https://stjosephworks.org',
   repository: 'https://github.com/stjosephworks/prumo',
   desktopRepository: 'https://github.com/stjosephworks/prumo-desktop',
   npm: 'https://www.npmjs.com/package/@stjoseph/prumo',

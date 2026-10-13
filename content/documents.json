@@ -2,11 +2,11 @@
   "sources": {
     "prumo": {
       "repo": "stjosephworks/prumo",
-      "commit": "9b4b0309d3d67e9912a2317d975a5adabc6e2f5b"
+      "commit": "2b8e063b75a3ed56fb171df8f61fe9a351875897"
     },
     "prumo-desktop": {
       "repo": "stjosephworks/prumo-desktop",
-      "commit": "031247baebe82ecce4207ccca88ebd88333c5fcf"
+      "commit": "56f25877459dd0a860c9b958989d984f8722940e"
     }
   },
   "documents": [
@@ -72,8 +72,8 @@
       "group": "desktop",
       "title": "Desktop overview",
       "blurb": {
-        "en": "What the Desktop is, what already runs, and the order the rest is built in.",
-        "pt": "O que o Desktop é, o que já roda e a ordem em que o resto é construído."
+        "en": "What the Desktop is, where it stands, and how its releases are built.",
+        "pt": "O que o Desktop é, em que pé está e como seus releases são gerados."
       }
     }
   ]

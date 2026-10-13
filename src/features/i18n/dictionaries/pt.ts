@@ -1,3 +1,4 @@
+import { commands } from '@/lib/commands'
 import type { Dictionary, StatusItem } from './en'
 
 export const pt: Dictionary = {
@@ -38,9 +39,25 @@ export const pt: Dictionary = {
     headlineSecond: 'E estão escritas.',
     standfirst:
       'O Prumo começa um projeto TypeScript com o framework, o desenho dos módulos, as regras do banco, a ligação da autenticação e os limites de teste já escolhidos. Cada um foi decidido uma vez, escrito dentro do projeto que o recebe, e transformado em algo que roda.',
-    commandLabel: 'Rode isto',
     commandCaption: 'Node 22.18 ou mais novo, e pnpm 10.26 ou mais novo.',
     readDocuments: 'Ler os documentos',
+    paths: {
+      or: 'ou',
+      cli: {
+        heading: 'Pelo terminal',
+        body: 'Um comando pergunta o que construir e escreve o projeto.',
+      },
+      desktop: {
+        heading: 'Com o Prumo Desktop',
+        body: 'O mesmo CLI num aplicativo que cria, lista e roda os seus projetos.',
+        button: 'Baixar para macOS',
+        previewNote:
+          'Prévia não assinada para macOS, Apple silicon e Intel. O macOS pede que você a confirme na primeira vez que ela abre.',
+        previewLink: 'Como abrir',
+        signedNote: 'Para macOS, Apple silicon e Intel.',
+        signedLink: 'Sobre o Prumo Desktop',
+      },
+    },
     arrives: {
       heading: 'Um projeto novo chega com duas coisas',
       code: {
@@ -53,31 +70,48 @@ export const pt: Dictionary = {
         detail:
           'Uma pasta .prumo/ com as regras que esse código obedece. Qualquer assistente de IA que trabalhe no repositório a lê e passa a conhecê-las sem ninguém explicar. As convenções vivem no projeto, não na cabeça de alguém.',
       },
+      caption: 'Um trecho de um projeto gerado com --types api,web',
     },
     types: {
       heading: 'Quatro tipos, e do que cada um é feito',
       note: 'Um tipo produz aquele projeto sozinho. Vários produzem um workspace pnpm, com o contrato de comunicação compartilhado, de modo que uma mudança de um lado quebra o outro no typecheck.',
-      columns: { type: 'Tipo', contents: 'O que você recebe' },
       rows: [
         {
           type: 'api',
-          contents:
-            'Fastify com uma estrutura domain/infra, tsyringe, Zod, MikroORM sobre PostgreSQL, autenticação JWT própria, Swagger UI, Vitest com Testcontainers',
+          role: 'O servidor',
+          parts: [
+            'Fastify com uma estrutura domain/infra',
+            'tsyringe e Zod',
+            'MikroORM sobre PostgreSQL',
+            'Autenticação JWT própria',
+            'Swagger UI',
+            'Vitest com Testcontainers',
+          ],
         },
         {
           type: 'web',
-          contents:
-            'Vite, React, TanStack Router e Query, Tailwind, shadcn/ui, formulários validados com Zod',
+          role: 'O app do navegador',
+          parts: [
+            'Vite e React',
+            'TanStack Router e Query',
+            'Tailwind e shadcn/ui',
+            'Formulários validados com Zod',
+          ],
         },
         {
           type: 'mobile',
-          contents:
-            'Expo com Expo Router, NativeWind, MMKV, e os tokens guardados no expo-secure-store, rodando numa development build',
+          role: 'O app do celular',
+          parts: [
+            'Expo com Expo Router',
+            'NativeWind e MMKV',
+            'Tokens guardados no expo-secure-store',
+            'Rodando numa development build',
+          ],
         },
         {
           type: 'site',
-          contents:
-            'Next no App Router, estático por padrão, para páginas que precisam ser indexadas',
+          role: 'Páginas que precisam ser indexadas',
+          parts: ['Next no App Router', 'Estático por padrão'],
         },
       ],
     },
@@ -92,7 +126,7 @@ export const pt: Dictionary = {
     },
     desktop: {
       heading: 'Prumo Desktop',
-      body: 'Um aplicativo de desktop que cria projetos Prumo, lista-os, lê suas convenções e roda seus apps. A versão 0.0.1, uma prévia não assinada para macOS, já pode ser baixada.',
+      body: 'Um aplicativo de desktop que cria projetos Prumo, lista-os, lê suas convenções e roda seus apps. A versão 0.0.2, uma prévia não assinada para macOS, já pode ser baixada.',
       link: 'Ver em que pé está',
     },
   },
@@ -107,23 +141,22 @@ export const pt: Dictionary = {
       {
         heading: 'Confira a máquina',
         body: 'O Prumo precisa de Node 22.18 ou mais novo e de pnpm 10.26 ou mais novo, no macOS ou no Linux; o Windows ainda não é suportado. Qualquer coisa com API precisa também de Docker, porque é lá que roda o banco de desenvolvimento. Este comando confere tudo e diz o que falta.',
-        command: 'npx @stjoseph/prumo doctor',
+        command: commands.doctor,
       },
       {
         heading: 'Gere o projeto',
         body: 'Ele pergunta o que construir, escreve o projeto em my-app/, roda git init e instala. Nada é commitado, então o primeiro commit é seu e o diff dele mostra tudo o que o Prumo escreveu.',
-        command: 'npx @stjoseph/prumo new my-app',
+        command: commands.create,
       },
       {
         heading: 'Responda sem terminal',
-        body: 'Toda pergunta tem uma flag, e sem terminal toda pergunta que as respostas levantam precisa da sua: uma flag que falta é erro. Mais de um tipo faz um workspace; um tipo só precisa de --alone ou --monorepo para dizer como fica disposto.',
-        command:
-          'npx @stjoseph/prumo new my-app --types api,web --single-tenant --no-mcp --email --no-social',
+        body: 'Toda pergunta tem uma flag, e sem terminal toda pergunta que as respostas levantam precisa da sua: uma flag que falta é erro. Mais de um tipo faz um workspace; um único tipo precisa de --alone ou --monorepo para dizer como fica disposto.',
+        command: commands.unattended,
       },
       {
         heading: 'Crie o banco',
-        body: 'Dentro de um projeto com API, isto cria o banco de desenvolvimento no Docker e escreve a URL dele no .env. Uma vez que o banco existe, prumo clean remove a preparação de que o projeto precisou uma vez só.',
-        command: 'npx @stjoseph/prumo db',
+        body: 'Dentro de um projeto com API, isto cria o banco de desenvolvimento no Docker, escreve a URL dele no .env e roda as migrations, a menos que se passe --skip-migrate. Uma vez que o banco existe, prumo clean remove a preparação de que o projeto precisou uma vez só.',
+        command: commands.database,
       },
     ],
     flags: {
@@ -138,7 +171,7 @@ export const pt: Dictionary = {
         {
           flag: '--multi-tenant   --single-tenant',
           answers:
-            'Se a aplicação serve vários inquilinos. Multi-tenant traz as convenções de multi-tenancy; o código gerado em si ainda não é ciente de inquilino',
+            'Com uma api, web ou mobile: se a aplicação serve vários inquilinos. Multi-tenant traz as convenções de multi-tenancy; o código gerado em si ainda não é ciente de inquilino',
         },
         {
           flag: '--mcp   --no-mcp',
@@ -214,7 +247,7 @@ export const pt: Dictionary = {
       },
       {
         command: 'prumo db',
-        what: 'Dentro de um projeto com API: cria o banco de desenvolvimento no Docker e escreve a URL dele no .env',
+        what: 'Dentro de um projeto com API: cria o banco de desenvolvimento no Docker, escreve a URL dele no .env e roda as migrations, a menos que se passe --skip-migrate',
       },
       {
         command: 'prumo clean',
@@ -238,7 +271,7 @@ export const pt: Dictionary = {
       'Um aplicativo de desktop que cria projetos Prumo, lista-os, lê as convenções em .prumo/ e roda os apps deles, cada um no seu próprio painel de terminal.',
     download: {
       heading: 'Download',
-      body: 'A versão 0.0.1 é uma prévia para macOS. Cada release traz duas imagens de disco: escolha a do seu Mac, abra-a e arraste o Prumo Desktop para Aplicativos.',
+      body: 'A versão 0.0.2 é uma prévia para macOS. Cada release traz duas imagens de disco: escolha a do seu Mac, abra-a e arraste o Prumo Desktop para Aplicativos. O app precisa de Node 22.18 ou mais novo e de pnpm 10.26 ou mais novo instalados no Mac; ele os confere, mas nunca os instala.',
       button: 'Baixar no GitHub Releases',
       builds: [
         { name: 'Apple silicon (M1 ou mais novo)', file: 'Prumo.Desktop-<version>-arm64.dmg' },
@@ -264,11 +297,11 @@ export const pt: Dictionary = {
     },
     consumer: {
       heading: 'Um consumidor do Prumo, nunca uma segunda implementação',
-      body: 'O Desktop embarca uma cópia fixada do CLI e a executa. Tudo o que ele sabe sobre um projeto vem do que esse CLI expõe de propósito, seus comandos com --json, e dos arquivos que um projeto gerado carrega.',
+      body: 'O Desktop embarca uma cópia fixada do CLI e a executa, e a atualiza dentro da mesma versão minor (0.4.x), nunca para outra: uma minor nova chega com um Desktop novo. Tudo o que ele sabe sobre um projeto vem do que esse CLI expõe de propósito, seus comandos com --json, e dos arquivos que um projeto gerado carrega.',
     },
     status: {
       heading: 'Em que pé está',
-      body: 'A versão 0.0.1 roda no macOS como uma prévia não assinada. Ela cria e lista projetos, roda seus apps e seu banco, e lê o .prumo/. Toda escolha de tecnologia precisa funcionar também no Windows e no Linux, que vêm depois do build assinado.',
+      body: 'A versão 0.0.2 roda no macOS como uma prévia não assinada. Ela cria e lista projetos, roda seus apps e seu banco, e lê o .prumo/. Toda escolha de tecnologia precisa funcionar também no Windows e no Linux, e levar o app para eles é o próximo trabalho.',
       done: 'Pronto',
       next: 'Em construção',
       later: 'Adiante',
@@ -291,17 +324,17 @@ export const pt: Dictionary = {
         {
           state: 'done',
           heading: 'Uma prévia não assinada',
-          body: 'A versão 0.0.1 para macOS, no GitHub Releases: assinada ad hoc, não notarizada, e que nunca se atualiza sozinha.',
+          body: 'As prévias 0.0.x para macOS, no GitHub Releases: assinadas ad hoc, não notarizadas, e que nunca se atualizam sozinhas.',
         },
         {
           state: 'next',
-          heading: 'Um build assinado e notarizado',
-          body: 'Ele substitui a prévia: sem o passo de Abrir Mesmo Assim, e com atualizações que chegam sozinhas. Passar para ele exige uma reinstalação manual.',
+          heading: 'Windows e Linux',
+          body: 'Portados numa série própria, que é o próximo trabalho. Não esperam pelo build assinado para macOS.',
         },
         {
           state: 'later',
-          heading: 'Windows e Linux',
-          body: 'Portados numa série própria, depois que o build para macOS estiver assinado.',
+          heading: 'Um build assinado e notarizado',
+          body: 'Ele substitui a prévia: sem o passo de Abrir Mesmo Assim, e com atualizações que chegam sozinhas. Passar para ele exige uma reinstalação manual.',
         },
       ],
     },
@@ -326,6 +359,8 @@ export const pt: Dictionary = {
     pinnedAt: 'Fixado em',
   },
   footer: {
+    by: 'Por',
+    stjosephWorks: 'St. Joseph Works',
     describing: 'Descrevendo o Prumo',
     license: 'Licença MIT',
     builtWith: 'Este site foi gerado pelo Prumo, como um projeto do tipo site.',

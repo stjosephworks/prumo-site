@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { documents, readDocument } from './documents'
+import { documents, findDocument, readDocument, sourceUrl } from './documents'
 import { renderMarkdown } from './markdown'
 import { buildSearchIndex } from './search-index'
 
@@ -16,7 +16,9 @@ describe('the search index', () => {
 
   it('anchors every record at a heading the rendered page actually has', async () => {
     const index = await buildSearchIndex()
-    const { html } = await renderMarkdown(await readDocument('stack'))
+    const stack = findDocument('stack')
+    if (stack === undefined) throw new Error('stack is not in the manifest')
+    const { html } = await renderMarkdown(await readDocument('stack'), sourceUrl(stack))
     const records = index.filter((record) => record.slug === 'stack')
 
     expect(records.length).toBeGreaterThan(0)

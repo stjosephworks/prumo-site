@@ -3,6 +3,7 @@ import { SearchDialog } from '@/features/docs/search-dialog'
 import { getDictionary } from '@/features/i18n/dictionary'
 import type { Locale } from '@/features/i18n/locales'
 import { external, path } from '@/lib/routes'
+import { site } from '@/lib/site'
 import { Wordmark } from './brand'
 import { LanguageSwitch } from './language-switch'
 
@@ -20,9 +21,8 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   return (
     <header className="sticky top-0 z-40 border-b border-rule bg-paper/90 backdrop-blur-sm">
       <div className="mx-auto flex h-14 max-w-6xl items-center gap-4 px-5 sm:px-8">
-        <Link href={path(locale)} className="shrink-0">
+        <Link href={path(locale)} aria-label={site.name} className="shrink-0">
           <Wordmark />
-          <span className="sr-only">Prumo</span>
         </Link>
 
         <nav className="hidden items-center gap-5 text-sm lg:flex" aria-label={t.nav.menu}>

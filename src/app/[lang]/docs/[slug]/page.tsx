@@ -40,7 +40,10 @@ export default async function DocumentPage({ params }: PageProps<'/[lang]/docs/[
 
   const locale = (await lang()) as Locale
   const t = getDictionary(locale)
-  const { html, headings } = await renderMarkdown(await readDocument(document.slug))
+  const { html, headings } = await renderMarkdown(
+    await readDocument(document.slug),
+    sourceUrl(document),
+  )
 
   return (
     <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[14rem_minmax(0,1fr)_14rem]">

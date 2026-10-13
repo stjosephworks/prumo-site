@@ -1,3 +1,5 @@
+import { commands } from '@/lib/commands'
+
 export interface StatusItem {
   state: 'done' | 'next' | 'later'
   heading: string
@@ -42,9 +44,25 @@ export const en = {
     headlineSecond: 'And written down.',
     standfirst:
       'Prumo starts a TypeScript project with the framework, the module layout, the database rules, the auth wiring and the test boundaries already chosen. Each one was decided once, written into the project that receives it, and turned into something that runs.',
-    commandLabel: 'Run this',
     commandCaption: 'Node 22.18 or later, and pnpm 10.26 or later.',
     readDocuments: 'Read the documents',
+    paths: {
+      or: 'or',
+      cli: {
+        heading: 'From the terminal',
+        body: 'One command asks what to build and writes the project.',
+      },
+      desktop: {
+        heading: 'With Prumo Desktop',
+        body: 'The same CLI in an app that creates, lists and runs your projects.',
+        button: 'Download for macOS',
+        previewNote:
+          'Unsigned preview for macOS, Apple silicon and Intel. macOS asks you to confirm it the first time it opens.',
+        previewLink: 'How to open it',
+        signedNote: 'For macOS, Apple silicon and Intel.',
+        signedLink: 'About Prumo Desktop',
+      },
+    },
     arrives: {
       heading: 'A new project arrives with two things',
       code: {
@@ -57,30 +75,48 @@ export const en = {
         detail:
           'A .prumo/ folder holding the rules that code obeys. Any AI assistant working in the repository reads it and knows them without anyone explaining. The conventions live in the project, not in someone’s head.',
       },
+      caption: 'An excerpt of a project generated with --types api,web',
     },
     types: {
       heading: 'Four types, and what each one is made of',
       note: 'One type produces that project alone. Several produce a pnpm workspace, with the wire contract shared so a change on one side breaks the other at typecheck.',
-      columns: { type: 'Type', contents: 'What you get' },
       rows: [
         {
           type: 'api',
-          contents:
-            'Fastify with a domain/infra structure, tsyringe, Zod, MikroORM on PostgreSQL, its own JWT authentication, Swagger UI, Vitest with Testcontainers',
+          role: 'The server',
+          parts: [
+            'Fastify with a domain/infra structure',
+            'tsyringe and Zod',
+            'MikroORM on PostgreSQL',
+            'Its own JWT authentication',
+            'Swagger UI',
+            'Vitest with Testcontainers',
+          ],
         },
         {
           type: 'web',
-          contents:
-            'Vite, React, TanStack Router and Query, Tailwind, shadcn/ui, forms validated with Zod',
+          role: 'The browser app',
+          parts: [
+            'Vite and React',
+            'TanStack Router and Query',
+            'Tailwind and shadcn/ui',
+            'Forms validated with Zod',
+          ],
         },
         {
           type: 'mobile',
-          contents:
-            'Expo with Expo Router, NativeWind, MMKV, and the tokens kept in expo-secure-store, run in a development build',
+          role: 'The phone app',
+          parts: [
+            'Expo with Expo Router',
+            'NativeWind and MMKV',
+            'Tokens kept in expo-secure-store',
+            'Run in a development build',
+          ],
         },
         {
           type: 'site',
-          contents: 'Next on the App Router, static by default, for pages that have to be indexed',
+          role: 'Pages that have to be indexed',
+          parts: ['Next on the App Router', 'Static by default'],
         },
       ],
     },
@@ -95,7 +131,7 @@ export const en = {
     },
     desktop: {
       heading: 'Prumo Desktop',
-      body: 'A desktop application that creates Prumo projects, lists them, reads their conventions and runs their apps. Version 0.0.1, an unsigned preview for macOS, can be downloaded.',
+      body: 'A desktop application that creates Prumo projects, lists them, reads their conventions and runs their apps. Version 0.0.2, an unsigned preview for macOS, can be downloaded.',
       link: 'See where it stands',
     },
   },
@@ -110,23 +146,22 @@ export const en = {
       {
         heading: 'Check the machine',
         body: 'Prumo needs Node 22.18 or later and pnpm 10.26 or later, on macOS or Linux; Windows is not supported yet. Anything with an API also needs Docker, because the development database runs there. This command checks all of it and names whatever is missing.',
-        command: 'npx @stjoseph/prumo doctor',
+        command: commands.doctor,
       },
       {
         heading: 'Generate the project',
         body: 'It asks what to build, writes the project into my-app/, runs git init and installs. Nothing is committed, so the first commit is yours and its diff shows everything Prumo wrote.',
-        command: 'npx @stjoseph/prumo new my-app',
+        command: commands.create,
       },
       {
         heading: 'Answer without a terminal',
         body: 'Every question has a flag, and without a terminal every question the answers raise needs one: a missing flag is an error. More than one type makes a workspace; a single type needs --alone or --monorepo to say how it is laid out.',
-        command:
-          'npx @stjoseph/prumo new my-app --types api,web --single-tenant --no-mcp --email --no-social',
+        command: commands.unattended,
       },
       {
         heading: 'Create the database',
-        body: 'Inside a project with an API, this creates the development database in Docker and writes its URL into .env. Once the database exists, prumo clean removes the setup the project needed only once.',
-        command: 'npx @stjoseph/prumo db',
+        body: 'Inside a project with an API, this creates the development database in Docker, writes its URL into .env, and runs the migrations unless --skip-migrate is passed. Once the database exists, prumo clean removes the setup the project needed only once.',
+        command: commands.database,
       },
     ],
     flags: {
@@ -141,7 +176,7 @@ export const en = {
         {
           flag: '--multi-tenant   --single-tenant',
           answers:
-            'Whether the application serves several tenants. Multi-tenant ships the multi-tenancy conventions; the generated code itself is not tenant-aware yet',
+            'With an api, web or mobile: whether the application serves several tenants. Multi-tenant ships the multi-tenancy conventions; the generated code itself is not tenant-aware yet',
         },
         {
           flag: '--mcp   --no-mcp',
@@ -217,7 +252,7 @@ export const en = {
       },
       {
         command: 'prumo db',
-        what: 'Inside a project with an API: creates the development database in Docker and writes its URL into .env',
+        what: 'Inside a project with an API: creates the development database in Docker, writes its URL into .env, and runs the migrations unless --skip-migrate is passed',
       },
       {
         command: 'prumo clean',
@@ -244,7 +279,7 @@ export const en = {
       'A desktop application that creates Prumo projects, lists them, reads their .prumo/ conventions, and runs their apps, each in its own terminal panel.',
     download: {
       heading: 'Download',
-      body: 'Version 0.0.1 is a preview for macOS. Each release carries two disk images: pick the one for your Mac, open it, and drag Prumo Desktop into Applications.',
+      body: 'Version 0.0.2 is a preview for macOS. Each release carries two disk images: pick the one for your Mac, open it, and drag Prumo Desktop into Applications. The app needs Node 22.18 or later and pnpm 10.26 or later installed on the Mac; it checks them, and never installs them.',
       button: 'Download from GitHub Releases',
       builds: [
         { name: 'Apple silicon (M1 and later)', file: 'Prumo.Desktop-<version>-arm64.dmg' },
@@ -270,11 +305,11 @@ export const en = {
     },
     consumer: {
       heading: 'A consumer of Prumo, never a second implementation',
-      body: 'The Desktop ships a pinned copy of the CLI and runs it. Everything it knows about a project comes from what that CLI deliberately exposes, its commands with --json, and from the files a generated project carries.',
+      body: 'The Desktop ships a pinned copy of the CLI and runs it, and updates it within the same minor version (0.4.x), never across one: a new minor arrives with a new Desktop. Everything it knows about a project comes from what that CLI deliberately exposes, its commands with --json, and from the files a generated project carries.',
     },
     status: {
       heading: 'Where it stands',
-      body: 'Version 0.0.1 runs on macOS as an unsigned preview. It creates and lists projects, runs their apps and their database, and reads their .prumo/. Every technology choice must also work on Windows and Linux, which come after the signed build.',
+      body: 'Version 0.0.2 runs on macOS as an unsigned preview. It creates and lists projects, runs their apps and their database, and reads their .prumo/. Every technology choice must also work on Windows and Linux, and porting to them is the next piece of work.',
       done: 'Done',
       next: 'Being built',
       later: 'Ahead',
@@ -297,17 +332,17 @@ export const en = {
         {
           state: 'done',
           heading: 'An unsigned preview',
-          body: 'Version 0.0.1 for macOS, on GitHub Releases: ad-hoc signed, not notarized, and never updating itself.',
+          body: 'The 0.0.x previews for macOS, on GitHub Releases: ad-hoc signed, not notarized, and never updating themselves.',
         },
         {
           state: 'next',
-          heading: 'A signed and notarised build',
-          body: 'It replaces the preview: no Open Anyway step, and updates that arrive by themselves. Moving to it takes one manual reinstall.',
+          heading: 'Windows and Linux',
+          body: 'Ported as a series of their own, and the next piece of work. It does not wait for the signed macOS build.',
         },
         {
           state: 'later',
-          heading: 'Windows and Linux',
-          body: 'Ported as a series of their own, once the macOS build is signed.',
+          heading: 'A signed and notarised build',
+          body: 'It replaces the preview: no Open Anyway step, and updates that arrive by themselves. Moving to it takes one manual reinstall.',
         },
       ],
     },
@@ -333,6 +368,8 @@ export const en = {
     pinnedAt: 'Pinned at',
   },
   footer: {
+    by: 'By',
+    stjosephWorks: 'St. Joseph Works',
     describing: 'Describing Prumo',
     license: 'MIT licensed',
     builtWith: 'This site was generated by Prumo, as a site project.',

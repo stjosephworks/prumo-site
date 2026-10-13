@@ -39,7 +39,7 @@ export default async function DesktopPage() {
       </h1>
       <Prose className="mt-6 text-lg text-ink/85">{t.desktop.standfirst}</Prose>
 
-      <Section heading={t.desktop.download.heading} className="mt-12">
+      <Section id="download" heading={t.desktop.download.heading} className="mt-12">
         <Prose className="text-ink/85">{t.desktop.download.body}</Prose>
         <ul className="mt-5 space-y-1.5 text-sm">
           {t.desktop.download.builds.map((build) => (

@@ -160,7 +160,7 @@ export const en = {
       },
       {
         heading: 'Create the database',
-        body: 'Inside a project with an API, this creates the development database in Docker and writes its URL into .env. Once the database exists, prumo clean removes the setup the project needed only once.',
+        body: 'Inside a project with an API, this creates the development database in Docker, writes its URL into .env, and runs the migrations unless --skip-migrate is passed. Once the database exists, prumo clean removes the setup the project needed only once.',
         command: commands.database,
       },
     ],
@@ -252,7 +252,7 @@ export const en = {
       },
       {
         command: 'prumo db',
-        what: 'Inside a project with an API: creates the development database in Docker and writes its URL into .env',
+        what: 'Inside a project with an API: creates the development database in Docker, writes its URL into .env, and runs the migrations unless --skip-migrate is passed',
       },
       {
         command: 'prumo clean',

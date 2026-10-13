@@ -155,7 +155,7 @@ export const pt: Dictionary = {
       },
       {
         heading: 'Crie o banco',
-        body: 'Dentro de um projeto com API, isto cria o banco de desenvolvimento no Docker e escreve a URL dele no .env. Uma vez que o banco existe, prumo clean remove a preparação de que o projeto precisou uma vez só.',
+        body: 'Dentro de um projeto com API, isto cria o banco de desenvolvimento no Docker, escreve a URL dele no .env e roda as migrations, a menos que se passe --skip-migrate. Uma vez que o banco existe, prumo clean remove a preparação de que o projeto precisou uma vez só.',
         command: commands.database,
       },
     ],
@@ -247,7 +247,7 @@ export const pt: Dictionary = {
       },
       {
         command: 'prumo db',
-        what: 'Dentro de um projeto com API: cria o banco de desenvolvimento no Docker e escreve a URL dele no .env',
+        what: 'Dentro de um projeto com API: cria o banco de desenvolvimento no Docker, escreve a URL dele no .env e roda as migrations, a menos que se passe --skip-migrate',
       },
       {
         command: 'prumo clean',

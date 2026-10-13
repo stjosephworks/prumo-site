@@ -305,7 +305,7 @@ export const en = {
     },
     consumer: {
       heading: 'A consumer of Prumo, never a second implementation',
-      body: 'The Desktop ships a pinned copy of the CLI and runs it. Everything it knows about a project comes from what that CLI deliberately exposes, its commands with --json, and from the files a generated project carries.',
+      body: 'The Desktop ships a pinned copy of the CLI and runs it, and updates it within the same minor version (0.4.x), never across one: a new minor arrives with a new Desktop. Everything it knows about a project comes from what that CLI deliberately exposes, its commands with --json, and from the files a generated project carries.',
     },
     status: {
       heading: 'Where it stands',

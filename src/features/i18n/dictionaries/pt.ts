@@ -297,7 +297,7 @@ export const pt: Dictionary = {
     },
     consumer: {
       heading: 'Um consumidor do Prumo, nunca uma segunda implementação',
-      body: 'O Desktop embarca uma cópia fixada do CLI e a executa. Tudo o que ele sabe sobre um projeto vem do que esse CLI expõe de propósito, seus comandos com --json, e dos arquivos que um projeto gerado carrega.',
+      body: 'O Desktop embarca uma cópia fixada do CLI e a executa, e a atualiza dentro da mesma versão minor (0.4.x), nunca para outra: uma minor nova chega com um Desktop novo. Tudo o que ele sabe sobre um projeto vem do que esse CLI expõe de propósito, seus comandos com --json, e dos arquivos que um projeto gerado carrega.',
     },
     status: {
       heading: 'Em que pé está',

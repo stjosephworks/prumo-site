@@ -134,13 +134,16 @@
 
 @layer components {
   /* The plumb in the home page's gutter. The carriage is as tall as the track, so a percentage translate moves the
-     bob by a share of the track; the string hangs above the bob and the track's clip-path cuts it at the pin. */
+     bob by a share of the track; the string hangs above the bob and the track clips it at the pin. Clipping with
+     overflow rather than clip-path also keeps the translated carriage out of the page's scrollable height, which
+     would otherwise grow as the bob descends and run the scroll timeline away from it. */
   .plumb-track {
     --plumb-x: 0.625rem;
     --plumb-rest: 4.5rem;
     --plumb-bob-w: 12px;
     --plumb-bob-h: calc(var(--plumb-bob-w) * 300 / 181);
     --plumb-gap: 10px;
+    --plumb-hit: 16px;
     --plumb-travel: calc(100% - var(--plumb-rest) - var(--plumb-bob-h) - var(--plumb-gap));
     position: absolute;
     top: 2.25rem;
@@ -148,7 +151,8 @@
     left: -1.25rem;
     width: 1.25rem;
     pointer-events: none;
-    clip-path: inset(0 -4rem 0 -4rem);
+    overflow-x: visible;
+    overflow-y: clip;
     color: var(--navy);
   }
 
@@ -157,9 +161,10 @@
       --plumb-x: 1.5rem;
       --plumb-rest: 7rem;
       --plumb-bob-w: 28px;
+      --plumb-hit: 28px;
       top: 3rem;
       left: 0;
-      width: 3rem;
+      width: 4rem;
     }
   }
 
@@ -194,6 +199,11 @@
     stroke-width: 1.25px;
   }
 
+  .plumb-string .plumb-hit {
+    stroke: transparent;
+    stroke-width: var(--plumb-hit);
+  }
+
   .plumb-bob {
     position: absolute;
     top: var(--plumb-rest);
@@ -222,6 +232,15 @@
         animation: plumb-descend 1ms linear both;
         animation-timeline: scroll(root block);
       }
+    }
+
+    .plumb-string .plumb-hit,
+    .plumb-bob {
+      pointer-events: auto;
+    }
+
+    .plumb-string .plumb-hit {
+      pointer-events: stroke;
     }
 
     .plumb-rig {

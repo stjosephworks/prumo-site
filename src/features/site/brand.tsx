@@ -68,9 +68,13 @@ export function PlumbBob({ className }: { className?: string }) {
 
 export function Wordmark({ className }: { className?: string }) {
   return (
-    <span className={cn('flex items-center gap-2', className)}>
-      <PlumbMark className="h-7 w-auto" lineLength={110} />
-      <span className="font-serif text-xl font-semibold tracking-tight text-navy">Prumo</span>
+    <span
+      className={cn(
+        'whitespace-nowrap font-serif text-base font-semibold tracking-tight text-navy sm:text-lg',
+        className,
+      )}
+    >
+      Prumo
     </span>
   )
 }

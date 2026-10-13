@@ -18,7 +18,7 @@ interface HastNode {
   type: string
   tagName?: string
   value?: string
-  properties?: { id?: string }
+  properties?: { id?: string; href?: unknown }
   children?: HastNode[]
 }
 
@@ -53,6 +53,26 @@ function readHeadings(root: HastNode): Heading[] {
   return headings
 }
 
+// A link a document makes relative to itself, such as [MIT](LICENSE), points into its repository. Rendered here it
+// would resolve against the site instead, so it is pointed at the file on GitHub, at the commit the site is pinned to.
+function resolveLinks(base: string) {
+  const visit = (node: HastNode) => {
+    const href = node.properties?.href
+
+    if (
+      node.tagName === 'a' &&
+      typeof href === 'string' &&
+      !/^([a-z][a-z0-9+.-]*:|#|\/)/i.test(href)
+    ) {
+      node.properties = { ...node.properties, href: new URL(href, base).href }
+    }
+
+    for (const child of node.children ?? []) visit(child)
+  }
+
+  return () => visit
+}
+
 export interface RenderedMarkdown {
   html: string
   headings: Heading[]
@@ -73,12 +93,13 @@ function pipeline(collect: (headings: Heading[]) => void) {
     })
 }
 
-export async function renderMarkdown(markdown: string): Promise<RenderedMarkdown> {
+export async function renderMarkdown(markdown: string, base: string): Promise<RenderedMarkdown> {
   let headings: Heading[] = []
 
   const file = await pipeline((found) => {
     headings = found
   })
+    .use(resolveLinks(base))
     .use(rehypeShiki, {
       theme: 'vitesse-light',
       fallbackLanguage: 'text',

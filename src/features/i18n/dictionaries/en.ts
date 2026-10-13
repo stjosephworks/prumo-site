@@ -309,7 +309,7 @@ export const en = {
     },
     status: {
       heading: 'Where it stands',
-      body: 'Version 0.0.2 runs on macOS as an unsigned preview. It creates and lists projects, runs their apps and their database, and reads their .prumo/. Every technology choice must also work on Windows and Linux, which come after the signed build.',
+      body: 'Version 0.0.2 runs on macOS as an unsigned preview. It creates and lists projects, runs their apps and their database, and reads their .prumo/. Every technology choice must also work on Windows and Linux, and porting to them is the next piece of work.',
       done: 'Done',
       next: 'Being built',
       later: 'Ahead',
@@ -336,13 +336,13 @@ export const en = {
         },
         {
           state: 'next',
-          heading: 'A signed and notarised build',
-          body: 'It replaces the preview: no Open Anyway step, and updates that arrive by themselves. Moving to it takes one manual reinstall.',
+          heading: 'Windows and Linux',
+          body: 'Ported as a series of their own, and the next piece of work. It does not wait for the signed macOS build.',
         },
         {
           state: 'later',
-          heading: 'Windows and Linux',
-          body: 'Ported as a series of their own, once the macOS build is signed.',
+          heading: 'A signed and notarised build',
+          body: 'It replaces the preview: no Open Anyway step, and updates that arrive by themselves. Moving to it takes one manual reinstall.',
         },
       ],
     },

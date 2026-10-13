@@ -301,7 +301,7 @@ export const pt: Dictionary = {
     },
     status: {
       heading: 'Em que pé está',
-      body: 'A versão 0.0.2 roda no macOS como uma prévia não assinada. Ela cria e lista projetos, roda seus apps e seu banco, e lê o .prumo/. Toda escolha de tecnologia precisa funcionar também no Windows e no Linux, que vêm depois do build assinado.',
+      body: 'A versão 0.0.2 roda no macOS como uma prévia não assinada. Ela cria e lista projetos, roda seus apps e seu banco, e lê o .prumo/. Toda escolha de tecnologia precisa funcionar também no Windows e no Linux, e levar o app para eles é o próximo trabalho.',
       done: 'Pronto',
       next: 'Em construção',
       later: 'Adiante',
@@ -328,13 +328,13 @@ export const pt: Dictionary = {
         },
         {
           state: 'next',
-          heading: 'Um build assinado e notarizado',
-          body: 'Ele substitui a prévia: sem o passo de Abrir Mesmo Assim, e com atualizações que chegam sozinhas. Passar para ele exige uma reinstalação manual.',
+          heading: 'Windows e Linux',
+          body: 'Portados numa série própria, que é o próximo trabalho. Não esperam pelo build assinado para macOS.',
         },
         {
           state: 'later',
-          heading: 'Windows e Linux',
-          body: 'Portados numa série própria, depois que o build para macOS estiver assinado.',
+          heading: 'Um build assinado e notarizado',
+          body: 'Ele substitui a prévia: sem o passo de Abrir Mesmo Assim, e com atualizações que chegam sozinhas. Passar para ele exige uma reinstalação manual.',
         },
       ],
     },

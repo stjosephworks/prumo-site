@@ -73,30 +73,48 @@ export const en = {
         detail:
           'A .prumo/ folder holding the rules that code obeys. Any AI assistant working in the repository reads it and knows them without anyone explaining. The conventions live in the project, not in someone’s head.',
       },
+      caption: 'An excerpt of a project generated with --types api,web',
     },
     types: {
       heading: 'Four types, and what each one is made of',
       note: 'One type produces that project alone. Several produce a pnpm workspace, with the wire contract shared so a change on one side breaks the other at typecheck.',
-      columns: { type: 'Type', contents: 'What you get' },
       rows: [
         {
           type: 'api',
-          contents:
-            'Fastify with a domain/infra structure, tsyringe, Zod, MikroORM on PostgreSQL, its own JWT authentication, Swagger UI, Vitest with Testcontainers',
+          role: 'The server',
+          parts: [
+            'Fastify with a domain/infra structure',
+            'tsyringe and Zod',
+            'MikroORM on PostgreSQL',
+            'Its own JWT authentication',
+            'Swagger UI',
+            'Vitest with Testcontainers',
+          ],
         },
         {
           type: 'web',
-          contents:
-            'Vite, React, TanStack Router and Query, Tailwind, shadcn/ui, forms validated with Zod',
+          role: 'The browser app',
+          parts: [
+            'Vite and React',
+            'TanStack Router and Query',
+            'Tailwind and shadcn/ui',
+            'Forms validated with Zod',
+          ],
         },
         {
           type: 'mobile',
-          contents:
-            'Expo with Expo Router, NativeWind, MMKV, and the tokens kept in expo-secure-store, run in a development build',
+          role: 'The phone app',
+          parts: [
+            'Expo with Expo Router',
+            'NativeWind and MMKV',
+            'Tokens kept in expo-secure-store',
+            'Run in a development build',
+          ],
         },
         {
           type: 'site',
-          contents: 'Next on the App Router, static by default, for pages that have to be indexed',
+          role: 'Pages that have to be indexed',
+          parts: ['Next on the App Router', 'Static by default'],
         },
       ],
     },

@@ -69,31 +69,48 @@ export const pt: Dictionary = {
         detail:
           'Uma pasta .prumo/ com as regras que esse código obedece. Qualquer assistente de IA que trabalhe no repositório a lê e passa a conhecê-las sem ninguém explicar. As convenções vivem no projeto, não na cabeça de alguém.',
       },
+      caption: 'Um trecho de um projeto gerado com --types api,web',
     },
     types: {
       heading: 'Quatro tipos, e do que cada um é feito',
       note: 'Um tipo produz aquele projeto sozinho. Vários produzem um workspace pnpm, com o contrato de comunicação compartilhado, de modo que uma mudança de um lado quebra o outro no typecheck.',
-      columns: { type: 'Tipo', contents: 'O que você recebe' },
       rows: [
         {
           type: 'api',
-          contents:
-            'Fastify com uma estrutura domain/infra, tsyringe, Zod, MikroORM sobre PostgreSQL, autenticação JWT própria, Swagger UI, Vitest com Testcontainers',
+          role: 'O servidor',
+          parts: [
+            'Fastify com uma estrutura domain/infra',
+            'tsyringe e Zod',
+            'MikroORM sobre PostgreSQL',
+            'Autenticação JWT própria',
+            'Swagger UI',
+            'Vitest com Testcontainers',
+          ],
         },
         {
           type: 'web',
-          contents:
-            'Vite, React, TanStack Router e Query, Tailwind, shadcn/ui, formulários validados com Zod',
+          role: 'O app do navegador',
+          parts: [
+            'Vite e React',
+            'TanStack Router e Query',
+            'Tailwind e shadcn/ui',
+            'Formulários validados com Zod',
+          ],
         },
         {
           type: 'mobile',
-          contents:
-            'Expo com Expo Router, NativeWind, MMKV, e os tokens guardados no expo-secure-store, rodando numa development build',
+          role: 'O app do celular',
+          parts: [
+            'Expo com Expo Router',
+            'NativeWind e MMKV',
+            'Tokens guardados no expo-secure-store',
+            'Rodando numa development build',
+          ],
         },
         {
           type: 'site',
-          contents:
-            'Next no App Router, estático por padrão, para páginas que precisam ser indexadas',
+          role: 'Páginas que precisam ser indexadas',
+          parts: ['Next no App Router', 'Estático por padrão'],
         },
       ],
     },

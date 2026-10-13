@@ -6,10 +6,31 @@ import type { Locale } from '@/features/i18n/locales'
 import { PlumbMark } from '@/features/site/brand'
 import { CommandBlock } from '@/features/site/command-block'
 import { DesktopDownload } from '@/features/site/desktop-download'
-import { RuledTable } from '@/features/site/ruled-table'
 import { Prose, Section } from '@/features/site/section'
 import { alternates, desktopRelease, external, path } from '@/lib/routes'
 import { site } from '@/lib/site'
+import { cn } from '@/lib/utils'
+
+type TreeKind = 'code' | 'conventions' | 'plain'
+
+const projectTree: { line: number; branch: string; name: string; kind: TreeKind }[] = [
+  { line: 1, branch: '', name: 'my-app/', kind: 'plain' },
+  { line: 2, branch: '├── ', name: 'apps/api/', kind: 'code' },
+  { line: 3, branch: '├── ', name: 'apps/web/', kind: 'code' },
+  { line: 4, branch: '├── ', name: 'packages/api-contract/', kind: 'code' },
+  { line: 5, branch: '├── ', name: '.prumo/', kind: 'conventions' },
+  { line: 6, branch: '│   ├── ', name: 'INDEX.md', kind: 'conventions' },
+  { line: 7, branch: '│   ├── ', name: 'core/', kind: 'conventions' },
+  { line: 8, branch: '│   └── ', name: '…', kind: 'conventions' },
+  { line: 9, branch: '├── ', name: 'AGENTS.md', kind: 'conventions' },
+  { line: 10, branch: '└── ', name: 'CLAUDE.md', kind: 'conventions' },
+]
+
+const treeTone: Record<TreeKind, string> = {
+  code: 'text-navy',
+  conventions: 'text-brass-ink',
+  plain: 'text-ink',
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await lang()) as Locale
@@ -31,12 +52,12 @@ export default async function HomePage() {
       <div className="relative md:pl-16">
         <span
           aria-hidden="true"
-          className="plumb-line absolute left-[1.4rem] top-[7.5rem] hidden w-px bg-rule md:block"
+          className="plumb-line absolute left-[1.5rem] top-[7.5rem] hidden w-px bg-rule md:block"
           style={{ bottom: 0 }}
         />
         <PlumbMark
           className="plumb-line-draw absolute left-0 top-2 hidden h-28 w-12 md:block"
-          lineLength={34}
+          lineLength={150}
         />
 
         <section className="pb-16 pt-14 sm:pb-24 sm:pt-20" aria-labelledby="home-headline">
@@ -53,7 +74,7 @@ export default async function HomePage() {
             {t.home.standfirst}
           </Prose>
 
-          <div className="mt-12 grid border border-rule md:grid-cols-2">
+          <div className="mt-12 grid grid-cols-[minmax(0,1fr)] border border-rule md:grid-cols-2">
             <div className="p-5 sm:p-7">
               <h2 className="font-serif text-lg font-semibold text-navy">
                 {t.home.paths.cli.heading}
@@ -102,34 +123,84 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <Section heading={t.home.arrives.heading}>
-          <dl className="grid gap-10 md:grid-cols-2">
-            <div>
-              <dt className="font-serif text-lg font-semibold">{t.home.arrives.code.term}</dt>
-              <dd className="mt-2 font-serif leading-relaxed text-ink/85">
-                {t.home.arrives.code.detail}
-              </dd>
-            </div>
-            <div>
-              <dt className="font-serif text-lg font-semibold">
-                {t.home.arrives.conventions.term}
-              </dt>
-              <dd className="mt-2 font-serif leading-relaxed text-ink/85">
-                {t.home.arrives.conventions.detail}
-              </dd>
-            </div>
-          </dl>
+        <Section heading={t.home.arrives.heading} split>
+          <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_19rem] xl:gap-14">
+            <dl className="space-y-9">
+              <div className="grid grid-cols-[0.75rem_minmax(0,1fr)] gap-x-4">
+                <span aria-hidden="true" className="mt-2.5 size-2.5 bg-navy" />
+                <dt className="font-serif text-xl font-semibold text-ink">
+                  {t.home.arrives.code.term}
+                </dt>
+                <dd className="col-start-2 mt-2 max-w-[60ch] font-serif text-[1.0625rem] leading-relaxed text-ink/85">
+                  {t.home.arrives.code.detail}
+                </dd>
+              </div>
+              <div className="grid grid-cols-[0.75rem_minmax(0,1fr)] gap-x-4">
+                <span aria-hidden="true" className="mt-2.5 size-2.5 bg-brass" />
+                <dt className="font-serif text-xl font-semibold text-ink">
+                  {t.home.arrives.conventions.term}
+                </dt>
+                <dd className="col-start-2 mt-2 max-w-[60ch] font-serif text-[1.0625rem] leading-relaxed text-ink/85">
+                  {t.home.arrives.conventions.detail}
+                </dd>
+              </div>
+            </dl>
+
+            <figure className="self-start">
+              <pre
+                aria-hidden="true"
+                className="overflow-x-auto border border-rule bg-card px-5 py-4 font-mono text-[0.8rem] leading-7 text-muted-foreground"
+              >
+                {projectTree.map((entry) => (
+                  <span key={entry.line} className="flex items-center justify-between gap-4">
+                    <span>
+                      {entry.branch}
+                      <span className={treeTone[entry.kind]}>{entry.name}</span>
+                    </span>
+                    {entry.kind !== 'plain' && (
+                      <span
+                        className={cn(
+                          'size-1.5 shrink-0',
+                          entry.kind === 'code' ? 'bg-navy' : 'bg-brass',
+                        )}
+                      />
+                    )}
+                  </span>
+                ))}
+              </pre>
+              <figcaption className="mt-3 text-xs text-muted-foreground">
+                {t.home.arrives.caption}
+              </figcaption>
+            </figure>
+          </div>
         </Section>
 
         <Section heading={t.home.types.heading}>
-          <RuledTable
-            columns={{ head: t.home.types.columns.type, body: t.home.types.columns.contents }}
-            rows={t.home.types.rows.map((row) => ({ head: row.type, body: row.contents }))}
-          />
-          <Prose className="mt-6 text-muted-foreground">{t.home.types.note}</Prose>
+          <ul className="grid border-t border-ink sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-4 lg:gap-x-6">
+            {t.home.types.rows.map((row) => (
+              <li
+                key={row.type}
+                className="border-b border-rule py-6 lg:border-b-0 lg:border-l lg:pb-2 lg:pl-6 lg:first:border-l-0 lg:first:pl-0"
+              >
+                <h3 className="font-mono text-[1.6rem] font-medium leading-none text-navy">
+                  {row.type}
+                </h3>
+                <p className="mt-2 font-serif italic text-muted-foreground">{row.role}</p>
+                <ul className="mt-5 space-y-2 text-sm leading-snug text-ink/85">
+                  {row.parts.map((part) => (
+                    <li key={part} className="grid grid-cols-[0.9rem_minmax(0,1fr)]">
+                      <span aria-hidden="true" className="mt-[0.6em] h-px w-2 bg-brass" />
+                      {part}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+          <Prose className="mt-8 text-muted-foreground">{t.home.types.note}</Prose>
         </Section>
 
-        <Section heading={t.home.silence.heading}>
+        <Section heading={t.home.silence.heading} split>
           <Prose className="text-ink/85">{t.home.silence.body}</Prose>
           <CommandBlock
             className="mt-6 max-w-2xl"
@@ -143,27 +214,35 @@ export default async function HomePage() {
           />
         </Section>
 
-        <Section heading={t.home.record.heading}>
-          <Prose className="text-ink/85">{t.home.record.body}</Prose>
-          <Link
-            href={path(locale, 'docs', 'stack')}
-            className="mt-6 inline-block border-b border-brass pb-0.5 text-navy"
-          >
-            {t.home.record.link}
-          </Link>
-        </Section>
-
-        <Section heading={t.home.desktop.heading}>
-          <Prose className="text-ink/85">{t.home.desktop.body}</Prose>
-          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
-            <Link href={path(locale, 'desktop')} className="border-b border-brass pb-0.5 text-navy">
-              {t.home.desktop.link}
+        <div className="grid lg:grid-cols-2 lg:gap-12">
+          <Section heading={t.home.record.heading}>
+            <Prose className="text-ink/85">{t.home.record.body}</Prose>
+            <Link
+              href={path(locale, 'docs', 'stack')}
+              className="mt-6 inline-block border-b border-brass pb-0.5 text-navy hover:border-navy"
+            >
+              {t.home.record.link}
             </Link>
-            <a href={external.desktopRepository} className="text-muted-foreground hover:text-navy">
-              {t.footer.desktopRepository}
-            </a>
-          </div>
-        </Section>
+          </Section>
+
+          <Section heading={t.home.desktop.heading}>
+            <Prose className="text-ink/85">{t.home.desktop.body}</Prose>
+            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+              <Link
+                href={path(locale, 'desktop')}
+                className="border-b border-brass pb-0.5 text-navy hover:border-navy"
+              >
+                {t.home.desktop.link}
+              </Link>
+              <a
+                href={external.desktopRepository}
+                className="text-muted-foreground hover:text-navy"
+              >
+                {t.footer.desktopRepository}
+              </a>
+            </div>
+          </Section>
+        </div>
       </div>
     </div>
   )

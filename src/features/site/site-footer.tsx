@@ -14,7 +14,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
   return (
     <footer className="mt-24 border-t border-rule">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-12 sm:px-8 md:grid-cols-[auto_1fr_1fr_1fr]">
-        <PlumbMark className="h-16 w-6" lineLength={14} />
+        <PlumbMark className="h-16 w-auto" lineLength={150} />
 
         <div>
           <h2 className="font-serif text-sm font-semibold">{t.footer.sections.product}</h2>

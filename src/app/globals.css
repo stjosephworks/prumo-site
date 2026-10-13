@@ -133,21 +133,117 @@
 }
 
 @layer components {
-  .plumb-line {
-    background: linear-gradient(to bottom, var(--rule) 0%, var(--rule) 100%);
-    transform-origin: top;
+  /* The plumb in the home page's gutter. The carriage is as tall as the track, so a percentage translate moves the
+     bob by a share of the track; the string hangs above the bob and the track's clip-path cuts it at the pin. */
+  .plumb-track {
+    --plumb-x: 0.625rem;
+    --plumb-rest: 4.5rem;
+    --plumb-bob-w: 12px;
+    --plumb-bob-h: calc(var(--plumb-bob-w) * 300 / 181);
+    --plumb-gap: 10px;
+    --plumb-travel: calc(100% - var(--plumb-rest) - var(--plumb-bob-h) - var(--plumb-gap));
+    position: absolute;
+    top: 2.25rem;
+    bottom: 0;
+    left: -1.25rem;
+    width: 1.25rem;
+    pointer-events: none;
+    clip-path: inset(0 -4rem 0 -4rem);
+    color: var(--navy);
   }
 
-  .plumb-line-draw {
-    animation: plumb-drop 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  @media (width >= 48rem) {
+    .plumb-track {
+      --plumb-x: 1.5rem;
+      --plumb-rest: 7rem;
+      --plumb-bob-w: 28px;
+      top: 3rem;
+      left: 0;
+      width: 3rem;
+    }
   }
 
-  @keyframes plumb-drop {
+  .plumb-carriage,
+  .plumb-rig {
+    position: absolute;
+    inset: 0;
+  }
+
+  .plumb-pin {
+    position: absolute;
+    top: 0;
+    left: calc(var(--plumb-x) - 5px);
+    width: 10px;
+    height: 2px;
+    background: var(--brass);
+  }
+
+  .plumb-string {
+    position: absolute;
+    left: calc(var(--plumb-x) - 24px);
+    bottom: calc(100% - var(--plumb-rest) - 2px);
+    width: 48px;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .plumb-string path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.25px;
+  }
+
+  .plumb-bob {
+    position: absolute;
+    top: var(--plumb-rest);
+    left: calc(var(--plumb-x) - var(--plumb-bob-w) / 2);
+    width: var(--plumb-bob-w);
+    transform-origin: 50% 0;
+  }
+
+  .plumb-base {
+    position: absolute;
+    bottom: 0;
+    left: calc(var(--plumb-x) - var(--plumb-bob-w) * 0.55);
+    width: calc(var(--plumb-bob-w) * 1.1);
+    height: 1.5px;
+    border-radius: 1px;
+    background: currentColor;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .plumb-carriage {
+      translate: 0 calc(var(--plumb-p, 0) * var(--plumb-travel));
+    }
+
+    @supports (animation-timeline: scroll()) {
+      .plumb-carriage {
+        animation: plumb-descend 1ms linear both;
+        animation-timeline: scroll(root block);
+      }
+    }
+
+    .plumb-rig {
+      animation: plumb-lower 1100ms cubic-bezier(0.34, 1.3, 0.64, 1) 200ms both;
+    }
+  }
+
+  @keyframes plumb-descend {
     from {
-      transform: scaleY(0);
+      translate: 0 0;
     }
     to {
-      transform: scaleY(1);
+      translate: 0 var(--plumb-travel);
+    }
+  }
+
+  @keyframes plumb-lower {
+    from {
+      translate: 0 calc(-1 * var(--plumb-rest));
+    }
+    to {
+      translate: 0 0;
     }
   }
 

@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { lang } from 'next/root-params'
 import { getDictionary } from '@/features/i18n/dictionary'
 import type { Locale } from '@/features/i18n/locales'
-import { PlumbMark } from '@/features/site/brand'
 import { CommandBlock } from '@/features/site/command-block'
 import { DesktopDownload } from '@/features/site/desktop-download'
+import { PlumbLine } from '@/features/site/plumb-line'
 import { Prose, Section } from '@/features/site/section'
 import { alternates, desktopRelease, external, path } from '@/lib/routes'
 import { site } from '@/lib/site'
@@ -50,15 +50,7 @@ export default async function HomePage() {
   return (
     <div className="mx-auto max-w-6xl px-5 sm:px-8">
       <div className="relative md:pl-16">
-        <span
-          aria-hidden="true"
-          className="plumb-line absolute left-[1.5rem] top-[7.5rem] hidden w-px bg-rule md:block"
-          style={{ bottom: 0 }}
-        />
-        <PlumbMark
-          className="plumb-line-draw absolute left-0 top-2 hidden h-28 w-12 md:block"
-          lineLength={150}
-        />
+        <PlumbLine />
 
         <section className="pb-16 pt-14 sm:pb-24 sm:pt-20" aria-labelledby="home-headline">
           <h1

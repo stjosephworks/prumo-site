@@ -7,8 +7,8 @@ import { CommandBlock } from '@/features/site/command-block'
 import { DesktopDownload } from '@/features/site/desktop-download'
 import { PlumbLine } from '@/features/site/plumb-line'
 import { Prose, Section } from '@/features/site/section'
+import { commands } from '@/lib/commands'
 import { alternates, desktopRelease, external, path } from '@/lib/routes'
-import { site } from '@/lib/site'
 import { cn } from '@/lib/utils'
 
 type TreeKind = 'code' | 'conventions' | 'plain'
@@ -74,7 +74,7 @@ export default async function HomePage() {
               <p className="mt-1 text-sm text-muted-foreground">{t.home.paths.cli.body}</p>
               <CommandBlock
                 className="mt-5"
-                command={`npx ${site.cliPackage} new my-app`}
+                command={commands.create}
                 runners
                 labels={{
                   copy: t.common.copy,
@@ -196,7 +196,7 @@ export default async function HomePage() {
           <Prose className="text-ink/85">{t.home.silence.body}</Prose>
           <CommandBlock
             className="mt-6 max-w-2xl"
-            command={`npx ${site.cliPackage} new my-app --types api,web --single-tenant`}
+            command={commands.unattended}
             labels={{
               copy: t.common.copy,
               copied: t.common.copied,

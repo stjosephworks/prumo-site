@@ -1,3 +1,5 @@
+import { commands } from '@/lib/commands'
+
 export interface StatusItem {
   state: 'done' | 'next' | 'later'
   heading: string
@@ -144,23 +146,22 @@ export const en = {
       {
         heading: 'Check the machine',
         body: 'Prumo needs Node 22.18 or later and pnpm 10.26 or later, on macOS or Linux; Windows is not supported yet. Anything with an API also needs Docker, because the development database runs there. This command checks all of it and names whatever is missing.',
-        command: 'npx @stjoseph/prumo doctor',
+        command: commands.doctor,
       },
       {
         heading: 'Generate the project',
         body: 'It asks what to build, writes the project into my-app/, runs git init and installs. Nothing is committed, so the first commit is yours and its diff shows everything Prumo wrote.',
-        command: 'npx @stjoseph/prumo new my-app',
+        command: commands.create,
       },
       {
         heading: 'Answer without a terminal',
         body: 'Every question has a flag, and without a terminal every question the answers raise needs one: a missing flag is an error. More than one type makes a workspace; a single type needs --alone or --monorepo to say how it is laid out.',
-        command:
-          'npx @stjoseph/prumo new my-app --types api,web --single-tenant --no-mcp --email --no-social',
+        command: commands.unattended,
       },
       {
         heading: 'Create the database',
         body: 'Inside a project with an API, this creates the development database in Docker and writes its URL into .env. Once the database exists, prumo clean removes the setup the project needed only once.',
-        command: 'npx @stjoseph/prumo db',
+        command: commands.database,
       },
     ],
     flags: {

@@ -1,3 +1,4 @@
+import { commands } from '@/lib/commands'
 import type { Dictionary, StatusItem } from './en'
 
 export const pt: Dictionary = {
@@ -140,23 +141,22 @@ export const pt: Dictionary = {
       {
         heading: 'Confira a máquina',
         body: 'O Prumo precisa de Node 22.18 ou mais novo e de pnpm 10.26 ou mais novo, no macOS ou no Linux; o Windows ainda não é suportado. Qualquer coisa com API precisa também de Docker, porque é lá que roda o banco de desenvolvimento. Este comando confere tudo e diz o que falta.',
-        command: 'npx @stjoseph/prumo doctor',
+        command: commands.doctor,
       },
       {
         heading: 'Gere o projeto',
         body: 'Ele pergunta o que construir, escreve o projeto em my-app/, roda git init e instala. Nada é commitado, então o primeiro commit é seu e o diff dele mostra tudo o que o Prumo escreveu.',
-        command: 'npx @stjoseph/prumo new my-app',
+        command: commands.create,
       },
       {
         heading: 'Responda sem terminal',
         body: 'Toda pergunta tem uma flag, e sem terminal toda pergunta que as respostas levantam precisa da sua: uma flag que falta é erro. Mais de um tipo faz um workspace; um tipo só precisa de --alone ou --monorepo para dizer como fica disposto.',
-        command:
-          'npx @stjoseph/prumo new my-app --types api,web --single-tenant --no-mcp --email --no-social',
+        command: commands.unattended,
       },
       {
         heading: 'Crie o banco',
         body: 'Dentro de um projeto com API, isto cria o banco de desenvolvimento no Docker e escreve a URL dele no .env. Uma vez que o banco existe, prumo clean remove a preparação de que o projeto precisou uma vez só.',
-        command: 'npx @stjoseph/prumo db',
+        command: commands.database,
       },
     ],
     flags: {

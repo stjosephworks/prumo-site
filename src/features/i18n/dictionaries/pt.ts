@@ -271,7 +271,7 @@ export const pt: Dictionary = {
       'Um aplicativo de desktop que cria projetos Prumo, lista-os, lê as convenções em .prumo/ e roda os apps deles, cada um no seu próprio painel de terminal.',
     download: {
       heading: 'Download',
-      body: 'A versão 0.0.2 é uma prévia para macOS. Cada release traz duas imagens de disco: escolha a do seu Mac, abra-a e arraste o Prumo Desktop para Aplicativos.',
+      body: 'A versão 0.0.2 é uma prévia para macOS. Cada release traz duas imagens de disco: escolha a do seu Mac, abra-a e arraste o Prumo Desktop para Aplicativos. O app precisa de Node 22.18 ou mais novo e de pnpm 10.26 ou mais novo instalados no Mac; ele os confere, mas nunca os instala.',
       button: 'Baixar no GitHub Releases',
       builds: [
         { name: 'Apple silicon (M1 ou mais novo)', file: 'Prumo.Desktop-<version>-arm64.dmg' },

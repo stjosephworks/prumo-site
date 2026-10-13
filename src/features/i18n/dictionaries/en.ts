@@ -279,7 +279,7 @@ export const en = {
       'A desktop application that creates Prumo projects, lists them, reads their .prumo/ conventions, and runs their apps, each in its own terminal panel.',
     download: {
       heading: 'Download',
-      body: 'Version 0.0.2 is a preview for macOS. Each release carries two disk images: pick the one for your Mac, open it, and drag Prumo Desktop into Applications.',
+      body: 'Version 0.0.2 is a preview for macOS. Each release carries two disk images: pick the one for your Mac, open it, and drag Prumo Desktop into Applications. The app needs Node 22.18 or later and pnpm 10.26 or later installed on the Mac; it checks them, and never installs them.',
       button: 'Download from GitHub Releases',
       builds: [
         { name: 'Apple silicon (M1 and later)', file: 'Prumo.Desktop-<version>-arm64.dmg' },

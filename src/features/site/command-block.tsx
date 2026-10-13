@@ -50,7 +50,7 @@ export function CommandBlock({ command, runners = false, labels, className }: Co
         </div>
       )}
       <div className="flex items-start gap-3 p-3 sm:items-center">
-        <code className="min-w-0 flex-1 overflow-x-auto whitespace-pre font-mono text-[0.82rem] leading-6 text-ink">
+        <code className="min-w-0 flex-1 whitespace-pre-wrap font-mono text-[0.82rem] leading-6 text-ink [overflow-wrap:anywhere]">
           {shown}
         </code>
         <button

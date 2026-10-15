@@ -2,7 +2,7 @@
   "sources": {
     "prumo": {
       "repo": "stjosephworks/prumo",
-      "commit": "bc4ee63212a1f10dcba4b50265d83e05a2a6b320"
+      "commit": "ca61d0c2b9a59e97e51352bfb4ae0326c94d60b2"
     },
     "prumo-desktop": {
       "repo": "stjosephworks/prumo-desktop",

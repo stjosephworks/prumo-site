@@ -32,13 +32,20 @@ is needed from the other repositories.
 
 ## Languages
 
-English and Portuguese, under `/en` and `/pt`. Only the pages this repository writes are translated, in
-`src/features/i18n/dictionaries/`; the fetched documents are rendered in English on both sides with a note
-saying so, because translating them would rebuild in a second language the duplication the manifest exists
-to avoid.
+English, Portuguese and Spanish, under `/en`, `/pt` and `/es`. Each language is one entry in
+[`src/features/i18n/locales.ts`](src/features/i18n/locales.ts), with its dictionary in
+`src/features/i18n/dictionaries/` and its blurb for each document in `content/documents.json`; the tests walk every
+entry, so a new language fails them until all of it is written. Only the pages this repository writes are
+translated; the fetched documents are rendered in English in every language with a note saying so, because
+translating them would rebuild in other languages the duplication the manifest exists to avoid.
+
+A path without a locale, `/` included, is answered by `src/proxy.ts` with a redirect to the visitor's language: the
+one picked in the language menu, kept for a year in the `locale` cookie, else the first one their browser accepts
+(`pt-PT` reaching `pt`), else English. A path that names a locale is never redirected.
 
 **This repository departs from `prumo`'s rule that every file is written in English**, and only there:
-Portuguese is allowed in the translated content. Every identifier, comment and commit message stays English.
+Portuguese and Spanish are allowed in the translated content. Every identifier, comment and commit message stays
+English.
 
 ## Running it
 
@@ -47,7 +54,7 @@ pnpm install
 pnpm dev
 ```
 
-The site runs on `http://localhost:3200`. `/` redirects to `/en`.
+The site runs on `http://localhost:3200`. `/` redirects to the visitor's language; see Languages.
 
 | Command | What it does |
 |---|---|

@@ -3,14 +3,12 @@ import { lang } from 'next/root-params'
 import { getDictionary } from '@/features/i18n/dictionary'
 import type { Locale } from '@/features/i18n/locales'
 import { Callout } from '@/features/site/callout'
+import { CommandBlock } from '@/features/site/command-block'
 import { Prose, Section } from '@/features/site/section'
-import {
-  alternates,
-  desktopDownloadUrl,
-  desktopRelease,
-  external,
-  needsOpenAnyway,
-} from '@/lib/routes'
+import { VisitorSystem } from '@/features/site/visitor-system'
+import { visitorTone } from '@/features/site/visitor-tone'
+import { desktopAssetUrl, desktopBuilds, desktopSystems, isUnsigned } from '@/lib/desktop'
+import { alternates, desktopDownloadUrl, desktopRelease, external } from '@/lib/routes'
 import { cn } from '@/lib/utils'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -31,6 +29,13 @@ export default async function DesktopPage() {
     next: t.desktop.status.next,
     later: t.desktop.status.later,
   }
+  const download = t.desktop.download
+  const copyLabels = {
+    copy: t.common.copy,
+    copied: t.common.copied,
+    npm: t.common.npm,
+    pnpm: t.common.pnpm,
+  }
 
   return (
     <div className="mx-auto max-w-4xl px-5 py-16 sm:px-8">
@@ -41,47 +46,126 @@ export default async function DesktopPage() {
 
       <Section id="download" heading={t.desktop.download.heading} className="mt-12">
         <Prose className="text-ink/85">{t.desktop.download.body}</Prose>
-        <ul className="mt-5 space-y-1.5 text-sm">
-          {t.desktop.download.builds.map((build) => (
-            <li key={build.file}>
-              <span className="font-semibold">{build.name}</span>
-              <span className="text-muted-foreground"> · </span>
-              <code className="font-mono text-xs text-navy">{build.file}</code>
-            </li>
-          ))}
-        </ul>
+        <a
+          href={desktopDownloadUrl(desktopRelease.channel)}
+          className="mt-6 inline-block w-fit bg-navy px-5 py-3 text-sm font-semibold text-paper hover:bg-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass"
+        >
+          {t.desktop.download.button}
+        </a>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-[auto_1fr] md:items-start">
-          <a
-            href={desktopDownloadUrl(desktopRelease.channel)}
-            className="inline-block w-fit bg-navy px-5 py-3 text-sm font-semibold text-paper hover:bg-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass"
-          >
-            {t.desktop.download.button}
-          </a>
-
-          {needsOpenAnyway(desktopRelease.channel) && (
-            <Callout label={t.desktop.download.warning.label}>
-              <p>{t.desktop.download.warning.lead}</p>
-              <p className="font-semibold">{t.desktop.download.warning.stepsHeading}</p>
-              <ol className="list-decimal space-y-1.5 pl-5">
-                {t.desktop.download.warning.steps.map((step) => (
-                  <li key={step}>{step}</li>
-                ))}
-              </ol>
-              <p>
-                {t.desktop.download.warning.guideBefore}{' '}
-                <a
-                  href={t.desktop.download.warning.guideUrl}
-                  className="text-navy underline underline-offset-4"
+        <VisitorSystem className="mt-10 space-y-10">
+          {desktopSystems.map((system) => (
+            <section
+              key={system}
+              id={system}
+              aria-labelledby={`${system}-heading`}
+              className={cn(
+                'scroll-mt-24 border-l-2 border-l-transparent pl-4',
+                visitorTone[system].row,
+              )}
+            >
+              <h3 id={`${system}-heading`} className="font-serif text-xl font-semibold">
+                {download.systems[system].name}
+                <span className="font-sans text-sm font-normal text-muted-foreground">
+                  {' '}
+                  · {download.systems[system].arch}
+                </span>
+                <span
+                  className={cn(
+                    'ml-2 hidden border border-brass px-1.5 align-middle font-sans text-xs font-normal text-brass-ink',
+                    visitorTone[system].tag,
+                  )}
                 >
-                  {t.desktop.download.warning.guideLink}
-                </a>
-                .
-              </p>
-              <p>{t.desktop.download.warning.updates}</p>
-            </Callout>
-          )}
-        </div>
+                  {download.yourSystem}
+                </span>
+              </h3>
+              <ul className="mt-3 space-y-1.5 text-sm">
+                {desktopBuilds(system).map((build) => (
+                  <li key={build.file}>
+                    <span className="font-semibold">{download.builds[build.kind]}</span>
+                    <span className="text-muted-foreground"> · </span>
+                    <a
+                      href={desktopAssetUrl(build.file)}
+                      className="font-mono text-xs text-navy underline decoration-brass underline-offset-4 [overflow-wrap:anywhere] hover:decoration-navy"
+                    >
+                      {build.file}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+
+              {system === 'macos' && (
+                <div className="mt-4 space-y-4">
+                  <Prose className="text-ink/85">{download.macos.install}</Prose>
+                  {isUnsigned('macos', desktopRelease.channel) && (
+                    <Callout label={download.macos.warning.label}>
+                      <p>{download.macos.warning.lead}</p>
+                      <p className="font-semibold">{download.macos.warning.stepsHeading}</p>
+                      <ol className="list-decimal space-y-1.5 pl-5">
+                        {download.macos.warning.steps.map((step) => (
+                          <li key={step}>{step}</li>
+                        ))}
+                      </ol>
+                      <p>
+                        {download.macos.warning.guideBefore}{' '}
+                        <a
+                          href={download.macos.warning.guideUrl}
+                          className="text-navy underline underline-offset-4"
+                        >
+                          {download.macos.warning.guideLink}
+                        </a>
+                        .
+                      </p>
+                    </Callout>
+                  )}
+                </div>
+              )}
+
+              {system === 'linux' && (
+                <div className="mt-4 space-y-4">
+                  <Prose className="text-ink/85">{download.linux.install}</Prose>
+                  {desktopBuilds('linux').map((build) => (
+                    <div key={build.file}>
+                      <p className="text-sm text-muted-foreground">{download.builds[build.kind]}</p>
+                      <CommandBlock
+                        className="mt-2 max-w-2xl"
+                        command={`sudo ${build.kind === 'deb' ? 'apt' : 'dnf'} install ./${build.file}`}
+                        labels={copyLabels}
+                      />
+                    </div>
+                  ))}
+                  <Callout label={download.linux.warning.label}>
+                    <p>{download.linux.warning.body}</p>
+                  </Callout>
+                </div>
+              )}
+
+              {system === 'windows' && (
+                <div className="mt-4 space-y-4">
+                  <Prose className="text-ink/85">{download.windows.install}</Prose>
+                  <Callout label={download.windows.warning.label}>
+                    <p>{download.windows.warning.smartScreen}</p>
+                    <p>{download.windows.warning.smartAppControl}</p>
+                    <p>
+                      {download.windows.warning.guideBefore}{' '}
+                      <a
+                        href={download.windows.warning.guideUrl}
+                        className="text-navy underline underline-offset-4"
+                      >
+                        {download.windows.warning.guideLink}
+                      </a>
+                      .
+                    </p>
+                  </Callout>
+                  <Prose className="text-ink/85">{download.windows.tools}</Prose>
+                  <Prose className="text-ink/85">{download.windows.channel}</Prose>
+                </div>
+              )}
+            </section>
+          ))}
+        </VisitorSystem>
+
+        <Prose className="mt-10 text-ink/85">{download.updates}</Prose>
       </Section>
 
       <Section heading={t.desktop.consumer.heading}>

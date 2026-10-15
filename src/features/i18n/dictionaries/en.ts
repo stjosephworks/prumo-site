@@ -61,7 +61,7 @@ export const en = {
           macosUnsigned: 'Unsigned: confirm it once with Open Anyway.',
           macosSigned: 'Signed and notarised by Apple.',
           linux: 'Unsigned: install it with apt or dnf.',
-          windows: 'Unsigned: More info, then Run anyway. Smart App Control blocks it.',
+          windows: 'Unsigned: More info, then Run anyway. Blocked where Smart App Control is on.',
         },
         previewNote: `Unsigned previews of version ${desktopVersion}. Every build needs Node 22.18 or later and pnpm 10.26 or later.`,
         previewLink: 'How to install',

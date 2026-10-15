@@ -58,7 +58,7 @@ export const pt: Dictionary = {
           macosSigned: 'Assinado e notarizado pela Apple.',
           linux: 'Não assinado: instale com apt ou dnf.',
           windows:
-            'Não assinado: Mais informações, depois Executar assim mesmo. O Controle Inteligente de Aplicativos o bloqueia.',
+            'Não assinado: Mais informações, depois Executar assim mesmo. Bloqueado onde o Controle Inteligente de Aplicativos está ligado.',
         },
         previewNote: `Prévias não assinadas da versão ${desktopVersion}. Todo build precisa de Node 22.18 ou mais novo e de pnpm 10.26 ou mais novo.`,
         previewLink: 'Como instalar',

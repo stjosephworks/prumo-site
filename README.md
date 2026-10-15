@@ -37,6 +37,10 @@ English and Portuguese, under `/en` and `/pt`. Only the pages this repository wr
 saying so, because translating them would rebuild in a second language the duplication the manifest exists
 to avoid.
 
+A path without a locale, `/` included, is answered by `src/proxy.ts` with a redirect to the visitor's language: the
+one picked in the language menu, kept for a year in the `locale` cookie, else the first one their browser accepts
+(`pt-PT` reaching `pt`), else English. A path that names a locale is never redirected.
+
 **This repository departs from `prumo`'s rule that every file is written in English**, and only there:
 Portuguese is allowed in the translated content. Every identifier, comment and commit message stays English.
 
@@ -47,7 +51,7 @@ pnpm install
 pnpm dev
 ```
 
-The site runs on `http://localhost:3200`. `/` redirects to `/en`.
+The site runs on `http://localhost:3200`. `/` redirects to the visitor's language; see Languages.
 
 | Command | What it does |
 |---|---|

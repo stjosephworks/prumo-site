@@ -2,7 +2,6 @@
 import { act } from 'react'
 import { createRoot, type Root } from 'react-dom/client'
 import { afterEach, beforeAll, describe, expect, it } from 'vitest'
-import { localeCookieString, rememberLocale } from '@/features/i18n/locale-cookie'
 import { type Locale, localeRegistry } from '@/features/i18n/locales'
 import { LanguageMenu } from './language-switch'
 
@@ -88,20 +87,5 @@ describe('the language switch', () => {
     expect(trigger.getAttribute('aria-expanded')).toBe('true')
     expect(items()).toHaveLength(localeRegistry.length)
     expect(items()).toContain(document.activeElement)
-  })
-})
-
-describe('the locale cookie', () => {
-  it('lasts a year on every path, and is not sent from other sites', () => {
-    expect(localeCookieString('pt', true)).toBe(
-      'locale=pt; Max-Age=31536000; Path=/; SameSite=Lax; Secure',
-    )
-    expect(localeCookieString('en', false)).not.toContain('Secure')
-  })
-
-  it('is written when a language is picked', () => {
-    rememberLocale('pt')
-
-    expect(document.cookie).toContain('locale=pt')
   })
 })

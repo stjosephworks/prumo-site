@@ -37,20 +37,26 @@ if (failures.length > 0) {
   process.exit(1)
 }
 
-// The version shown on the site is the one the pinned commit publishes, not a number kept by hand
+// The versions shown on the site are the ones the pinned commits publish, not numbers kept by hand
 // here that nobody would notice going stale.
-const source = manifest.sources.prumo
-const packageUrl = `https://raw.githubusercontent.com/${source.repo}/${source.commit}/cli/package.json`
-const packageResponse = await fetch(packageUrl)
-if (!packageResponse.ok) {
-  console.error(`Could not read the CLI version: ${packageResponse.status} from ${packageUrl}`)
-  process.exit(1)
+async function versionAt(source, file) {
+  const url = `https://raw.githubusercontent.com/${source.repo}/${source.commit}/${file}`
+  const response = await fetch(url)
+  if (!response.ok) {
+    console.error(`Could not read a version: ${response.status} from ${url}`)
+    process.exit(1)
+  }
+  return JSON.parse(await response.text()).version
 }
 
-const { version } = JSON.parse(await packageResponse.text())
-await writeFile(join(target, 'versions.json'), `${JSON.stringify({ cli: version }, null, 2)}\n`)
+const version = await versionAt(manifest.sources.prumo, 'cli/package.json')
+const desktop = await versionAt(manifest.sources['prumo-desktop'], 'package.json')
+await writeFile(
+  join(target, 'versions.json'),
+  `${JSON.stringify({ cli: version, desktop }, null, 2)}\n`,
+)
 
 const bytes = results.reduce((total, result) => total + result.value, 0)
 console.log(
-  `Fetched ${manifest.documents.length} documents, ${Math.round(bytes / 1024)} KB, describing CLI ${version}.`,
+  `Fetched ${manifest.documents.length} documents, ${Math.round(bytes / 1024)} KB, describing CLI ${version} and Desktop ${desktop}.`,
 )

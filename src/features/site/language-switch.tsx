@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { type Locale, localeNames, locales } from '@/features/i18n/locales'
+import { type Locale, localeInfo, locales } from '@/features/i18n/locales'
 import { cn } from '@/lib/utils'
 
 export function LanguageSwitch({ current, label }: { current: Locale; label: string }) {
@@ -25,7 +25,7 @@ export function LanguageSwitch({ current, label }: { current: Locale; label: str
                 : 'text-muted-foreground hover:text-ink',
             )}
           >
-            <span className="sr-only">{localeNames[locale]}</span>
+            <span className="sr-only">{localeInfo[locale].nativeName}</span>
             <span aria-hidden="true">{locale}</span>
           </Link>
         </span>

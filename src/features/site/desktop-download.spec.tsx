@@ -1,13 +1,14 @@
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 import { getDictionary } from '@/features/i18n/dictionary'
+import type { Locale } from '@/features/i18n/locales'
 import { desktopAssetUrl, desktopBuilds, desktopSystems } from '@/lib/desktop'
 import { type DesktopChannel, needsOpenAnyway } from '@/lib/routes'
 import { DesktopDownload } from './desktop-download'
 
 const channels: DesktopChannel[] = ['unsigned-preview', 'signed']
 
-function render(channel: DesktopChannel, locale: 'en' | 'pt' = 'en') {
+function render(channel: DesktopChannel, locale: Locale = 'en') {
   const t = getDictionary(locale)
   const labels = t.home.paths.desktop
   const html = renderToStaticMarkup(

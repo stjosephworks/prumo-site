@@ -334,7 +334,7 @@ export const pt: Dictionary = {
         install:
           'Rode o Setup.exe. Ele instala só para o seu usuário, sem pedir permissão de administrador, e põe o Prumo Desktop no menu Iniciar.',
         tools:
-          'Node, pnpm e git precisam estar instalados no próprio Windows. O app os encontra pelo PATH guardado no registro e pelas pastas de instalação de costume, ou pelo botão Escolher o Node…. Projetos dentro do WSL não são suportados.',
+          'Node, pnpm e git precisam estar instalados no próprio Windows. O app os encontra pelo PATH guardado no registro e pelas pastas de instalação de costume, ou pelo botão Escolher o Node…; projetos dentro do WSL não são suportados.',
         channel:
           'O GitHub Releases é o único canal para Windows. A Microsoft Store não está nos planos por enquanto.',
         warning: {

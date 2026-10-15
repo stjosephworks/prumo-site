@@ -389,9 +389,9 @@ export const pt: Dictionary = {
           body: 'Desde a 0.0.3, um deb e um rpm não assinados para Linux e um Setup.exe não assinado para Windows, todos x64. Todo build que não se atualiza sozinho avisa quando sai um release mais novo.',
         },
         {
-          state: 'next',
+          state: 'later',
           heading: 'arm64 para Linux e Windows',
-          body: 'Os builds para Linux e Windows são só x64. Os builds arm64 dos dois vêm a seguir.',
+          body: 'Os builds para Linux e Windows são só x64, o que cobre toda máquina Intel e AMD. Os builds arm64 dos dois estão planejados e saem quando alguém pedir.',
         },
         {
           state: 'later',

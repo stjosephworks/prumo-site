@@ -2,7 +2,7 @@
   "sources": {
     "prumo": {
       "repo": "stjosephworks/prumo",
-      "commit": "bc4ee63212a1f10dcba4b50265d83e05a2a6b320"
+      "commit": "ca61d0c2b9a59e97e51352bfb4ae0326c94d60b2"
     },
     "prumo-desktop": {
       "repo": "stjosephworks/prumo-desktop",
@@ -18,7 +18,8 @@
       "title": "Overview",
       "blurb": {
         "en": "What Prumo is, what it generates, and what lands in a project.",
-        "pt": "O que o Prumo é, o que ele gera e o que fica no projeto."
+        "pt": "O que o Prumo é, o que ele gera e o que fica no projeto.",
+        "es": "Qué es Prumo, qué genera y qué queda en el proyecto."
       }
     },
     {
@@ -29,7 +30,8 @@
       "title": "The locked stack",
       "blurb": {
         "en": "Every package, every version floor, and the nineteen entries deliberately dropped.",
-        "pt": "Cada pacote, cada piso de versão e as dezenove entradas descartadas de propósito."
+        "pt": "Cada pacote, cada piso de versão e as dezenove entradas descartadas de propósito.",
+        "es": "Cada paquete, cada versión mínima y las diecinueve entradas descartadas a propósito."
       }
     },
     {
@@ -40,7 +42,8 @@
       "title": "The .prumo/ layout",
       "blurb": {
         "en": "The twelve areas, and the rule deciding which of them a project receives.",
-        "pt": "As doze áreas e a regra que decide quais delas um projeto recebe."
+        "pt": "As doze áreas e a regra que decide quais delas um projeto recebe.",
+        "es": "Las doce áreas y la regla que decide cuáles recibe un proyecto."
       }
     },
     {
@@ -51,7 +54,8 @@
       "title": "Maintaining templates",
       "blurb": {
         "en": "How a template changes, how the change is proved, and what a regeneration undoes.",
-        "pt": "Como um template muda, como a mudança é provada e o que uma regeneração desfaz."
+        "pt": "Como um template muda, como a mudança é provada e o que uma regeneração desfaz.",
+        "es": "Cómo cambia un template, cómo se prueba el cambio y qué deshace una regeneración."
       }
     },
     {
@@ -62,7 +66,8 @@
       "title": "The document template",
       "blurb": {
         "en": "The shape every convention document fills: five sections, voice, how much code.",
-        "pt": "A forma que todo documento de convenção preenche: cinco seções, voz, quanto código."
+        "pt": "A forma que todo documento de convenção preenche: cinco seções, voz, quanto código.",
+        "es": "La forma que llena cada documento de convención: cinco secciones, el tono y cuánto código."
       }
     },
     {
@@ -73,7 +78,8 @@
       "title": "Desktop overview",
       "blurb": {
         "en": "What the Desktop is, where it stands, and how its releases are built.",
-        "pt": "O que o Desktop é, em que pé está e como seus releases são gerados."
+        "pt": "O que o Desktop é, em que pé está e como seus releases são gerados.",
+        "es": "Qué es Desktop, en qué estado está y cómo se generan sus versiones."
       }
     }
   ]

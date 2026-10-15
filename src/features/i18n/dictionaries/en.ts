@@ -395,9 +395,9 @@ export const en = {
           body: 'From 0.0.3, an unsigned deb and rpm for Linux and an unsigned Setup.exe for Windows, both x64. Every build that does not update itself says when a newer release is out.',
         },
         {
-          state: 'next',
+          state: 'later',
           heading: 'arm64 for Linux and Windows',
-          body: 'The Linux and Windows builds are x64 only. arm64 builds of both come next.',
+          body: 'The Linux and Windows builds are x64 only, which covers every Intel and AMD machine. arm64 builds of both are planned, and come when someone asks for them.',
         },
         {
           state: 'later',

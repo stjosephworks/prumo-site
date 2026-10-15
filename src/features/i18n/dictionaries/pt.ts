@@ -1,4 +1,5 @@
 import { commands } from '@/lib/commands'
+import { desktopVersion } from '@/lib/desktop'
 import type { Dictionary, StatusItem } from './en'
 
 export const pt: Dictionary = {
@@ -39,7 +40,8 @@ export const pt: Dictionary = {
     headlineSecond: 'E estão escritas.',
     standfirst:
       'O Prumo começa um projeto TypeScript com o framework, o desenho dos módulos, as regras do banco, a ligação da autenticação e os limites de teste já escolhidos. Cada um foi decidido uma vez, escrito dentro do projeto que o recebe, e transformado em algo que roda.',
-    commandCaption: 'Node 22.18 ou mais novo, e pnpm 10.26 ou mais novo.',
+    commandCaption:
+      'Node 22.18 ou mais novo e pnpm 10.26 ou mais novo, no macOS, no Linux ou no Windows.',
     readDocuments: 'Ler os documentos',
     paths: {
       or: 'ou',
@@ -49,12 +51,19 @@ export const pt: Dictionary = {
       },
       desktop: {
         heading: 'Com o Prumo Desktop',
-        body: 'O mesmo CLI num aplicativo que cria, lista e roda os seus projetos.',
-        button: 'Baixar para macOS',
-        previewNote:
-          'Prévia não assinada para macOS, Apple silicon e Intel. O macOS pede que você a confirme na primeira vez que ela abre.',
-        previewLink: 'Como abrir',
-        signedNote: 'Para macOS, Apple silicon e Intel.',
+        body: 'O mesmo CLI num aplicativo que cria, lista e roda os seus projetos, no macOS, no Linux e no Windows.',
+        yourSystem: 'Seu sistema',
+        hints: {
+          macosUnsigned: 'Não assinado: confirme uma vez com Abrir Mesmo Assim.',
+          macosSigned: 'Assinado e notarizado pela Apple.',
+          linux: 'Não assinado: instale com apt ou dnf.',
+          windows:
+            'Não assinado: Mais informações, depois Executar assim mesmo. Bloqueado onde o Controle Inteligente de Aplicativos está ligado.',
+        },
+        previewNote: `Prévias não assinadas da versão ${desktopVersion}. Todo build precisa de Node 22.18 ou mais novo e de pnpm 10.26 ou mais novo.`,
+        previewLink: 'Como instalar',
+        signedNote:
+          'O build para macOS é assinado e notarizado; os de Linux e Windows não são. Todo build precisa de Node 22.18 ou mais novo e de pnpm 10.26 ou mais novo.',
         signedLink: 'Sobre o Prumo Desktop',
       },
     },
@@ -126,7 +135,7 @@ export const pt: Dictionary = {
     },
     desktop: {
       heading: 'Prumo Desktop',
-      body: 'Um aplicativo de desktop que cria projetos Prumo, lista-os, lê suas convenções e roda seus apps. A versão 0.0.2, uma prévia não assinada para macOS, já pode ser baixada.',
+      body: `Um aplicativo de desktop que cria projetos Prumo, lista-os, lê suas convenções e roda seus apps. A versão ${desktopVersion}, uma prévia não assinada para macOS, Linux e Windows, já pode ser baixada.`,
       link: 'Ver em que pé está',
     },
   },
@@ -140,7 +149,7 @@ export const pt: Dictionary = {
     steps: [
       {
         heading: 'Confira a máquina',
-        body: 'O Prumo precisa de Node 22.18 ou mais novo e de pnpm 10.26 ou mais novo, no macOS ou no Linux; o Windows ainda não é suportado. Qualquer coisa com API precisa também de Docker, porque é lá que roda o banco de desenvolvimento. Este comando confere tudo e diz o que falta.',
+        body: 'O Prumo precisa de Node 22.18 ou mais novo e de pnpm 10.26 ou mais novo, no macOS, no Linux ou no Windows. No Windows ele roda nativamente: o projeto fica numa pasta do Windows, e quem o roda são o Node e o pnpm do Windows. Dentro de uma distribuição WSL, com Node, pnpm e Docker dela, o Prumo está no Linux, que é suportado, embora não seja testado no WSL especificamente; ferramentas do Windows trabalhando num projeto dentro do sistema de arquivos do WSL não são suportadas. Qualquer coisa com API precisa também de Docker, porque é lá que roda o banco de desenvolvimento: no Windows, o Docker Desktop com o backend WSL2, configurado para contêineres Linux. Este comando confere tudo e diz o que falta.',
         command: commands.doctor,
       },
       {
@@ -253,7 +262,10 @@ export const pt: Dictionary = {
         command: 'prumo clean',
         what: 'Remove o que o projeto precisou uma vez só, hoje a preparação do banco, depois que o banco existe. Só a versão do Prumo que gerou o projeto o limpa',
       },
-      { command: 'prumo doctor', what: 'Confere Node, pnpm, git e Docker nesta máquina' },
+      {
+        command: 'prumo doctor',
+        what: 'Confere Node, pnpm, git e Docker nesta máquina, e se o Docker roda contêineres Linux',
+      },
       { command: 'prumo version', what: 'Imprime a versão do CLI. Também --version e -v' },
       { command: 'prumo help [command]', what: 'Lista os comandos, ou descreve um. Também --help' },
     ],
@@ -265,43 +277,88 @@ export const pt: Dictionary = {
   desktop: {
     title: 'Prumo Desktop',
     description:
-      'Um aplicativo de desktop para o Prumo. Ele cria e lista projetos, roda seus apps e seu banco, e lê suas convenções; uma prévia não assinada para macOS pode ser baixada no GitHub Releases.',
+      'Um aplicativo de desktop para o Prumo, no macOS, no Linux e no Windows. Ele cria e lista projetos, roda seus apps e seu banco, e lê suas convenções; prévias não assinadas podem ser baixadas no GitHub Releases.',
     heading: 'Prumo Desktop',
     standfirst:
       'Um aplicativo de desktop que cria projetos Prumo, lista-os, lê as convenções em .prumo/ e roda os apps deles, cada um no seu próprio painel de terminal.',
     download: {
       heading: 'Download',
-      body: 'A versão 0.0.2 é uma prévia para macOS. Cada release traz duas imagens de disco: escolha a do seu Mac, abra-a e arraste o Prumo Desktop para Aplicativos. O app precisa de Node 22.18 ou mais novo e de pnpm 10.26 ou mais novo instalados no Mac; ele os confere, mas nunca os instala.',
+      body: `A versão ${desktopVersion} é uma prévia para macOS, Linux e Windows. Escolha o arquivo do seu sistema e da sua arquitetura. Em todo sistema o app precisa de Node 22.18 ou mais novo, de pnpm 10.26 ou mais novo e de git; ele os confere, mas nunca os instala. O Docker só é necessário para o banco de uma API.`,
       button: 'Baixar no GitHub Releases',
-      builds: [
-        { name: 'Apple silicon (M1 ou mais novo)', file: 'Prumo.Desktop-<version>-arm64.dmg' },
-        { name: 'Intel', file: 'Prumo.Desktop-<version>-x64.dmg' },
-      ],
-      warning: {
-        label: 'Pré-lançamento não assinado',
-        lead: 'Uma versão de prévia, não assinada nem notarizada pela Apple. O macOS pede que você a confirme na primeira vez que ela abre.',
-        stepsHeading: 'Abrindo pela primeira vez (macOS 15 ou mais novo)',
-        steps: [
-          'Abra o Prumo Desktop em Aplicativos. O macOS diz que não consegue verificar se o app contém software malicioso. Clique em Concluído, não no botão que move o app para o Lixo.',
-          'Escolha menu Apple > Ajustes do Sistema e clique em Privacidade e Segurança na barra lateral. Talvez seja preciso rolar para baixo.',
-          'Em Segurança, clique em Abrir Mesmo Assim. Esse botão fica disponível por cerca de uma hora depois de tentar abrir o app.',
-          'Digite a senha de início de sessão e clique em OK. Quando o aviso aparecer de novo, clique em Abrir.',
-        ],
-        guideBefore:
-          'Daí em diante, ele abre como qualquer outro app. A Apple descreve esses passos em',
-        guideLink: 'Abra um app do Mac de um desenvolvedor desconhecido',
-        guideUrl: 'https://support.apple.com/pt-br/guide/mac-help/mh40616/mac',
-        updates:
-          'Esta versão nunca se atualiza sozinha. O primeiro release assinado também precisa ser instalado à mão, uma vez: baixe-o, feche o Prumo Desktop e substitua o app em Aplicativos. Seus projetos e ajustes continuam onde estão.',
+      yourSystem: 'Seu sistema',
+      systems: {
+        macos: { name: 'macOS', arch: 'Apple silicon e Intel' },
+        linux: { name: 'Linux', arch: 'x64' },
+        windows: { name: 'Windows', arch: 'x64' },
       },
+      builds: {
+        'dmg-arm64': 'Apple silicon (M1 ou mais novo)',
+        'dmg-x64': 'Intel',
+        deb: 'Debian, Ubuntu e derivados',
+        rpm: 'Fedora, openSUSE e outros sistemas rpm',
+        setup: 'Instalador',
+      },
+      short: {
+        'dmg-arm64': 'Apple silicon',
+        'dmg-x64': 'Intel',
+        deb: '.deb',
+        rpm: '.rpm',
+        setup: 'Setup.exe',
+      },
+      macos: {
+        install: 'Abra o dmg e arraste o Prumo Desktop para Aplicativos.',
+        warning: {
+          label: 'Pré-lançamento não assinado',
+          lead: 'Uma versão de prévia, não assinada nem notarizada pela Apple. O macOS pede que você a confirme na primeira vez que ela abre.',
+          stepsHeading: 'Abrindo pela primeira vez (macOS 15 ou mais novo)',
+          steps: [
+            'Abra o Prumo Desktop em Aplicativos. O macOS diz que não consegue verificar se o app contém software malicioso. Clique em Concluído, não no botão que move o app para o Lixo.',
+            'Escolha menu Apple > Ajustes do Sistema e clique em Privacidade e Segurança na barra lateral. Talvez seja preciso rolar para baixo.',
+            'Em Segurança, clique em Abrir Mesmo Assim. Esse botão fica disponível por cerca de uma hora depois de tentar abrir o app.',
+            'Digite a senha de início de sessão e clique em OK. Quando o aviso aparecer de novo, clique em Abrir.',
+          ],
+          guideBefore:
+            'Daí em diante, ele abre como qualquer outro app. A Apple descreve esses passos em',
+          guideLink: 'Abra um app do Mac de um desenvolvedor desconhecido',
+          guideUrl: 'https://support.apple.com/pt-br/guide/mac-help/mh40616/mac',
+        },
+      },
+      linux: {
+        install: 'Instale o pacote com o gerenciador de pacotes da sua distribuição.',
+        warning: {
+          label: 'Pacotes não assinados',
+          body: 'Os pacotes para Linux não são assinados, seja ou não assinado o build para macOS. O apt e o dnf instalam um pacote local sem pedir assinatura.',
+        },
+      },
+      windows: {
+        install:
+          'Rode o Setup.exe. Ele instala só para o seu usuário, sem pedir permissão de administrador, e põe o Prumo Desktop no menu Iniciar.',
+        tools:
+          'Node, pnpm e git precisam estar instalados no próprio Windows. O app os encontra pelo PATH guardado no registro e pelas pastas de instalação de costume, ou pelo botão Escolher o Node…; projetos dentro do WSL não são suportados.',
+        channel:
+          'O GitHub Releases é o único canal para Windows. A Microsoft Store não está nos planos por enquanto.',
+        warning: {
+          label: 'Instalador não assinado',
+          smartScreen:
+            'O Microsoft Defender SmartScreen avisa antes de abrir um app que ainda não conhece. No aviso, escolha Mais informações e depois Executar assim mesmo, quando o Windows oferecer.',
+          smartAppControl:
+            'O Controle Inteligente de Aplicativos bloqueia apps não assinados, e não há como liberar um app só. Onde ele está ligado, o Prumo Desktop não pode ser instalado a menos que você o desligue na Segurança do Windows.',
+          guideBefore: 'A Microsoft descreve isso em',
+          guideLink: 'Perguntas frequentes sobre o Controle Inteligente de Aplicativos',
+          guideUrl:
+            'https://support.microsoft.com/pt-br/topic/what-is-smart-app-control-285ea03d-fa88-4d56-882e-6698afdb7003',
+        },
+      },
+      updates:
+        'Nenhum build se atualiza sozinho. Quando sai um release mais novo, o app avisa no rodapé da barra lateral, com um link para ele: substitua o app no macOS, instale o pacote novo por cima do antigo no Linux, ou rode o Setup.exe novo no Windows. Seus projetos e ajustes continuam onde estão. No macOS, o primeiro release assinado também precisa ser instalado à mão, uma vez.',
     },
     consumer: {
       heading: 'Um consumidor do Prumo, nunca uma segunda implementação',
-      body: 'O Desktop embarca uma cópia fixada do CLI e a executa, e a atualiza dentro da mesma versão minor (0.4.x), nunca para outra: uma minor nova chega com um Desktop novo. Tudo o que ele sabe sobre um projeto vem do que esse CLI expõe de propósito, seus comandos com --json, e dos arquivos que um projeto gerado carrega.',
+      body: 'O Desktop embarca uma cópia fixada do CLI e a executa, e a atualiza dentro da mesma versão minor (0.5.x), nunca para outra: uma minor nova chega com um Desktop novo. Tudo o que ele sabe sobre um projeto vem do que esse CLI expõe de propósito, seus comandos com --json, e dos arquivos que um projeto gerado carrega.',
     },
     status: {
       heading: 'Em que pé está',
-      body: 'A versão 0.0.2 roda no macOS como uma prévia não assinada. Ela cria e lista projetos, roda seus apps e seu banco, e lê o .prumo/. Toda escolha de tecnologia precisa funcionar também no Windows e no Linux, e levar o app para eles é o próximo trabalho.',
+      body: `A versão ${desktopVersion} roda no macOS, no Linux e no Windows como prévias não assinadas. Ela cria e lista projetos, roda seus apps e seu banco, e lê o .prumo/. Toda escolha de tecnologia precisa funcionar nos três sistemas.`,
       done: 'Pronto',
       next: 'Em construção',
       later: 'Adiante',
@@ -327,14 +384,19 @@ export const pt: Dictionary = {
           body: 'As prévias 0.0.x para macOS, no GitHub Releases: assinadas ad hoc, não notarizadas, e que nunca se atualizam sozinhas.',
         },
         {
+          state: 'done',
+          heading: 'Prévias para Linux e Windows',
+          body: 'Desde a 0.0.3, um deb e um rpm não assinados para Linux e um Setup.exe não assinado para Windows, todos x64. Todo build que não se atualiza sozinho avisa quando sai um release mais novo.',
+        },
+        {
           state: 'next',
-          heading: 'Windows e Linux',
-          body: 'Portados numa série própria, que é o próximo trabalho. Não esperam pelo build assinado para macOS.',
+          heading: 'arm64 para Linux e Windows',
+          body: 'Os builds para Linux e Windows são só x64. Os builds arm64 dos dois vêm a seguir.',
         },
         {
           state: 'later',
-          heading: 'Um build assinado e notarizado',
-          body: 'Ele substitui a prévia: sem o passo de Abrir Mesmo Assim, e com atualizações que chegam sozinhas. Passar para ele exige uma reinstalação manual.',
+          heading: 'Um build para macOS assinado e notarizado',
+          body: 'Ele substitui a prévia para macOS: sem o passo de Abrir Mesmo Assim, e com atualizações que chegam sozinhas. Passar para ele exige uma reinstalação manual.',
         },
       ],
     },

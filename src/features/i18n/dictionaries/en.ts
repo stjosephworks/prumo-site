@@ -1,4 +1,5 @@
 import { commands } from '@/lib/commands'
+import { desktopVersion } from '@/lib/desktop'
 
 export interface StatusItem {
   state: 'done' | 'next' | 'later'
@@ -44,7 +45,7 @@ export const en = {
     headlineSecond: 'And written down.',
     standfirst:
       'Prumo starts a TypeScript project with the framework, the module layout, the database rules, the auth wiring and the test boundaries already chosen. Each one was decided once, written into the project that receives it, and turned into something that runs.',
-    commandCaption: 'Node 22.18 or later, and pnpm 10.26 or later.',
+    commandCaption: 'Node 22.18 or later and pnpm 10.26 or later, on macOS, Linux or Windows.',
     readDocuments: 'Read the documents',
     paths: {
       or: 'or',
@@ -54,12 +55,18 @@ export const en = {
       },
       desktop: {
         heading: 'With Prumo Desktop',
-        body: 'The same CLI in an app that creates, lists and runs your projects.',
-        button: 'Download for macOS',
-        previewNote:
-          'Unsigned preview for macOS, Apple silicon and Intel. macOS asks you to confirm it the first time it opens.',
-        previewLink: 'How to open it',
-        signedNote: 'For macOS, Apple silicon and Intel.',
+        body: 'The same CLI in an app that creates, lists and runs your projects, on macOS, Linux and Windows.',
+        yourSystem: 'Your system',
+        hints: {
+          macosUnsigned: 'Unsigned: confirm it once with Open Anyway.',
+          macosSigned: 'Signed and notarised by Apple.',
+          linux: 'Unsigned: install it with apt or dnf.',
+          windows: 'Unsigned: More info, then Run anyway. Blocked where Smart App Control is on.',
+        },
+        previewNote: `Unsigned previews of version ${desktopVersion}. Every build needs Node 22.18 or later and pnpm 10.26 or later.`,
+        previewLink: 'How to install',
+        signedNote:
+          'The macOS build is signed and notarised; the Linux and Windows builds are not. Every build needs Node 22.18 or later and pnpm 10.26 or later.',
         signedLink: 'About Prumo Desktop',
       },
     },
@@ -131,7 +138,7 @@ export const en = {
     },
     desktop: {
       heading: 'Prumo Desktop',
-      body: 'A desktop application that creates Prumo projects, lists them, reads their conventions and runs their apps. Version 0.0.2, an unsigned preview for macOS, can be downloaded.',
+      body: `A desktop application that creates Prumo projects, lists them, reads their conventions and runs their apps. Version ${desktopVersion}, an unsigned preview for macOS, Linux and Windows, can be downloaded.`,
       link: 'See where it stands',
     },
   },
@@ -145,7 +152,7 @@ export const en = {
     steps: [
       {
         heading: 'Check the machine',
-        body: 'Prumo needs Node 22.18 or later and pnpm 10.26 or later, on macOS or Linux; Windows is not supported yet. Anything with an API also needs Docker, because the development database runs there. This command checks all of it and names whatever is missing.',
+        body: 'Prumo needs Node 22.18 or later and pnpm 10.26 or later, on macOS, Linux or Windows. On Windows it runs natively: the project lives in a Windows folder and the Windows Node and pnpm run it. Inside a WSL distribution, with its own Node, pnpm and Docker, Prumo is on Linux, which is supported though not tested on WSL specifically; Windows tools working on a project inside the WSL filesystem are not supported. Anything with an API also needs Docker, because the development database runs there: on Windows, Docker Desktop with its WSL2 backend, set to Linux containers. This command checks all of it and names whatever is missing.',
         command: commands.doctor,
       },
       {
@@ -258,7 +265,10 @@ export const en = {
         command: 'prumo clean',
         what: 'Removes what the project needed only once, today the database setup, once the database exists. Only the Prumo version that generated the project cleans it',
       },
-      { command: 'prumo doctor', what: 'Checks Node, pnpm, git and Docker on this machine' },
+      {
+        command: 'prumo doctor',
+        what: 'Checks Node, pnpm, git and Docker on this machine, and that Docker runs Linux containers',
+      },
       { command: 'prumo version', what: 'Prints the CLI version. Also --version and -v' },
       {
         command: 'prumo help [command]',
@@ -273,43 +283,88 @@ export const en = {
   desktop: {
     title: 'Prumo Desktop',
     description:
-      'A desktop application for Prumo. It creates and lists projects, runs their apps and their database, and reads their conventions; an unsigned preview for macOS can be downloaded from GitHub Releases.',
+      'A desktop application for Prumo, on macOS, Linux and Windows. It creates and lists projects, runs their apps and their database, and reads their conventions; unsigned previews can be downloaded from GitHub Releases.',
     heading: 'Prumo Desktop',
     standfirst:
       'A desktop application that creates Prumo projects, lists them, reads their .prumo/ conventions, and runs their apps, each in its own terminal panel.',
     download: {
       heading: 'Download',
-      body: 'Version 0.0.2 is a preview for macOS. Each release carries two disk images: pick the one for your Mac, open it, and drag Prumo Desktop into Applications. The app needs Node 22.18 or later and pnpm 10.26 or later installed on the Mac; it checks them, and never installs them.',
+      body: `Version ${desktopVersion} is a preview for macOS, Linux and Windows. Pick the file for your system and architecture. On every system the app needs Node 22.18 or later, pnpm 10.26 or later and git; it checks them, and never installs them. Docker is needed only for an API's database.`,
       button: 'Download from GitHub Releases',
-      builds: [
-        { name: 'Apple silicon (M1 and later)', file: 'Prumo.Desktop-<version>-arm64.dmg' },
-        { name: 'Intel', file: 'Prumo.Desktop-<version>-x64.dmg' },
-      ],
-      warning: {
-        label: 'Unsigned pre-release',
-        lead: 'A preview build, not signed or notarized by Apple. macOS asks you to confirm it the first time it opens.',
-        stepsHeading: 'Opening it the first time (macOS 15 and later)',
-        steps: [
-          'Open Prumo Desktop from Applications. macOS says it cannot check the app for malicious software. Click Done, not Move to Trash.',
-          'Choose Apple menu > System Settings, then click Privacy & Security in the sidebar. You may need to scroll down.',
-          'Under Security, click Open Anyway. The button is there for about an hour after you tried to open the app.',
-          'Enter your login password, then click OK. When the warning appears again, click Open.',
-        ],
-        guideBefore: 'From then on it opens like any other app. Apple describes these steps in',
-        guideLink: 'Open a Mac app from an unknown developer',
-        guideUrl:
-          'https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unknown-developer-mh40616/mac',
-        updates:
-          'This build never updates itself. The first signed release also has to be installed by hand, once: download it, quit Prumo Desktop and replace the app in Applications. Your projects and settings stay where they are.',
+      yourSystem: 'Your system',
+      systems: {
+        macos: { name: 'macOS', arch: 'Apple silicon and Intel' },
+        linux: { name: 'Linux', arch: 'x64' },
+        windows: { name: 'Windows', arch: 'x64' },
       },
+      builds: {
+        'dmg-arm64': 'Apple silicon (M1 and later)',
+        'dmg-x64': 'Intel',
+        deb: 'Debian, Ubuntu and derivatives',
+        rpm: 'Fedora, openSUSE and other rpm systems',
+        setup: 'Installer',
+      },
+      short: {
+        'dmg-arm64': 'Apple silicon',
+        'dmg-x64': 'Intel',
+        deb: '.deb',
+        rpm: '.rpm',
+        setup: 'Setup.exe',
+      },
+      macos: {
+        install: 'Open the dmg and drag Prumo Desktop into Applications.',
+        warning: {
+          label: 'Unsigned pre-release',
+          lead: 'A preview build, not signed or notarized by Apple. macOS asks you to confirm it the first time it opens.',
+          stepsHeading: 'Opening it the first time (macOS 15 and later)',
+          steps: [
+            'Open Prumo Desktop from Applications. macOS says it cannot check the app for malicious software. Click Done, not Move to Trash.',
+            'Choose Apple menu > System Settings, then click Privacy & Security in the sidebar. You may need to scroll down.',
+            'Under Security, click Open Anyway. The button is there for about an hour after you tried to open the app.',
+            'Enter your login password, then click OK. When the warning appears again, click Open.',
+          ],
+          guideBefore: 'From then on it opens like any other app. Apple describes these steps in',
+          guideLink: 'Open a Mac app from an unknown developer',
+          guideUrl:
+            'https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unknown-developer-mh40616/mac',
+        },
+      },
+      linux: {
+        install: 'Install the package with the package manager of your distribution.',
+        warning: {
+          label: 'Unsigned packages',
+          body: 'The Linux packages are not signed, whether or not the macOS build is. apt and dnf install a local package without asking for a signature.',
+        },
+      },
+      windows: {
+        install:
+          'Run the Setup.exe. It installs for your user only, without asking for administrator rights, and adds Prumo Desktop to the Start menu.',
+        tools:
+          'Node, pnpm and git must be installed for Windows itself. The app finds them through the PATH kept in the registry and the usual install folders, or through its Choose Node… button. Projects inside WSL are not supported.',
+        channel:
+          'GitHub Releases is the only channel for Windows. The Microsoft Store is not planned for now.',
+        warning: {
+          label: 'Unsigned installer',
+          smartScreen:
+            'Microsoft Defender SmartScreen warns before it opens an app it does not know yet. In its warning, choose More info, then Run anyway, when Windows offers it.',
+          smartAppControl:
+            'Smart App Control blocks unsigned apps, with no way around it for a single app. Where it is on, Prumo Desktop cannot be installed unless you turn Smart App Control off in Windows Security.',
+          guideBefore: 'Microsoft describes this in',
+          guideLink: 'Smart App Control Frequently Asked Questions',
+          guideUrl:
+            'https://support.microsoft.com/en-us/topic/what-is-smart-app-control-285ea03d-fa88-4d56-882e-6698afdb7003',
+        },
+      },
+      updates:
+        'No build updates itself. When a newer release is out, the app says so at the foot of its sidebar, with a link to it: replace the app on macOS, install the new package over the old one on Linux, or run the new Setup.exe on Windows. Your projects and settings stay where they are. On macOS, the first signed release also has to be installed by hand, once.',
     },
     consumer: {
       heading: 'A consumer of Prumo, never a second implementation',
-      body: 'The Desktop ships a pinned copy of the CLI and runs it, and updates it within the same minor version (0.4.x), never across one: a new minor arrives with a new Desktop. Everything it knows about a project comes from what that CLI deliberately exposes, its commands with --json, and from the files a generated project carries.',
+      body: 'The Desktop ships a pinned copy of the CLI and runs it, and updates it within the same minor version (0.5.x), never across one: a new minor arrives with a new Desktop. Everything it knows about a project comes from what that CLI deliberately exposes, its commands with --json, and from the files a generated project carries.',
     },
     status: {
       heading: 'Where it stands',
-      body: 'Version 0.0.2 runs on macOS as an unsigned preview. It creates and lists projects, runs their apps and their database, and reads their .prumo/. Every technology choice must also work on Windows and Linux, and porting to them is the next piece of work.',
+      body: `Version ${desktopVersion} runs on macOS, Linux and Windows as unsigned previews. It creates and lists projects, runs their apps and their database, and reads their .prumo/. Every technology choice must work on all three systems.`,
       done: 'Done',
       next: 'Being built',
       later: 'Ahead',
@@ -335,14 +390,19 @@ export const en = {
           body: 'The 0.0.x previews for macOS, on GitHub Releases: ad-hoc signed, not notarized, and never updating themselves.',
         },
         {
+          state: 'done',
+          heading: 'Linux and Windows previews',
+          body: 'From 0.0.3, an unsigned deb and rpm for Linux and an unsigned Setup.exe for Windows, both x64. Every build that does not update itself says when a newer release is out.',
+        },
+        {
           state: 'next',
-          heading: 'Windows and Linux',
-          body: 'Ported as a series of their own, and the next piece of work. It does not wait for the signed macOS build.',
+          heading: 'arm64 for Linux and Windows',
+          body: 'The Linux and Windows builds are x64 only. arm64 builds of both come next.',
         },
         {
           state: 'later',
-          heading: 'A signed and notarised build',
-          body: 'It replaces the preview: no Open Anyway step, and updates that arrive by themselves. Moving to it takes one manual reinstall.',
+          heading: 'A signed and notarised macOS build',
+          body: 'It replaces the macOS preview: no Open Anyway step, and updates that arrive by themselves. Moving to it takes one manual reinstall.',
         },
       ],
     },

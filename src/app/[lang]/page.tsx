@@ -110,6 +110,7 @@ export default async function HomePage() {
                 channel={desktopRelease.channel}
                 locale={locale}
                 labels={t.home.paths.desktop}
+                builds={t.desktop.download}
               />
             </div>
           </div>

@@ -1,35 +1,43 @@
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 import { getDictionary } from '@/features/i18n/dictionary'
-import { type DesktopChannel, desktopDownloadUrl, needsOpenAnyway } from '@/lib/routes'
+import { desktopAssetUrl, desktopBuilds, desktopSystems } from '@/lib/desktop'
+import { type DesktopChannel, needsOpenAnyway } from '@/lib/routes'
 import { DesktopDownload } from './desktop-download'
 
 const channels: DesktopChannel[] = ['unsigned-preview', 'signed']
 
 function render(channel: DesktopChannel, locale: 'en' | 'pt' = 'en') {
-  const labels = getDictionary(locale).home.paths.desktop
+  const t = getDictionary(locale)
+  const labels = t.home.paths.desktop
   const html = renderToStaticMarkup(
-    <DesktopDownload channel={channel} locale={locale} labels={labels} />,
+    <DesktopDownload
+      channel={channel}
+      locale={locale}
+      labels={labels}
+      builds={t.desktop.download}
+    />,
   )
   const note = html.match(/<p id="([^"]+)"[^>]*>(.*?)<\/p>/s)
-  const button = html.match(/<a href="([^"]+)" aria-describedby="([^"]+)"[^>]*>(.*?)<\/a>/s)
+  const links = [...html.matchAll(/<a href="([^"]+)" aria-describedby="([^"]+)"/g)].map(
+    (match) => ({
+      href: match[1],
+      describedBy: match[2],
+    }),
+  )
 
-  return {
-    labels,
-    button: { href: button?.[1], describedBy: button?.[2], text: button?.[3] ?? '' },
-    note: { id: note?.[1], html: note?.[2] ?? '' },
-  }
+  return { html, labels, links, note: { id: note?.[1], html: note?.[2] ?? '' } }
 }
 
 describe('the hero download', () => {
-  it('links the button to the release the channel points at, described by its note', () => {
-    for (const channel of channels) {
-      const { button, note, labels } = render(channel)
+  it('links every file of every system, each described by the note', () => {
+    const { links, note } = render('unsigned-preview')
+    const files = desktopSystems.flatMap((system) => desktopBuilds(system))
 
-      expect(button.href).toBe(desktopDownloadUrl(channel))
-      expect(button.text).toContain(labels.button)
-      expect(button.describedBy).toBe(note.id)
-    }
+    expect(links.map((link) => link.href)).toEqual(
+      files.map((build) => desktopAssetUrl(build.file)),
+    )
+    for (const link of links) expect(link.describedBy).toBe(note.id)
   })
 
   it('says it is an unsigned preview exactly when the channel needs Open Anyway', () => {
@@ -39,6 +47,19 @@ describe('the hero download', () => {
       expect(note.html.includes(labels.previewNote)).toBe(needsOpenAnyway(channel))
       expect(note.html.includes(labels.signedNote)).toBe(!needsOpenAnyway(channel))
     }
+  })
+
+  it('keeps Linux and Windows unsigned when macOS is signed', () => {
+    const { html, labels } = render('signed')
+
+    expect(html).toContain(labels.hints.macosSigned)
+    expect(html).toContain(labels.hints.linux)
+    expect(html).toContain(labels.hints.windows)
+    expect(html).not.toContain(labels.hints.macosUnsigned)
+  })
+
+  it('marks no system in the static HTML', () => {
+    expect(render('unsigned-preview').html).not.toMatch(/data-visitor="/)
   })
 
   it('sends the reader to the install steps on the Desktop page, in their language', () => {

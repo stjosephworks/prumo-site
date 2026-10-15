@@ -39,7 +39,8 @@ export const pt: Dictionary = {
     headlineSecond: 'E estão escritas.',
     standfirst:
       'O Prumo começa um projeto TypeScript com o framework, o desenho dos módulos, as regras do banco, a ligação da autenticação e os limites de teste já escolhidos. Cada um foi decidido uma vez, escrito dentro do projeto que o recebe, e transformado em algo que roda.',
-    commandCaption: 'Node 22.18 ou mais novo, e pnpm 10.26 ou mais novo.',
+    commandCaption:
+      'Node 22.18 ou mais novo e pnpm 10.26 ou mais novo, no macOS, no Linux ou no Windows.',
     readDocuments: 'Ler os documentos',
     paths: {
       or: 'ou',
@@ -140,7 +141,7 @@ export const pt: Dictionary = {
     steps: [
       {
         heading: 'Confira a máquina',
-        body: 'O Prumo precisa de Node 22.18 ou mais novo e de pnpm 10.26 ou mais novo, no macOS ou no Linux; o Windows ainda não é suportado. Qualquer coisa com API precisa também de Docker, porque é lá que roda o banco de desenvolvimento. Este comando confere tudo e diz o que falta.',
+        body: 'O Prumo precisa de Node 22.18 ou mais novo e de pnpm 10.26 ou mais novo, no macOS, no Linux ou no Windows. No Windows ele roda nativamente: o projeto fica numa pasta do Windows, e quem o roda são o Node e o pnpm do Windows. Dentro de uma distribuição WSL, com Node, pnpm e Docker dela, o Prumo está no Linux, que é suportado, embora não seja testado no WSL especificamente; ferramentas do Windows trabalhando num projeto dentro do sistema de arquivos do WSL não são suportadas. Qualquer coisa com API precisa também de Docker, porque é lá que roda o banco de desenvolvimento: no Windows, o Docker Desktop com o backend WSL2, configurado para contêineres Linux. Este comando confere tudo e diz o que falta.',
         command: commands.doctor,
       },
       {
@@ -253,7 +254,10 @@ export const pt: Dictionary = {
         command: 'prumo clean',
         what: 'Remove o que o projeto precisou uma vez só, hoje a preparação do banco, depois que o banco existe. Só a versão do Prumo que gerou o projeto o limpa',
       },
-      { command: 'prumo doctor', what: 'Confere Node, pnpm, git e Docker nesta máquina' },
+      {
+        command: 'prumo doctor',
+        what: 'Confere Node, pnpm, git e Docker nesta máquina, e se o Docker roda contêineres Linux',
+      },
       { command: 'prumo version', what: 'Imprime a versão do CLI. Também --version e -v' },
       { command: 'prumo help [command]', what: 'Lista os comandos, ou descreve um. Também --help' },
     ],

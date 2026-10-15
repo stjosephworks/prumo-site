@@ -44,7 +44,7 @@ export const en = {
     headlineSecond: 'And written down.',
     standfirst:
       'Prumo starts a TypeScript project with the framework, the module layout, the database rules, the auth wiring and the test boundaries already chosen. Each one was decided once, written into the project that receives it, and turned into something that runs.',
-    commandCaption: 'Node 22.18 or later, and pnpm 10.26 or later.',
+    commandCaption: 'Node 22.18 or later and pnpm 10.26 or later, on macOS, Linux or Windows.',
     readDocuments: 'Read the documents',
     paths: {
       or: 'or',
@@ -145,7 +145,7 @@ export const en = {
     steps: [
       {
         heading: 'Check the machine',
-        body: 'Prumo needs Node 22.18 or later and pnpm 10.26 or later, on macOS or Linux; Windows is not supported yet. Anything with an API also needs Docker, because the development database runs there. This command checks all of it and names whatever is missing.',
+        body: 'Prumo needs Node 22.18 or later and pnpm 10.26 or later, on macOS, Linux or Windows. On Windows it runs natively: the project lives in a Windows folder and the Windows Node and pnpm run it. Inside a WSL distribution, with its own Node, pnpm and Docker, Prumo is on Linux, which is supported though not tested on WSL specifically; Windows tools working on a project inside the WSL filesystem are not supported. Anything with an API also needs Docker, because the development database runs there: on Windows, Docker Desktop with its WSL2 backend, set to Linux containers. This command checks all of it and names whatever is missing.',
         command: commands.doctor,
       },
       {
@@ -258,7 +258,10 @@ export const en = {
         command: 'prumo clean',
         what: 'Removes what the project needed only once, today the database setup, once the database exists. Only the Prumo version that generated the project cleans it',
       },
-      { command: 'prumo doctor', what: 'Checks Node, pnpm, git and Docker on this machine' },
+      {
+        command: 'prumo doctor',
+        what: 'Checks Node, pnpm, git and Docker on this machine, and that Docker runs Linux containers',
+      },
       { command: 'prumo version', what: 'Prints the CLI version. Also --version and -v' },
       {
         command: 'prumo help [command]',

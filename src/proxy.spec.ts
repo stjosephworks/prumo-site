@@ -15,8 +15,14 @@ describe('the proxy', () => {
     expect(response.headers.get('vary')).toBe('Accept-Language, Cookie')
   })
 
+  it('sends a Latin American Spanish browser to /es', () => {
+    const response = proxy(request('/', { 'accept-language': 'es-MX,es;q=0.9,en;q=0.8' }))
+
+    expect(response.headers.get('location')).toBe('https://prumo.stjosephworks.org/es')
+  })
+
   it('lets the cookie outrank the browser', () => {
-    const response = proxy(request('/', { 'accept-language': 'en-US', cookie: 'locale=pt' }))
+    const response = proxy(request('/', { 'accept-language': 'es-MX', cookie: 'locale=pt' }))
 
     expect(response.headers.get('location')).toBe('https://prumo.stjosephworks.org/pt')
   })

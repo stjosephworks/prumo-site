@@ -20,6 +20,9 @@ describe('Accept-Language', () => {
   it('sends a regional variant to its language', () => {
     expect(negotiateLocale({ acceptLanguage: 'pt-PT' })).toBe('pt')
     expect(negotiateLocale({ acceptLanguage: 'EN-gb' })).toBe('en')
+    expect(negotiateLocale({ acceptLanguage: 'es-MX' })).toBe('es')
+    expect(negotiateLocale({ acceptLanguage: 'es-AR,es;q=0.9' })).toBe('es')
+    expect(negotiateLocale({ acceptLanguage: 'es-419' })).toBe('es')
   })
 
   it('takes the first language the site has, and English when it has none', () => {
@@ -34,6 +37,7 @@ describe('the locale cookie', () => {
   it('wins over the browser language', () => {
     expect(negotiateLocale({ cookie: 'pt', acceptLanguage: 'en-US' })).toBe('pt')
     expect(negotiateLocale({ cookie: 'en', acceptLanguage: 'pt-BR' })).toBe('en')
+    expect(negotiateLocale({ cookie: 'pt', acceptLanguage: 'es-MX' })).toBe('pt')
   })
 
   it('is ignored when it names a language the site does not have', () => {

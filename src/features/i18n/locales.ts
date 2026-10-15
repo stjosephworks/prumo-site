@@ -14,6 +14,7 @@ export interface LocaleEntry {
 export const localeRegistry = [
   { code: 'en', lang: 'en', hreflang: 'en', nativeName: 'English' },
   { code: 'pt', lang: 'pt-BR', hreflang: 'pt', nativeName: 'Português' },
+  { code: 'es', lang: 'es-419', hreflang: 'es', nativeName: 'Español' },
 ] as const satisfies readonly LocaleEntry[]
 
 export type Locale = (typeof localeRegistry)[number]['code']

@@ -45,7 +45,7 @@ export const en = {
     headlineSecond: 'And written down.',
     standfirst:
       'Prumo starts a TypeScript project with the framework, the module layout, the database rules, the auth wiring and the test boundaries already chosen. Each one was decided once, written into the project that receives it, and turned into something that runs.',
-    commandCaption: 'Node 22.18 or later and pnpm 10.26 or later, on macOS, Linux or Windows.',
+    commandCaption: 'Node 22.23.4 or later and pnpm 10.26 or later, on macOS, Linux or Windows.',
     readDocuments: 'Read the documents',
     paths: {
       or: 'or',
@@ -63,10 +63,10 @@ export const en = {
           linux: 'Unsigned: install it with apt or dnf.',
           windows: 'Unsigned: More info, then Run anyway. Blocked where Smart App Control is on.',
         },
-        previewNote: `Unsigned previews of version ${desktopVersion}. Every build needs Node 22.18 or later and pnpm 10.26 or later.`,
+        previewNote: `Unsigned previews of version ${desktopVersion}. Every build needs Node 22.23.4 or later and pnpm 10.26 or later.`,
         previewLink: 'How to install',
         signedNote:
-          'The macOS build is signed and notarised; the Linux and Windows builds are not. Every build needs Node 22.18 or later and pnpm 10.26 or later.',
+          'The macOS build is signed and notarised; the Linux and Windows builds are not. Every build needs Node 22.23.4 or later and pnpm 10.26 or later.',
         signedLink: 'About Prumo Desktop',
       },
     },
@@ -85,7 +85,7 @@ export const en = {
       caption: 'An excerpt of a project generated with --types api,web',
     },
     types: {
-      heading: 'Four types, and what each one is made of',
+      heading: 'Three types, and what each one is made of',
       note: 'One type produces that project alone. Several produce a pnpm workspace, with the wire contract shared so a change on one side breaks the other at typecheck.',
       rows: [
         {
@@ -104,8 +104,8 @@ export const en = {
           type: 'web',
           role: 'The browser app',
           parts: [
-            'Vite and React',
-            'TanStack Router and Query',
+            'Vite, Next or Astro, with React',
+            'The same sign-in on each',
             'Tailwind and shadcn/ui',
             'Forms validated with Zod',
           ],
@@ -119,11 +119,6 @@ export const en = {
             'Tokens kept in expo-secure-store',
             'Run in a development build',
           ],
-        },
-        {
-          type: 'site',
-          role: 'Pages that have to be indexed',
-          parts: ['Next on the App Router', 'Static by default'],
         },
       ],
     },
@@ -152,7 +147,7 @@ export const en = {
     steps: [
       {
         heading: 'Check the machine',
-        body: 'Prumo needs Node 22.18 or later and pnpm 10.26 or later, on macOS, Linux or Windows. On Windows it runs natively: the project lives in a Windows folder and the Windows Node and pnpm run it. Inside a WSL distribution, with its own Node, pnpm and Docker, Prumo is on Linux, which is supported though not tested on WSL specifically; Windows tools working on a project inside the WSL filesystem are not supported. Anything with an API also needs Docker, because the development database runs there: on Windows, Docker Desktop with its WSL2 backend, set to Linux containers. This command checks all of it and names whatever is missing.',
+        body: 'Prumo needs Node 22.23.4 or later and pnpm 10.26 or later, on macOS, Linux or Windows. On Windows it runs natively: the project lives in a Windows folder and the Windows Node and pnpm run it. Inside a WSL distribution, with its own Node, pnpm and Docker, Prumo is on Linux, which is supported though not tested on WSL specifically; Windows tools working on a project inside the WSL filesystem are not supported. Anything with an API also needs Docker, because the development database runs there: on Windows, Docker Desktop with its WSL2 backend, set to Linux containers. This command checks all of it and names whatever is missing.',
         command: commands.doctor,
       },
       {
@@ -176,8 +171,9 @@ export const en = {
       columns: { flag: 'Flag', answers: 'What it answers' },
       rows: [
         {
-          flag: '--types api,web,mobile,site',
-          answers: 'What the project contains. More than one type makes a workspace',
+          flag: '--types api,web,mobile',
+          answers:
+            'What the project contains. More than one type makes a workspace; web:vite, web:next or web:astro chooses the web framework, Vite by default',
         },
         { flag: '--alone   --monorepo', answers: 'How a single type is laid out' },
         {
@@ -208,7 +204,7 @@ export const en = {
       rows: [
         {
           file: '.prumo/',
-          what: 'The conventions, in twelve areas. Only the areas the answers call for are copied',
+          what: 'The conventions, in fourteen areas. Only the areas the answers call for are copied',
         },
         {
           file: '.prumo/INDEX.md',
@@ -225,12 +221,12 @@ export const en = {
   concepts: {
     title: 'Conventions',
     description:
-      'What the .prumo/ folder is, which of its twelve areas a project receives, and who owns it afterwards.',
+      'What the .prumo/ folder is, which of its fourteen areas a project receives, and who owns it afterwards.',
     heading: 'The conventions live in the project',
     standfirst:
       'A generated project carries a .prumo/ folder. It is the reason Prumo is not a scaffolder: the code arrives with the rules it follows, written down, in the repository where the work happens.',
     areas: {
-      heading: 'Twelve areas, and only the ones that apply',
+      heading: 'Fourteen areas, and only the ones that apply',
       body: 'Only core ships unconditionally, because everything in it is true of every type. The rest follow the answers, since advice about a platform the project does not have is worse than no advice at all.',
       always: 'Always',
       conditional: 'Only when the answers call for it',
@@ -289,7 +285,7 @@ export const en = {
       'A desktop application that creates Prumo projects, lists them, reads their .prumo/ conventions, and runs their apps, each in its own terminal panel.',
     download: {
       heading: 'Download',
-      body: `Version ${desktopVersion} is a preview for macOS, Linux and Windows. Pick the file for your system and architecture. On every system the app needs Node 22.18 or later, pnpm 10.26 or later and git; it checks them, and never installs them. Docker is needed only for an API's database.`,
+      body: `Version ${desktopVersion} is a preview for macOS, Linux and Windows. Pick the file for your system and architecture. On every system the app needs Node 22.23.4 or later, pnpm 10.26 or later and git; it checks them, and never installs them. Docker is needed only for an API's database.`,
       button: 'Download from GitHub Releases',
       yourSystem: 'Your system',
       systems: {
@@ -432,7 +428,8 @@ export const en = {
     stjosephWorks: 'St. Joseph Works',
     describing: 'Describing Prumo',
     license: 'MIT licensed',
-    builtWith: 'This site was generated by Prumo, as a site project.',
+    builtWith:
+      'This site was generated by Prumo, as a site project: the type that is now web:next.',
     sections: {
       product: 'Prumo',
       documents: 'Documents',

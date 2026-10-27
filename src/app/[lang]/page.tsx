@@ -169,7 +169,7 @@ export default async function HomePage() {
         </Section>
 
         <Section heading={t.home.types.heading}>
-          <ul className="grid border-t border-ink sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-4 lg:gap-x-6">
+          <ul className="grid border-t border-ink sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-3 lg:gap-x-6">
             {t.home.types.rows.map((row) => (
               <li
                 key={row.type}

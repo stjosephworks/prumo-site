@@ -41,7 +41,7 @@ export const pt: Dictionary = {
     standfirst:
       'O Prumo começa um projeto TypeScript com o framework, o desenho dos módulos, as regras do banco, a ligação da autenticação e os limites de teste já escolhidos. Cada um foi decidido uma vez, escrito dentro do projeto que o recebe, e transformado em algo que roda.',
     commandCaption:
-      'Node 22.18 ou mais novo e pnpm 10.26 ou mais novo, no macOS, no Linux ou no Windows.',
+      'Node 22.23.4 ou mais novo e pnpm 10.26 ou mais novo, no macOS, no Linux ou no Windows.',
     readDocuments: 'Ler os documentos',
     paths: {
       or: 'ou',
@@ -60,10 +60,10 @@ export const pt: Dictionary = {
           windows:
             'Não assinado: Mais informações, depois Executar assim mesmo. Bloqueado onde o Controle Inteligente de Aplicativos está ligado.',
         },
-        previewNote: `Prévias não assinadas da versão ${desktopVersion}. Todo build precisa de Node 22.18 ou mais novo e de pnpm 10.26 ou mais novo.`,
+        previewNote: `Prévias não assinadas da versão ${desktopVersion}. Todo build precisa de Node 22.23.4 ou mais novo e de pnpm 10.26 ou mais novo.`,
         previewLink: 'Como instalar',
         signedNote:
-          'O build para macOS é assinado e notarizado; os de Linux e Windows não são. Todo build precisa de Node 22.18 ou mais novo e de pnpm 10.26 ou mais novo.',
+          'O build para macOS é assinado e notarizado; os de Linux e Windows não são. Todo build precisa de Node 22.23.4 ou mais novo e de pnpm 10.26 ou mais novo.',
         signedLink: 'Sobre o Prumo Desktop',
       },
     },
@@ -82,7 +82,7 @@ export const pt: Dictionary = {
       caption: 'Um trecho de um projeto gerado com --types api,web',
     },
     types: {
-      heading: 'Quatro tipos, e do que cada um é feito',
+      heading: 'Três tipos, e do que cada um é feito',
       note: 'Um tipo produz aquele projeto sozinho. Vários produzem um workspace pnpm, com o contrato de comunicação compartilhado, de modo que uma mudança de um lado quebra o outro no typecheck.',
       rows: [
         {
@@ -101,8 +101,8 @@ export const pt: Dictionary = {
           type: 'web',
           role: 'O app do navegador',
           parts: [
-            'Vite e React',
-            'TanStack Router e Query',
+            'Vite, Next ou Astro, com React',
+            'O mesmo login em todos',
             'Tailwind e shadcn/ui',
             'Formulários validados com Zod',
           ],
@@ -116,11 +116,6 @@ export const pt: Dictionary = {
             'Tokens guardados no expo-secure-store',
             'Rodando numa development build',
           ],
-        },
-        {
-          type: 'site',
-          role: 'Páginas que precisam ser indexadas',
-          parts: ['Next no App Router', 'Estático por padrão'],
         },
       ],
     },
@@ -149,7 +144,7 @@ export const pt: Dictionary = {
     steps: [
       {
         heading: 'Confira a máquina',
-        body: 'O Prumo precisa de Node 22.18 ou mais novo e de pnpm 10.26 ou mais novo, no macOS, no Linux ou no Windows. No Windows ele roda nativamente: o projeto fica numa pasta do Windows, e quem o roda são o Node e o pnpm do Windows. Dentro de uma distribuição WSL, com Node, pnpm e Docker dela, o Prumo está no Linux, que é suportado, embora não seja testado no WSL especificamente; ferramentas do Windows trabalhando num projeto dentro do sistema de arquivos do WSL não são suportadas. Qualquer coisa com API precisa também de Docker, porque é lá que roda o banco de desenvolvimento: no Windows, o Docker Desktop com o backend WSL2, configurado para contêineres Linux. Este comando confere tudo e diz o que falta.',
+        body: 'O Prumo precisa de Node 22.23.4 ou mais novo e de pnpm 10.26 ou mais novo, no macOS, no Linux ou no Windows. No Windows ele roda nativamente: o projeto fica numa pasta do Windows, e quem o roda são o Node e o pnpm do Windows. Dentro de uma distribuição WSL, com Node, pnpm e Docker dela, o Prumo está no Linux, que é suportado, embora não seja testado no WSL especificamente; ferramentas do Windows trabalhando num projeto dentro do sistema de arquivos do WSL não são suportadas. Qualquer coisa com API precisa também de Docker, porque é lá que roda o banco de desenvolvimento: no Windows, o Docker Desktop com o backend WSL2, configurado para contêineres Linux. Este comando confere tudo e diz o que falta.',
         command: commands.doctor,
       },
       {
@@ -173,8 +168,9 @@ export const pt: Dictionary = {
       columns: { flag: 'Flag', answers: 'O que ela responde' },
       rows: [
         {
-          flag: '--types api,web,mobile,site',
-          answers: 'O que o projeto contém. Mais de um tipo faz um workspace',
+          flag: '--types api,web,mobile',
+          answers:
+            'O que o projeto contém. Mais de um tipo faz um workspace; web:vite, web:next ou web:astro escolhe o framework web, Vite por padrão',
         },
         { flag: '--alone   --monorepo', answers: 'Como um tipo sozinho fica disposto' },
         {
@@ -205,7 +201,7 @@ export const pt: Dictionary = {
       rows: [
         {
           file: '.prumo/',
-          what: 'As convenções, em doze áreas. Só as áreas que as respostas pedem são copiadas',
+          what: 'As convenções, em catorze áreas. Só as áreas que as respostas pedem são copiadas',
         },
         {
           file: '.prumo/INDEX.md',
@@ -222,12 +218,12 @@ export const pt: Dictionary = {
   concepts: {
     title: 'Convenções',
     description:
-      'O que é a pasta .prumo/, quais das doze áreas um projeto recebe, e de quem ela é depois disso.',
+      'O que é a pasta .prumo/, quais das catorze áreas um projeto recebe, e de quem ela é depois disso.',
     heading: 'As convenções vivem no projeto',
     standfirst:
       'Um projeto gerado carrega uma pasta .prumo/. É por isso que o Prumo não é um scaffolder: o código chega com as regras que segue, escritas, no repositório onde o trabalho acontece.',
     areas: {
-      heading: 'Doze áreas, e só as que se aplicam',
+      heading: 'Catorze áreas, e só as que se aplicam',
       body: 'Só core vai sem condição, porque tudo nela é verdade em todo tipo. O resto segue as respostas, já que conselho sobre uma plataforma que o projeto não tem é pior que conselho nenhum.',
       always: 'Sempre',
       conditional: 'Só quando as respostas pedem',
@@ -283,7 +279,7 @@ export const pt: Dictionary = {
       'Um aplicativo de desktop que cria projetos Prumo, lista-os, lê as convenções em .prumo/ e roda os apps deles, cada um no seu próprio painel de terminal.',
     download: {
       heading: 'Download',
-      body: `A versão ${desktopVersion} é uma prévia para macOS, Linux e Windows. Escolha o arquivo do seu sistema e da sua arquitetura. Em todo sistema o app precisa de Node 22.18 ou mais novo, de pnpm 10.26 ou mais novo e de git; ele os confere, mas nunca os instala. O Docker só é necessário para o banco de uma API.`,
+      body: `A versão ${desktopVersion} é uma prévia para macOS, Linux e Windows. Escolha o arquivo do seu sistema e da sua arquitetura. Em todo sistema o app precisa de Node 22.23.4 ou mais novo, de pnpm 10.26 ou mais novo e de git; ele os confere, mas nunca os instala. O Docker só é necessário para o banco de uma API.`,
       button: 'Baixar no GitHub Releases',
       yourSystem: 'Seu sistema',
       systems: {
@@ -425,7 +421,8 @@ export const pt: Dictionary = {
     stjosephWorks: 'St. Joseph Works',
     describing: 'Descrevendo o Prumo',
     license: 'Licença MIT',
-    builtWith: 'Este site foi gerado pelo Prumo, como um projeto do tipo site.',
+    builtWith:
+      'Este site foi gerado pelo Prumo, como um projeto do tipo site: o tipo que hoje é web:next.',
     sections: {
       product: 'Prumo',
       documents: 'Documentos',

@@ -22,8 +22,10 @@ const projectTree: { line: number; branch: string; name: string; kind: TreeKind 
   { line: 6, branch: '│   ├── ', name: 'INDEX.md', kind: 'conventions' },
   { line: 7, branch: '│   ├── ', name: 'core/', kind: 'conventions' },
   { line: 8, branch: '│   └── ', name: '…', kind: 'conventions' },
-  { line: 9, branch: '├── ', name: 'AGENTS.md', kind: 'conventions' },
-  { line: 10, branch: '└── ', name: 'CLAUDE.md', kind: 'conventions' },
+  { line: 9, branch: '├── ', name: '.context/', kind: 'conventions' },
+  { line: 10, branch: '│   └── ', name: 'INDEX.md', kind: 'conventions' },
+  { line: 11, branch: '├── ', name: 'AGENTS.md', kind: 'conventions' },
+  { line: 12, branch: '└── ', name: 'CLAUDE.md', kind: 'conventions' },
 ]
 
 const treeTone: Record<TreeKind, string> = {

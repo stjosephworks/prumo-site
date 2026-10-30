@@ -179,14 +179,29 @@ export const pt: Dictionary = {
             'Com uma api, web ou mobile: se a aplicação serve vários inquilinos. Multi-tenant traz as convenções de multi-tenancy; o código gerado em si ainda não é ciente de inquilino',
         },
         {
+          flag: '--single-language   --multi-language',
+          answers:
+            'Se o projeto fala um idioma, com os textos escritos onde aparecem, ou vários, a partir de mensagens: um arquivo por idioma, conferido com uma base, para que outro idioma seja um arquivo e a sua tradução',
+        },
+        {
+          flag: '--languages en,pt-BR,es-419',
+          answers:
+            'Os idiomas: exatamente um com --single-language, ou com --multi-language um ou mais, a base primeiro. O Prumo traduz os templates nestes três',
+        },
+        {
           flag: '--mcp   --no-mcp',
           answers:
             'Com uma api e uma web: se assistentes de IA chegam à API por MCP, autenticados como o usuário',
         },
         {
+          flag: '--sign-in password,email-code,phone-code',
+          answers:
+            'Com uma api: como as pessoas entram, uma forma ou mais: uma senha, ou um código de 6 dígitos enviado por email ou por SMS, e o primeiro cria a conta',
+        },
+        {
           flag: '--email   --no-email',
           answers:
-            'Com uma api: verificação de email e redefinição de senha, por um código de 6 dígitos enviado pela porta Mailer, que escreve no log até você dar a ela um provedor',
+            'Com uma api e password: verificação de email e redefinição de senha, por um código de 6 dígitos enviado pela porta Mailer, que escreve no log até você dar a ela um provedor',
         },
         {
           flag: '--social google,apple   --no-social',
@@ -201,15 +216,19 @@ export const pt: Dictionary = {
       rows: [
         {
           file: '.prumo/',
-          what: 'As convenções, em catorze áreas. Só as áreas que as respostas pedem são copiadas',
+          what: 'As convenções, em dezessete áreas. Só as áreas que as respostas pedem são copiadas',
         },
         {
           file: '.prumo/INDEX.md',
           what: 'Uma linha por documento. Gerado pela ferramenta, e seguro de regerar',
         },
         {
+          file: '.context/INDEX.md',
+          what: 'As regras do próprio projeto, que valem sobre o .prumo/. Nasce vazio; o assistente acrescenta uma regra quando o dev a enuncia',
+        },
+        {
           file: 'AGENTS.md',
-          what: 'O ponteiro para o .prumo/, lido por Codex, Cursor, Copilot, Gemini CLI e outros',
+          what: 'O ponteiro para o .context/ e o .prumo/, lido por Codex, Cursor, Copilot, Gemini CLI e outros',
         },
         { file: 'CLAUDE.md', what: 'Um import de @AGENTS.md, para o Claude Code' },
       ],
@@ -218,19 +237,19 @@ export const pt: Dictionary = {
   concepts: {
     title: 'Convenções',
     description:
-      'O que é a pasta .prumo/, quais das catorze áreas um projeto recebe, e de quem ela é depois disso.',
+      'O que é a pasta .prumo/, quais das dezessete áreas um projeto recebe, e de quem ela é depois disso.',
     heading: 'As convenções vivem no projeto',
     standfirst:
       'Um projeto gerado carrega uma pasta .prumo/. É por isso que o Prumo não é um scaffolder: o código chega com as regras que segue, escritas, no repositório onde o trabalho acontece.',
     areas: {
-      heading: 'Catorze áreas, e só as que se aplicam',
+      heading: 'Dezessete áreas, e só as que se aplicam',
       body: 'Só core vai sem condição, porque tudo nela é verdade em todo tipo. O resto segue as respostas, já que conselho sobre uma plataforma que o projeto não tem é pior que conselho nenhum.',
       always: 'Sempre',
       conditional: 'Só quando as respostas pedem',
     },
     assistants: {
       heading: 'Não amarrado a um assistente',
-      body: 'O .prumo/ é a fonte única da verdade e permanece neutro. O gerador escreve o arquivo de entrada que cada ferramenta carrega, e nada além disso: o AGENTS.md é o ponteiro de verdade, lido por Codex, Cursor, Copilot, Gemini CLI e outros, e o CLAUDE.md é um import dele. Sem skills, subagentes ou slash commands gerados, porque isso muda a cada trimestre.',
+      body: 'O .prumo/ é a fonte única da verdade para o que o Prumo traz, e o .context/ para o que o projeto decide sozinho, que vale quando os dois discordam. Os dois permanecem neutros. O gerador escreve o arquivo de entrada que cada ferramenta carrega, e nada além disso: o AGENTS.md é o ponteiro de verdade, lido por Codex, Cursor, Copilot, Gemini CLI e outros, e o CLAUDE.md é um import dele. Sem skills, subagentes ou slash commands gerados, porque isso muda a cada trimestre.',
     },
     ownership: {
       heading: 'Depois disso, são seus',

@@ -8,6 +8,7 @@ import { alternates, path } from '@/lib/routes'
 
 const areas = [
   { name: 'core', always: true },
+  { name: 'i18n', always: false },
   { name: 'api', always: false },
   { name: 'database', always: false },
   { name: 'client', always: false },
@@ -19,7 +20,9 @@ const areas = [
   { name: 'monorepo', always: false },
   { name: 'multi-tenancy', always: false },
   { name: 'mcp', always: false },
+  { name: 'codes', always: false },
   { name: 'email', always: false },
+  { name: 'phone', always: false },
   { name: 'social', always: false },
 ]
 
